@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "./pickSquad.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FormatModal from "./formatModal";
 class PickSquadContainer extends Component {
     render() {
         return (
@@ -8,7 +9,9 @@ class PickSquadContainer extends Component {
                 <div className="main-background"></div>
                 <div className="container mt-5">
                     <div className="row">
-                        <div className="col-lg-4"></div>
+                        <div className="col-lg-4">
+                            <FormatModal/>
+                        </div>
                         <div className="col-lg-8">
                             <div className="row align-items-center">
                                 <div className="container-fluid field-background mt-3 padding-to-field">
