@@ -1,0 +1,22 @@
+.main-background{
+  position : fixed;
+  background-image: url("../../assets/DGuRbHwy_o.jpg");
+  top : 0;
+  left: 0;
+  height : 100%;
+  background-size: cover;
+  width : 100%;
+  z-index: -100;
+}
+
+.field-background{
+  background-image: url("../../assets/pitch.318c0a20.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 500px;
+  width: 150% !important;
+}
+
+.padding-to-field {
+  padding : 0 6rem;
+}

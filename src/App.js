@@ -1,12 +1,21 @@
-import React from 'react';
-import './App.css';
+import React,{Component} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import pickSquadContainer from "./containers/pickSquad/pickSquad";
 
-function App() {
-  return (
-    <div>
-      HERE WE GOOO FANTASY!
-    </div>
-  );
+
+class App extends Component {
+    render() {
+        return(
+            <div>
+                <Router>
+                    <Switch>
+                        <Route path="/picksquad" component={pickSquadContainer}/>
+                    </Switch>
+                </Router>
+
+            </div>
+        )
+    }
 }
 
 export default App;
