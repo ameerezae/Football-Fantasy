@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import "./pickSquad.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FormatModal from "./formatModal";
+import Anonymous from "../../assets/football-player.svg"
+import {AnimateOnChange} from "react-animation";
+import {getWholeItems, setFilteredPosition} from "../../actions";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+
 class PickSquadContainer extends Component {
     render() {
         return (
@@ -24,5 +30,16 @@ class PickSquadContainer extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return{
+        format : state.formatReducer,
+    }
+}
+function mapDispatchToProps(state) {
+    return bindActionCreators({
+        getWholeItems,
+        setFilteredPosition,
 
-export default PickSquadContainer;
+    })
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PickSquadContainer);

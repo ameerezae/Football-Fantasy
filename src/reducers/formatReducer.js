@@ -16,7 +16,13 @@ export default function (state = {}, action) {
             return {...state, forward : action.payload}
         }
 
+        case "getWholeItems" : {
+            return {...state, wholeItems : action.payload}
+        }
 
+        case "filteredPositions" : {
+            return {...state, filteredItems : action.payload}
+        }
         default :
             return state;
     }
