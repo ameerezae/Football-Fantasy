@@ -18,5 +18,14 @@
 }
 
 .padding-to-field {
-  padding : 0 6rem;
+  padding : 0 6rem !important;
+}
+
+.customized-margin{
+  margin-top: 10.3%;
+}
+@media screen and (max-width: 991px) {
+  .customized-margin{
+    margin-top: 9%;
+  }
 }
