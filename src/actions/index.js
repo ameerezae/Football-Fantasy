@@ -154,3 +154,17 @@ export function setFilteredPosition(filteredPositions){
         payload : filteredPositions,
     }
 }
+
+export function setPickedPosition(pickedPosition) {
+    return{
+        type: "pickedPosition",
+        payload : pickedPosition,
+    }
+}
+
+export function setPickedKey(pickedKey) {
+    return{
+        type : "pickedKey",
+        payload : pickedKey,
+    }
+}

@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import "./pickSquad.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FormatModal from "./formatModal";
+import PlayersTable from "./playersTable"
 import Anonymous from "../../assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
-import {getWholeItems, setFilteredPosition} from "../../actions";
+import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey} from "../../actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 class PickSquadContainer extends Component {
-    state = {
-        pickedPosition: null,
-        pickedKey: null,
-    };
 
+    componentWillMount() {
+        this.props.getWholeItems();
+    }
 
     onClick = (event) => {
         const position = event.target.name;
@@ -21,13 +21,8 @@ class PickSquadContainer extends Component {
 
         const filteredPosition = this.props.format.wholeItems.filter(element => element.position === position);
         this.props.setFilteredPosition(filteredPosition);
-
-        this.setState(prevState => {
-            const newState = {...prevState};
-            newState["pickedPosition"] = position;
-            newState["pickedKey"] = id;
-            return newState
-        })
+        this.props.setPickedPosition(position);
+        this.props.setPickedKey(id);
     };
 
 
@@ -155,6 +150,7 @@ class PickSquadContainer extends Component {
                     <div className="row">
                         <div className="col-lg-4">
                             <FormatModal/>
+                            <PlayersTable/>
                         </div>
                         <div className="col-lg-8">
                             <div className="row align-items-center">
@@ -184,12 +180,14 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(state) {
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getWholeItems,
         setFilteredPosition,
+        setPickedPosition,
+        setPickedKey
 
-    })
+    },dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PickSquadContainer);

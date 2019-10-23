@@ -23,6 +23,14 @@ export default function (state = {}, action) {
         case "filteredPositions" : {
             return {...state, filteredItems : action.payload}
         }
+
+        case "pickedPosition" : {
+            return {...state, pickedPosition : action.payload}
+        }
+
+        case "pickedKey" : {
+            return {...state, pickedKey : action.payload}
+        }
         default :
             return state;
     }
