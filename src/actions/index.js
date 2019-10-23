@@ -23,10 +23,43 @@ export function setForwards(forwards) {
         payload : forwards,
     }
 }
+
+export function setBench(bench) {
+    return{
+        type : "setBench",
+        payload : bench,
+    }
+}
+
+export function setGoalKeeper(gk) {
+    return{
+        type:"setGoalKeeper",
+        payload : gk,
+    }
+}
+
 export function getWholeItems() {
     return {
         type : "getWholeItems",
         payload : [
+            {
+                'name': "Bernd Leno",
+                "price": 5.0,
+                "image": PlayerImg,
+                "shirt_number": 1,
+                "club": "arsenal",
+                "position": "GK",
+                "status": "cured"
+            },
+            {
+                'name': "Emiliano Martínez",
+                "price": 4.4,
+                "image": PlayerImg,
+                "shirt_number": 26,
+                "club": "arsenal",
+                "position": "GK",
+                "status": "cured",
+            },
             {
                 'name': "David Luiz Moreira Marinho",
                 "price": 5.8,

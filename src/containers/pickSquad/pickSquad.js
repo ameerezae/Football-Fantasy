@@ -5,6 +5,8 @@ import FormatModal from "./formatModal";
 import PlayersTable from "./playersTable"
 import Anonymous from "../../assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
+import GoalK from "../../assets/GK.svg";
+import Bench from "../../assets/bench.svg"
 import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey} from "../../actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -19,7 +21,11 @@ class PickSquadContainer extends Component {
         const position = event.target.name;
         const id = event.target.id;
 
-        const filteredPosition = this.props.format.wholeItems.filter(element => element.position === position);
+        let filteredPosition;
+        position !== "bench" ?
+            filteredPosition = this.props.format.wholeItems.filter(element => element.position === position)
+            :
+            filteredPosition = this.props.format.wholeItems;
         this.props.setFilteredPosition(filteredPosition);
         this.props.setPickedPosition(position);
         this.props.setPickedKey(id);
@@ -27,6 +33,59 @@ class PickSquadContainer extends Component {
 
 
     render() {
+        const GK = (
+            this.props.format.forward ?
+                this.props.format.GK.map((element, key) => {
+                    return (
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <AnimateOnChange key={key}
+                                                 animationIn="bounceIn"
+                                                 animationOut="bounceOut"
+                                >
+                                    {this.props.format.GK[key] ?
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={this.props.format.GK[key].image} width="80px"
+                                                     alt="pic"/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                    backgroundColor: "rgb(90, 247, 220)"
+                                                }}>{this.props.format.GK[key].name}</div>
+                                            </div>
+                                        </div> :
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={GoalK} onClick={this.onClick} alt="anonymous" width="80px"
+                                                     name="GK"
+                                                     id={key} key={key}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                }}>&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    }
+                                </AnimateOnChange>
+                            </div>
+                        </div>
+                    )
+                }) : null
+        );
+
         const defenders = (
             this.props.format.defender ?
                 this.props.format.defender.map((element, key) => {
@@ -57,9 +116,23 @@ class PickSquadContainer extends Component {
                                         </div>
 
                                         :
-                                        <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
-                                             name="defender"
-                                             id={key} key={key}/>}
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
+                                                     name="defender"
+                                                     id={key} key={key}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                }}>&nbsp;</div>
+                                            </div>
+                                        </div>}
                                 </AnimateOnChange>
 
                             </div>
@@ -67,6 +140,8 @@ class PickSquadContainer extends Component {
                     )
                 }) : null
         );
+
+
         const mids = (
             this.props.format.middle ?
                 this.props.format.middle.map((element, key) => {
@@ -94,9 +169,23 @@ class PickSquadContainer extends Component {
                                                 }}>{this.props.format.middle[key].name}</div>
                                             </div>
                                         </div> :
-                                        <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
-                                             name="middle"
-                                             id={key} key={key}/>}
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
+                                                     name="middle"
+                                                     id={key} key={key}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                }}>&nbsp;</div>
+                                            </div>
+                                        </div>}
                                 </AnimateOnChange>
                             </div>
                         </div>
@@ -133,9 +222,23 @@ class PickSquadContainer extends Component {
                                             </div>
                                         </div>
                                         :
-                                        <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
-                                             name="forward"
-                                             id={key} key={key}/>}
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={Anonymous} onClick={this.onClick} alt="anonymous" width="80px"
+                                                     name="forward"
+                                                     id={key} key={key}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                }}>&nbsp;</div>
+                                            </div>
+                                        </div>}
                                 </AnimateOnChange>
                             </div>
                         </div>
@@ -143,6 +246,59 @@ class PickSquadContainer extends Component {
                 }) : null
 
         );
+
+        const bench = (
+            this.props.format.forward ?
+                this.props.format.bench.map((element, key) => {
+                    return (
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <AnimateOnChange key={key}
+                                                 animationIn="bounceIn"
+                                                 animationOut="bounceOut"
+                                >
+                                    {this.props.format.bench[key] ?
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={this.props.format.bench[key].image} width="80px"
+                                                     alt="pic"/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                    backgroundColor: "rgb(90, 247, 220)"
+                                                }}>{this.props.format.bench[key].name}</div>
+                                            </div>
+                                        </div> :
+                                        <div className="container">
+                                            <div className="row justify-content-center">
+                                                <img src={Bench} onClick={this.onClick} alt="anonymous" width="80px"
+                                                     name="bench"
+                                                     id={key} key={key}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <div style={{
+                                                    textAlign: "center",
+                                                    fontSize: ".8rem",
+                                                    color: "black",
+                                                    paddingLeft: "4px",
+                                                    paddingRight: "4px",
+                                                    fontWeight: "200",
+                                                }}>&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    }
+                                </AnimateOnChange>
+                            </div>
+                        </div>
+                    )
+                }) : null
+        )
         return (
             <div>
                 <div className="main-background"></div>
@@ -154,8 +310,11 @@ class PickSquadContainer extends Component {
                         </div>
                         <div className="col-lg-8">
                             <div className="row align-items-center">
-                                <div className="container-fluid field-background mt-3 padding-to-field">
-                                    <div className="row justify-content-center mt-5">
+                                <div className="container-fluid field-background padding-to-field">
+                                    <div className="row justify-content-center">
+                                        {GK}
+                                    </div>
+                                    <div className="row justify-content-center customized-margin">
                                         {defenders}
                                     </div>
                                     <div className="row justify-content-center customized-margin">
@@ -163,6 +322,9 @@ class PickSquadContainer extends Component {
                                     </div>
                                     <div className="row justify-content-center customized-margin">
                                         {forwards}
+                                    </div>
+                                    <div className="row justify-content-center customized-margin">
+                                        {bench}
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +349,7 @@ function mapDispatchToProps(dispatch) {
         setPickedPosition,
         setPickedKey
 
-    },dispatch)
+    }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PickSquadContainer);

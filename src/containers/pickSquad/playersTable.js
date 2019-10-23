@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {IoIosInformationCircle} from "react-icons/io";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta, } from '@material/react-list';
 import {bindActionCreators} from "redux";
-import {setDefenders, setMiddles, setForwards, getWholeItems} from "../../actions";
+import {setDefenders, setMiddles, setForwards, getWholeItems, setBench, setGoalKeeper} from "../../actions";
 import {connect} from "react-redux";
 import "./playerTable.scss";
 import '@material/react-list/dist/list.css';
@@ -14,11 +14,16 @@ class PlayersTable extends Component {
         let chosenPos = this.props.format[this.props.format.pickedPosition];
         chosenPos[this.props.format.pickedKey] = playerDetails;
         switch (this.props.format.pickedPosition) {
+
             case "defender" : this.props.setDefenders(chosenPos);break;
 
             case "middle" : this.props.setMiddles(chosenPos);break;
 
             case "forward" : this.props.setForwards(chosenPos);break;
+
+            case "bench" : this.props.setBench(chosenPos);break;
+
+            case "GK" : this.props.setGoalKeeper(chosenPos);break;
 
             default : break;
         }
@@ -76,10 +81,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
+        setGoalKeeper,
         setDefenders,
         setMiddles,
         setForwards,
-        getWholeItems
+        getWholeItems,
+        setBench,
+
     },dispatch)
 }
 export default connect(mapStateToProps,mapDispatchToProps)(PlayersTable);

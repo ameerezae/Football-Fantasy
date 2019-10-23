@@ -1,7 +1,17 @@
-export default function (state = {}, action) {
+const initialState = {
+    bench : [null,null,null,null],
+    GK : [null],
+};
+
+
+export default function (state = initialState, action) {
     switch (action.type) {
         case "setFormat": {
             return {...state, format: action.payload};
+        }
+
+        case "setGoalKeeper" : {
+            return {...state, GK: action.payload}
         }
 
         case "setDefenders":{
@@ -14,6 +24,10 @@ export default function (state = {}, action) {
 
         case "setForwards" : {
             return {...state, forward : action.payload}
+        }
+
+        case "setBench" : {
+            return {...state, bench: action.payload}
         }
 
         case "getWholeItems" : {
@@ -31,6 +45,7 @@ export default function (state = {}, action) {
         case "pickedKey" : {
             return {...state, pickedKey : action.payload}
         }
+
         default :
             return state;
     }
