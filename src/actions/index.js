@@ -213,3 +213,10 @@ export function toggleModal(bool) {
         payload : bool,
     }
 }
+
+export function setCaptain(captain){
+    return{
+        type:"setCaptain",
+        payload:captain
+    }
+}

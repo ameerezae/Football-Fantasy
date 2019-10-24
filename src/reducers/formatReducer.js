@@ -2,6 +2,7 @@ const initialState = {
     bench : [null,null,null,null],
     GK : [null],
     visibleModal: false,
+    captain : null,
 };
 
 
@@ -53,6 +54,10 @@ export default function (state = initialState, action) {
 
         case "toggleModal" : {
             return {...state, visibleModal: action.payload}
+        }
+
+        case "setCaptain" : {
+            return {...state, captain: action.payload}
         }
 
         default :
