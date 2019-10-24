@@ -37,7 +37,7 @@ class PickSquadContainer extends Component {
             this.props.format.forward ?
                 this.props.format.GK.map((element, key) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={key}>
                             <div className="row justify-content-center">
                                 <AnimateOnChange key={key}
                                                  animationIn="bounceIn"
@@ -90,7 +90,7 @@ class PickSquadContainer extends Component {
             this.props.format.defender ?
                 this.props.format.defender.map((element, key) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={key}>
                             <div className="row justify-content-center">
                                 <AnimateOnChange
                                     animationIn="bounceIn"
@@ -146,7 +146,7 @@ class PickSquadContainer extends Component {
             this.props.format.middle ?
                 this.props.format.middle.map((element, key) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={key}>
                             <div className="row justify-content-center">
                                 <AnimateOnChange
                                     animationIn="bounceIn"
@@ -198,7 +198,7 @@ class PickSquadContainer extends Component {
             this.props.format.forward ?
                 this.props.format.forward.map((element, key) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={key}>
                             <div className="row justify-content-center">
                                 <AnimateOnChange key={key}
                                                  animationIn="bounceIn"
@@ -251,7 +251,7 @@ class PickSquadContainer extends Component {
             this.props.format.forward ?
                 this.props.format.bench.map((element, key) => {
                     return (
-                        <div className="col">
+                        <div className="col" key={key}>
                             <div className="row justify-content-center">
                                 <AnimateOnChange key={key}
                                                  animationIn="bounceIn"

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {IoIosInformationCircle} from "react-icons/io";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta, } from '@material/react-list';
 import {bindActionCreators} from "redux";
-import {setDefenders, setMiddles, setForwards, getWholeItems, setBench, setGoalKeeper} from "../../actions";
+import {setDefenders, setMiddles, setForwards, getWholeItems, setBench, setGoalKeeper, setWholeItems, setFilteredPosition} from "../../actions";
 import {connect} from "react-redux";
 import "./playerTable.scss";
 import '@material/react-list/dist/list.css';
@@ -13,6 +13,7 @@ class PlayersTable extends Component {
         const playerDetails = this.props.format.filteredItems[index];
         let chosenPos = this.props.format[this.props.format.pickedPosition];
         chosenPos[this.props.format.pickedKey] = playerDetails;
+        const newWholeItems = this.props.format.wholeItems.filter(element => element.name !== playerDetails.name);
         switch (this.props.format.pickedPosition) {
 
             case "defender" : this.props.setDefenders(chosenPos);break;
@@ -27,6 +28,13 @@ class PlayersTable extends Component {
 
             default : break;
         }
+        this.props.setWholeItems(newWholeItems);
+        let filteredPosition;
+        this.props.format.pickedPosition !== "bench" ?
+            filteredPosition = newWholeItems.filter(element => element.position === this.props.format.pickedPosition)
+            :
+            filteredPosition = newWholeItems;
+        this.props.setFilteredPosition(filteredPosition);
     };
 
 
@@ -87,6 +95,8 @@ function mapDispatchToProps(dispatch){
         setForwards,
         getWholeItems,
         setBench,
+        setWholeItems,
+        setFilteredPosition,
 
     },dispatch)
 }

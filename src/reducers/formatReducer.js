@@ -34,6 +34,10 @@ export default function (state = initialState, action) {
             return {...state, wholeItems : action.payload}
         }
 
+        case "setWholeItems" : {
+            return {...state, wholeItems : action.payload}
+        }
+
         case "filteredPositions" : {
             return {...state, filteredItems : action.payload}
         }

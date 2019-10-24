@@ -180,7 +180,12 @@ export function getWholeItems() {
         ]
     }
 }
-
+export function setWholeItems(items) {
+    return{
+        type: "setWholeItems",
+        payload : items,
+    }
+}
 export function setFilteredPosition(filteredPositions){
     return{
         type : "filteredPositions",

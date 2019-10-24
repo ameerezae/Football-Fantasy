@@ -66,7 +66,7 @@ class FormatModal extends Component {
                     <div className="row">
                         {this.state.modalFormats.map((element, key) => {
                             return (
-                                <div className="col-sm-3 mt-1 border rounded-sm" style={{cursor: "pointer"}}
+                                <div className="col-sm-3 mt-1 border rounded-sm" key={key} style={{cursor: "pointer"}}
                                      onClick={() => this.formatHandleChange(key)}>
                                     <div className="row justify-content-center">
                                         {element.value}
