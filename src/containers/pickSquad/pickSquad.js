@@ -7,7 +7,7 @@ import Anonymous from "../../assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
 import GoalK from "../../assets/GK.svg";
 import Bench from "../../assets/bench.svg"
-import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey} from "../../actions";
+import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey ,setWholeItems, setGoalKeeper, setDefenders, setMiddles ,setForwards ,setBench} from "../../actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
@@ -31,6 +31,34 @@ class PickSquadContainer extends Component {
         this.props.setPickedKey(id);
     };
 
+    pickedPlayerOnClick = (event) => {
+        const position = event.target.name;
+        const id = event.target.id;
+        this.props.setPickedPosition(position);
+        this.props.setPickedKey(id);
+        let newWholeItems = this.props.format.wholeItems;
+        newWholeItems.push(this.props.format[position][id])
+        this.props.setWholeItems(newWholeItems);
+        let filteredPosition;
+        position !== "bench" ?
+            filteredPosition = newWholeItems.filter(element => element.position === position)
+            :
+            filteredPosition = newWholeItems;
+        this.props.setFilteredPosition(filteredPosition);
+        let selectedPos = this.props.format[position];
+        selectedPos[id] = null;
+        switch (position) {
+            case "GK" : this.props.setGoalKeeper(selectedPos);break;
+            case "defender" : this.props.setDefenders(selectedPos);break;
+            case "middle" : this.props.setMiddles(selectedPos);break;
+            case "forward" : this.props.setForwards(selectedPos);break;
+            case "bench" : this.props.setBench(selectedPos);break;
+            default : break;
+
+        }
+        console.log(this.props.format.wholeItems)
+        console.log(position,"POSITION",id,"ID")
+    }
 
     render() {
         const GK = (
@@ -46,7 +74,8 @@ class PickSquadContainer extends Component {
                                     {this.props.format.GK[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.GK[key].image} width="80px"
+                                                <img src={this.props.format.GK[key].image} onClick={this.pickedPlayerOnClick} name="GK" id={key} key={key}
+                                                     width="80px"
                                                      alt="pic"/>
                                             </div>
                                             <div className="row justify-content-center">
@@ -99,7 +128,7 @@ class PickSquadContainer extends Component {
                                     {this.props.format.defender[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.defender[key].image} width="80px"
+                                                <img src={this.props.format.defender[key].image} width="80px" onClick={this.pickedPlayerOnClick} name="defender" id={key} key={key}
                                                      alt="pic"/>
                                             </div>
                                             <div className="row mt-1 justify-content-center">
@@ -155,7 +184,7 @@ class PickSquadContainer extends Component {
                                     {this.props.format.middle[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.middle[key].image} width="80px" alt="pic"/>
+                                                <img src={this.props.format.middle[key].image} width="80px" alt="pic" onClick={this.pickedPlayerOnClick} name="middle" id={key} key={key}/>
                                             </div>
                                             <div className="row mt-1 justify-content-center">
                                                 <div style={{
@@ -207,7 +236,7 @@ class PickSquadContainer extends Component {
                                     {this.props.format.forward[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.forward[key].image} width="80px" alt="pic"/>
+                                                <img src={this.props.format.forward[key].image} width="80px" alt="pic" onClick={this.pickedPlayerOnClick} name="forward" id={key} key={key}/>
                                             </div>
                                             <div className="row mt-1 justify-content-center">
                                                 <div style={{
@@ -260,7 +289,7 @@ class PickSquadContainer extends Component {
                                     {this.props.format.bench[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.bench[key].image} width="80px"
+                                                <img src={this.props.format.bench[key].image} width="80px" onClick={this.pickedPlayerOnClick} name="bench" id={key} key={key}
                                                      alt="pic"/>
                                             </div>
                                             <div className="row justify-content-center">
@@ -347,7 +376,13 @@ function mapDispatchToProps(dispatch) {
         getWholeItems,
         setFilteredPosition,
         setPickedPosition,
-        setPickedKey
+        setPickedKey,
+        setWholeItems,
+        setGoalKeeper,
+        setDefenders,
+        setMiddles,
+        setForwards,
+        setBench
 
     }, dispatch)
 }

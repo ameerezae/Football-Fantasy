@@ -12,29 +12,32 @@ class PlayersTable extends Component {
     choosePlayer = (index) => {
         const playerDetails = this.props.format.filteredItems[index];
         let chosenPos = this.props.format[this.props.format.pickedPosition];
-        chosenPos[this.props.format.pickedKey] = playerDetails;
-        const newWholeItems = this.props.format.wholeItems.filter(element => element.name !== playerDetails.name);
-        switch (this.props.format.pickedPosition) {
+        if(chosenPos[this.props.format.pickedKey] == null){
+            chosenPos[this.props.format.pickedKey] = playerDetails;
+            const newWholeItems = this.props.format.wholeItems.filter(element => element.name !== playerDetails.name);
+            switch (this.props.format.pickedPosition) {
 
-            case "defender" : this.props.setDefenders(chosenPos);break;
+                case "defender" : this.props.setDefenders(chosenPos);break;
 
-            case "middle" : this.props.setMiddles(chosenPos);break;
+                case "middle" : this.props.setMiddles(chosenPos);break;
 
-            case "forward" : this.props.setForwards(chosenPos);break;
+                case "forward" : this.props.setForwards(chosenPos);break;
 
-            case "bench" : this.props.setBench(chosenPos);break;
+                case "bench" : this.props.setBench(chosenPos);break;
 
-            case "GK" : this.props.setGoalKeeper(chosenPos);break;
+                case "GK" : this.props.setGoalKeeper(chosenPos);break;
 
-            default : break;
+                default : break;
+            }
+            this.props.setWholeItems(newWholeItems);
+            let filteredPosition;
+            this.props.format.pickedPosition !== "bench" ?
+                filteredPosition = newWholeItems.filter(element => element.position === this.props.format.pickedPosition)
+                :
+                filteredPosition = newWholeItems;
+            this.props.setFilteredPosition(filteredPosition);
         }
-        this.props.setWholeItems(newWholeItems);
-        let filteredPosition;
-        this.props.format.pickedPosition !== "bench" ?
-            filteredPosition = newWholeItems.filter(element => element.position === this.props.format.pickedPosition)
-            :
-            filteredPosition = newWholeItems;
-        this.props.setFilteredPosition(filteredPosition);
+
     };
 
 
