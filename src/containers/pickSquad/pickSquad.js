@@ -7,10 +7,10 @@ import Anonymous from "../../assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
 import GoalK from "../../assets/GK.svg";
 import Bench from "../../assets/bench.svg"
-import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey ,setWholeItems, setGoalKeeper, setDefenders, setMiddles ,setForwards ,setBench} from "../../actions";
+import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey, toggleModal} from "../../actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-
+import DetailsModal from "./detailsModal";
 class PickSquadContainer extends Component {
 
     componentWillMount() {
@@ -36,29 +36,8 @@ class PickSquadContainer extends Component {
         const id = event.target.id;
         this.props.setPickedPosition(position);
         this.props.setPickedKey(id);
-        let newWholeItems = this.props.format.wholeItems;
-        newWholeItems.push(this.props.format[position][id])
-        this.props.setWholeItems(newWholeItems);
-        let filteredPosition;
-        position !== "bench" ?
-            filteredPosition = newWholeItems.filter(element => element.position === position)
-            :
-            filteredPosition = newWholeItems;
-        this.props.setFilteredPosition(filteredPosition);
-        let selectedPos = this.props.format[position];
-        selectedPos[id] = null;
-        switch (position) {
-            case "GK" : this.props.setGoalKeeper(selectedPos);break;
-            case "defender" : this.props.setDefenders(selectedPos);break;
-            case "middle" : this.props.setMiddles(selectedPos);break;
-            case "forward" : this.props.setForwards(selectedPos);break;
-            case "bench" : this.props.setBench(selectedPos);break;
-            default : break;
-
-        }
-        console.log(this.props.format.wholeItems)
-        console.log(position,"POSITION",id,"ID")
-    }
+        this.props.toggleModal(true)
+    };
 
     render() {
         const GK = (
@@ -338,6 +317,7 @@ class PickSquadContainer extends Component {
                             <PlayersTable/>
                         </div>
                         <div className="col-lg-8">
+                            <DetailsModal/>
                             <div className="row align-items-center">
                                 <div className="container-fluid field-background padding-to-field">
                                     <div className="row justify-content-center">
@@ -377,12 +357,7 @@ function mapDispatchToProps(dispatch) {
         setFilteredPosition,
         setPickedPosition,
         setPickedKey,
-        setWholeItems,
-        setGoalKeeper,
-        setDefenders,
-        setMiddles,
-        setForwards,
-        setBench
+        toggleModal
 
     }, dispatch)
 }

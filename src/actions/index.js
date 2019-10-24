@@ -206,3 +206,10 @@ export function setPickedKey(pickedKey) {
         payload : pickedKey,
     }
 }
+
+export function toggleModal(bool) {
+    return{
+        type: "toggleModal",
+        payload : bool,
+    }
+}

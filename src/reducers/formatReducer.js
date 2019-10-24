@@ -1,6 +1,7 @@
 const initialState = {
     bench : [null,null,null,null],
     GK : [null],
+    visibleModal: false,
 };
 
 
@@ -48,6 +49,10 @@ export default function (state = initialState, action) {
 
         case "pickedKey" : {
             return {...state, pickedKey : action.payload}
+        }
+
+        case "toggleModal" : {
+            return {...state, visibleModal: action.payload}
         }
 
         default :
