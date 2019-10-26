@@ -23,7 +23,7 @@ import {FaRegCopyright, FaTrashAlt} from "react-icons/all"
 class DetailsModal extends Component {
 
     onRemove = () => {
-        if (this.props.format.captain && this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey].name === this.props.format.captain.name) {
+        if (this.props.format["captain-id"] && this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey].name === this.props.format["captain-id"].name) {
             this.props.setCaptain(null);
         }
         let newWholeItems = this.props.format.wholeItems;
@@ -38,16 +38,16 @@ class DetailsModal extends Component {
         let selectedPos = this.props.format[this.props.format.pickedPosition];
         selectedPos[this.props.format.pickedKey] = null;
         switch (this.props.format.pickedPosition) {
-            case "GK" :
+            case "Goalkeeper" :
                 this.props.setGoalKeeper(selectedPos);
                 break;
-            case "defender" :
+            case "Defender" :
                 this.props.setDefenders(selectedPos);
                 break;
-            case "middle" :
+            case "Midfielder" :
                 this.props.setMiddles(selectedPos);
                 break;
-            case "forward" :
+            case "Forward" :
                 this.props.setForwards(selectedPos);
                 break;
             case "bench" :
@@ -58,7 +58,7 @@ class DetailsModal extends Component {
 
         }
         this.props.toggleModal(false);
-        const remainedMoney = calculateMoney(this.props.format.defender, this.props.format.middle, this.props.format.forward, this.props.format.bench, this.props.format.GK)
+        const remainedMoney = calculateMoney(this.props.format.Defender, this.props.format.Midfielder, this.props.format.Forward, this.props.format.bench, this.props.format.Goalkeeper)
         this.props.setRemainedMoney(remainedMoney)
 
     };
