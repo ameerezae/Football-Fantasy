@@ -25,6 +25,7 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.userSignUpRequest(this.state)
+        this.props.history.push('/')
         // console.log(this.state)
     }
     render() {
