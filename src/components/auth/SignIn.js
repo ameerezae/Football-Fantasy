@@ -8,7 +8,8 @@ class SignIn extends Component {
         super(props);
     this.state = {
         email : '',
-        password1 :'',
+        username : '',
+        password :'',
     }
 
     this.onChange = this.handleChange.bind(this);
@@ -16,7 +17,7 @@ class SignIn extends Component {
 }
     handleChange = (e) => {
         this.setState({
-            [e.terget.id] : e.terget.value
+            [e.target.id] : e.target.value
         })
     }
     handleSubmit = (e) => {
@@ -40,8 +41,12 @@ class SignIn extends Component {
                                 <input type="email" id="email" value ={this.state.email} onChange={this.handleChange}/>
                             </div>
                             <div className="input-field">
-                            <label htmlFor="password1">Password</label>
-                                <input type="password" id="password1" value ={this.state.password1} onChange={this.handleChange}/>
+                                <label htmlFor="username">Username</label>
+                                <input type="text" id="username" value ={this.state.username} onChange={this.handleChange}/>
+                            </div>
+                            <div className="input-field">
+                            <label htmlFor="password">Password</label>
+                                <input type="password" id="password" value ={this.state.password} onChange={this.handleChange}/>
                             </div>
                             <div className="input-field">
                                 <button className="btn pink lighten-1 z-depth-0">LOGIN</button>
