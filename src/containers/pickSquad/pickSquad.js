@@ -7,11 +7,16 @@ import Anonymous from "../../assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
 import GoalK from "../../assets/GK.svg";
 import Bench from "../../assets/bench.svg"
-import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey, toggleModal} from "../../actions";
+import {getWholeItems, setFilteredPosition, setPickedPosition, setPickedKey, toggleModal,setSquadName} from "../../actions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import DetailsModal from "./detailsModal";
+import CountUp from "react-countup/build";
+import Swal from "sweetalert2";
 class PickSquadContainer extends Component {
+    state = {
+        pickName : true,
+    };
 
     componentWillMount() {
         this.props.getWholeItems();
@@ -40,6 +45,18 @@ class PickSquadContainer extends Component {
     };
 
     render() {
+        if(this.state.pickName){
+            Swal.fire({
+                title: 'Enter your squad name :',
+                input: 'text',
+                confirmButtonText:"confirm",
+                inputValidator: (value) => {
+                    this.props.setSquadName(value)
+                    this.setState({pickName:false})
+                }
+            })
+        }
+
         const GK = (
             this.props.format.forward ?
                 this.props.format.GK.map((element, key) => {
@@ -313,10 +330,19 @@ class PickSquadContainer extends Component {
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-lg-4">
+
+
                             <FormatModal/>
                             <PlayersTable/>
                         </div>
-                        <div className="col-lg-8">
+                        <div className="col-lg-7">
+                            <div className="row align-items-center mt-2">
+                                <h4 className="text-white ml-3">Pick your squad</h4>
+                                <h5 className="text-white ml-5">Budget: </h5>
+                                <h5 className="text-white pb-0 ml-2"><CountUp start={50} end={this.props.format.money} duration = {1}
+                                                                         separator = "," suffix="$" /></h5>
+                            </div>
+                            <hr style={{background:"white"}}/>
                             <DetailsModal/>
                             <div className="row align-items-center">
                                 <div className="container-fluid field-background padding-to-field">
@@ -332,9 +358,14 @@ class PickSquadContainer extends Component {
                                     <div className="row justify-content-center customized-margin">
                                         {forwards}
                                     </div>
-                                    <div className="row justify-content-center customized-margin">
-                                        {bench}
-                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-1">
+                            <div className="container bench-margin">
+                                <div className="row hidden-lg">
+                                    {bench}
                                 </div>
                             </div>
                         </div>
@@ -357,7 +388,8 @@ function mapDispatchToProps(dispatch) {
         setFilteredPosition,
         setPickedPosition,
         setPickedKey,
-        toggleModal
+        toggleModal,
+        setSquadName
 
     }, dispatch)
 }

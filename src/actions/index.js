@@ -220,3 +220,17 @@ export function setCaptain(captain){
         payload:captain
     }
 }
+
+export function setRemainedMoney(money){
+    return{
+        type : "setRemainedMoney",
+        payload : money,
+    }
+}
+
+export function setSquadName(name) {
+    return{
+        type : "setSquadName",
+        payload : name,
+    }
+}

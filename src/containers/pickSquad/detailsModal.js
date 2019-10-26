@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {connect} from "react-redux";
+import {calculateMoney} from "./calculateMoney";
 import Swal from 'sweetalert2'
 import {
     toggleModal,
@@ -12,11 +13,13 @@ import {
     setBench,
     setWholeItems,
     setFilteredPosition,
-    setCaptain
+    setCaptain,
+    setRemainedMoney
 } from "../../actions";
 import {bindActionCreators} from "redux";
 import "./detailsModal.scss";
-import {IoMdCloseCircle, FaCopyright,FaRegCopyright,FaTrashAlt} from "react-icons/all"
+import {FaRegCopyright, FaTrashAlt} from "react-icons/all"
+
 class DetailsModal extends Component {
 
     onRemove = () => {
@@ -55,7 +58,8 @@ class DetailsModal extends Component {
 
         }
         this.props.toggleModal(false);
-
+        const remainedMoney = calculateMoney(this.props.format.defender, this.props.format.middle, this.props.format.forward, this.props.format.bench, this.props.format.GK)
+        this.props.setRemainedMoney(remainedMoney)
 
     };
 
@@ -67,7 +71,8 @@ class DetailsModal extends Component {
                 <div className="container p-4 background-modal w-100">
                     <div className="row align-items-center">
                         <div className="col-5">
-                            {clicked ? <img style={{backgroundColor:"white",borderRadius:"50%"}} src={clicked.image} alt="img" width="100px"/>
+                            {clicked ? <img style={{backgroundColor: "white", borderRadius: "50%"}} src={clicked.image}
+                                            alt="img" width="100px"/>
 
                                 : null}
                         </div>
@@ -79,14 +84,25 @@ class DetailsModal extends Component {
                     </div>
                     <hr/>
                     <div className="row align-items-center justify-content-center py-4">
-                        <FaTrashAlt className="mr-2" style={{fontSize:"2.5rem",color:"red",cursor:"pointer"}} onClick={this.onRemove}/>
+                        <FaTrashAlt className="mr-2" style={{fontSize: "2.5rem", color: "red", cursor: "pointer"}}
+                                    onClick={this.onRemove}/>
 
-                        {this.props.format.pickedPosition !== "bench" ? <FaRegCopyright className="ml-2" style = {{fontSize:"2.5rem",color:"yellow",cursor:"pointer"}} onClick={() => {
-                            this.props.setCaptain(this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey]);this.props.toggleModal(false); Swal.fire({
-                                type: 'success',
-                                width : 300,
+                        {this.props.format.pickedPosition !== "bench" ? <FaRegCopyright className="ml-2" style={{
+                            fontSize: "2.5rem",
+                            color: "yellow",
+                            cursor: "pointer"
+                        }} onClick={() => {
+                            this.props.setCaptain(this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey]);
+                            this.props.toggleModal(false);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 3000
+                            });
+                            Toast.fire({
+                                type: 'success',
+                                width : 100
                             })
                         }}/> : null}
                     </div>
@@ -113,7 +129,8 @@ function mapDispatchToProps(dispatch) {
         setBench,
         setWholeItems,
         setFilteredPosition,
-        setCaptain
+        setCaptain,
+        setRemainedMoney
     }, dispatch)
 }
 

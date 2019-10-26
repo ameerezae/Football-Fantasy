@@ -3,6 +3,8 @@ const initialState = {
     GK : [null],
     visibleModal: false,
     captain : null,
+    money : 100,
+    "squad-name" : null,
 };
 
 
@@ -60,6 +62,13 @@ export default function (state = initialState, action) {
             return {...state, captain: action.payload}
         }
 
+        case "setRemainedMoney" : {
+            return {...state, money : action.payload}
+        }
+
+        case "setSquadName" : {
+            return {...state, "squad-name" : action.payload}
+        }
         default :
             return state;
     }

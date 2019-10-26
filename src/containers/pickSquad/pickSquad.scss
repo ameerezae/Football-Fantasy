@@ -29,3 +29,12 @@
     margin-top: 2%;
   }
 }
+
+.bench-margin{
+  margin-top: 6rem;
+}
+@media screen and (max-width: 991px) {
+  .bench-margin{
+    margin-top: 0rem;
+  }
+}
