@@ -1,12 +1,39 @@
-import React from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div>
-      HERE WE GOOO FANTASY!
-    </div>
-  );
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import  Navbar  from "./components/layout/Navbar"
+import React, { Component } from 'react';
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
+import { connect } from 'react-redux'
+class App extends Component {
+  render() {
+    console.log(this.props)
+    return (
+        <Router>
+          <div className="App">
+            <Navbar />
+            <div className="contain">
+            <Switch>
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+            </Switch>
+            </div>
+          </div>
+        </Router> 
+      
+    )
+  }
+}
+function mapStateToProps(state) {
+  return { 
+    auth : state.auth
+   };
 }
 
-export default App;
+// const actionCreators = {
+//   clearAlerts: alertActions.clear
+// };
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };
+
