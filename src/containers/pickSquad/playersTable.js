@@ -19,6 +19,9 @@ import "./playerTable.scss";
 import '@material/react-list/dist/list.css';
 
 class PlayersTable extends Component {
+    componentWillMount() {
+        this.props.getWholeItems()
+    }
 
     choosePlayer = (index) => {
         const playerDetails = this.props.format.filteredItems[index];
@@ -28,15 +31,15 @@ class PlayersTable extends Component {
             const newWholeItems = this.props.format.wholeItems.filter(element => element.name !== playerDetails.name);
             switch (this.props.format.pickedPosition) {
 
-                case "defender" :
+                case "Defender" :
                     this.props.setDefenders(chosenPos);
                     break;
 
-                case "middle" :
+                case "Midfielder" :
                     this.props.setMiddles(chosenPos);
                     break;
 
-                case "forward" :
+                case "Forward" :
                     this.props.setForwards(chosenPos);
                     break;
 
@@ -44,7 +47,7 @@ class PlayersTable extends Component {
                     this.props.setBench(chosenPos);
                     break;
 
-                case "GK" :
+                case "Goalkeeper" :
                     this.props.setGoalKeeper(chosenPos);
                     break;
 
@@ -58,7 +61,7 @@ class PlayersTable extends Component {
                 :
                 filteredPosition = newWholeItems;
             this.props.setFilteredPosition(filteredPosition);
-            const remainedMoney = calculateMoney(this.props.format.defender,this.props.format.middle,this.props.format.forward,this.props.format.bench,this.props.format.GK)
+            const remainedMoney = calculateMoney(this.props.format.Defender,this.props.format.Midfielder,this.props.format.Forward,this.props.format.bench,this.props.format.Goalkeeper)
             this.props.setRemainedMoney(remainedMoney)
         }
 
@@ -88,6 +91,7 @@ class PlayersTable extends Component {
 
                         )
                     }) :
+                    this.props.format.wholeItems ?
                     this.props.format.wholeItems.map((element, key) => {
                         return (
                             <ListItem key={key}>
@@ -104,7 +108,8 @@ class PlayersTable extends Component {
                         )
 
 
-                    })}
+
+                    }):null}
             </List>
         );
     }
