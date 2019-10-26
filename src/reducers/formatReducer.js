@@ -1,9 +1,9 @@
 const initialState = {
     bench : [null,null,null,null],
-    GK : [null],
+    Goalkeeper : [null],
     visibleModal: false,
-    captain : null,
-    money : 100,
+    "captain-id" : null,
+    budget : 100,
     "squad-name" : null,
 };
 
@@ -15,19 +15,19 @@ export default function (state = initialState, action) {
         }
 
         case "setGoalKeeper" : {
-            return {...state, GK: action.payload}
+            return {...state, Goalkeeper: action.payload}
         }
 
         case "setDefenders":{
-            return {...state, defender : action.payload}
+            return {...state, Defender : action.payload}
         }
 
         case "setMiddles" : {
-            return {...state, middle : action.payload}
+            return {...state, Midfielder : action.payload}
         }
 
         case "setForwards" : {
-            return {...state, forward : action.payload}
+            return {...state, Forward : action.payload}
         }
 
         case "setBench" : {
@@ -59,11 +59,11 @@ export default function (state = initialState, action) {
         }
 
         case "setCaptain" : {
-            return {...state, captain: action.payload}
+            return {...state, "captain-id": action.payload}
         }
 
         case "setRemainedMoney" : {
-            return {...state, money : action.payload}
+            return {...state, budget : action.payload}
         }
 
         case "setSquadName" : {
