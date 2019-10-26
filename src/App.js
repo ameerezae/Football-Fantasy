@@ -1,28 +1,38 @@
-import React, {Component} from 'react';
+import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import pickSquadContainer from "./containers/pickSquad/pickSquad";
-import {applyMiddleware, createStore} from "redux";
-import {Provider} from "react-redux";
-import promiseMiddleware from "redux-promise";
-import logger from "redux-logger";
-import rootReducer from "./reducers";
-
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
-
+import  Navbar  from "./components/layout/Navbar"
+import React, { Component } from 'react';
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
+import { connect } from 'react-redux'
 class App extends Component {
-    render() {
-        return (
-            <div>
-                <Provider store={createStoreWithMiddleware(rootReducer,applyMiddleware(logger))}>
-                    <Router>
-                        <Switch>
-                            <Route path="/picksquad" component={pickSquadContainer}/>
-                        </Switch>
-                    </Router>
-                </Provider>
+  render() {
+    console.log(this.props)
+    return (
+        <Router>
+          <div className="App">
+            <Navbar />
+            <div className="contain">
+            <Switch>
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+            </Switch>
             </div>
-        )
-    }
+          </div>
+        </Router> 
+      
+    )
+  }
+}
+function mapStateToProps(state) {
+  return { 
+    auth : state.auth
+   };
 }
 
-export default App;
+// const actionCreators = {
+//   clearAlerts: alertActions.clear
+// };
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };
