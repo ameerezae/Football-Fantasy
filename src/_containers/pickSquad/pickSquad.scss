@@ -1,0 +1,40 @@
+.main-background{
+  position : fixed;
+  background-image: url("../../assets/pitch-view-side.jpg");
+  top : 0;
+  left: 0;
+  height : 100%;
+  background-size: cover;
+  width : 100%;
+  z-index: -100;
+}
+
+.field-background{
+  background-image: url("../../assets/pitch.318c0a20.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 500px;
+  width: 150% !important;
+}
+
+.padding-to-field {
+  padding : 0 6rem !important;
+}
+
+.customized-margin{
+  margin-top: 3%;
+}
+@media screen and (max-width: 991px) {
+  .customized-margin{
+    margin-top: 2%;
+  }
+}
+
+.bench-margin{
+  margin-top: 6rem;
+}
+@media screen and (max-width: 991px) {
+  .bench-margin{
+    margin-top: 0rem;
+  }
+}
