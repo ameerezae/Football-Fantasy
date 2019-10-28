@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import { connect } from 'react-redux'
+import PickSquadContainer from "./_containers/pickSquad/pickSquad"
 class App extends Component {
   render() {
     console.log(this.props)
@@ -16,6 +17,7 @@ class App extends Component {
             <Switch>
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
+              <Route path="/picksquad" component={PickSquadContainer} />
             </Switch>
             </div>
           </div>
