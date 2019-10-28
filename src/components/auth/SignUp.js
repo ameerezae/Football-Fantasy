@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import { connect } from 'http2'
 import { connect } from "react-redux"
 import { userSignUpRequest } from "../../_actions/authActions"
-
+import { bindActionCreators } from "redux"
 class SignUp extends Component {
     constructor(props)
     {
@@ -26,7 +26,6 @@ class SignUp extends Component {
         e.preventDefault();
         this.props.userSignUpRequest(this.state)
         this.props.history.push('/')
-        // console.log(this.state)
     }
     render() {
         return (
@@ -66,8 +65,10 @@ class SignUp extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    userSignUpRequest: userInfo => dispatch(userSignUpRequest(userInfo))
-  })
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+    userSignUpRequest
+    }, dispatch)
+}
 
 export default connect(null, mapDispatchToProps)(SignUp);

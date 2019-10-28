@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { userSignInRequest } from "../../_actions/authActions"
+import { bindActionCreators } from "redux"
+
 
 class SignIn extends Component {
     constructor(props)
     {
         super(props);
     this.state = {
-        email : '',
         username : '',
         password :'',
     }
+
+
+        
+    
 
     this.onChange = this.handleChange.bind(this);
     this.onSubmit = this.handleSubmit.bind(this);
@@ -20,10 +25,13 @@ class SignIn extends Component {
             [e.target.id] : e.target.value
         })
     }
+
+
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.state)
         this.props.userSignInRequest(this.state)
+
+
 
     }
     render() {
@@ -36,10 +44,6 @@ class SignIn extends Component {
                         <form onSubmit={this.handleSubmit} id="signup-form" className="white">
                             {/* <h5 className="grey-text text-darken-3">Sign In</h5>*/}
                             <br/> 
-                            <div className="input-field">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" id="email" value ={this.state.email} onChange={this.handleChange}/>
-                            </div>
                             <div className="input-field">
                                 <label htmlFor="username">Username</label>
                                 <input type="text" id="username" value ={this.state.username} onChange={this.handleChange}/>
@@ -59,8 +63,10 @@ class SignIn extends Component {
         )
     }
 }
-const mapDispatchToProps = dispatch => ({
-    userSignInRequest: userInfo => dispatch(userSignInRequest(userInfo))
-  })
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+    userSignInRequest
+    }, dispatch)
+}
 
 export default  connect(null,mapDispatchToProps)(SignIn)
