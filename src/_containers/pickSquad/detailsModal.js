@@ -15,7 +15,7 @@ import {
     setFilteredPosition,
     setCaptain,
     setRemainedMoney
-} from "../../actions";
+} from "../../_actions/squadActions";
 import {bindActionCreators} from "redux";
 import "./detailsModal.scss";
 import {FaRegCopyright, FaTrashAlt} from "react-icons/all"
