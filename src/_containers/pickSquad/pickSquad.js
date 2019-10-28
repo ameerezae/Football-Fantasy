@@ -23,12 +23,30 @@ import CountUp from "react-countup/build";
 import Swal from "sweetalert2";
 
 class PickSquadContainer extends Component {
-    state = {
-        pickName: true,
-    };
 
-    componentWillMount() {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            pickName: true,
+            loading : true
+        };
+    }
+
+    componentWillMount(){
+        console.log("fucking a")
+        this.setState({
+            pickName: true,
+            loading : true
+        });
+    }
+    componentDidMount() {
+        console.log("fuck off",this.props.format)
         this.props.getWholeItems();
+        this.setState({
+            pickName: true,
+            loading : false
+        });
     }
 
     async handleSubmit(event, data) {
@@ -95,23 +113,12 @@ class PickSquadContainer extends Component {
         this.props.setPickedKey(id);
         this.props.toggleModal(true)
     };
-
-    render() {
-        if (this.state.pickName) {
-            Swal.fire({
-                title: 'Enter your squad name :',
-                input: 'text',
-                confirmButtonText: "confirm",
-                inputValidator: (value) => {
-                    this.props.setSquadName(value)
-                    this.setState({pickName: false})
-                }
-            })
-        }
+    renderList = data=> {
 
         const GK = (
-            this.props.format.Forward ?
-                this.props.format.Goalkeeper.map((element, key) => {
+            data ?
+            data.Forward ?
+                data.Goalkeeper.map((element, key) => {
                     return (
                         <div className="col" key={key}>
                             <div className="row justify-content-center">
@@ -119,10 +126,10 @@ class PickSquadContainer extends Component {
                                                  animationIn="bounceIn"
                                                  animationOut="bounceOut"
                                 >
-                                    {this.props.format.Goalkeeper[key] ?
+                                    {data.Goalkeeper[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.Goalkeeper[key].image}
+                                                <img src={data.Goalkeeper[key].image}
                                                      onClick={this.pickedPlayerOnClick} name="Goalkeeper" id={key}
                                                      key={key}
                                                      width="80px"
@@ -137,7 +144,7 @@ class PickSquadContainer extends Component {
                                                     paddingRight: "4px",
                                                     fontWeight: "200",
                                                     backgroundColor: "rgb(90, 247, 220)"
-                                                }}>{this.props.format.Goalkeeper[key].name}</div>
+                                                }}>{data.Goalkeeper[key].name}</div>
                                             </div>
                                         </div> :
                                         <div className="container">
@@ -163,11 +170,12 @@ class PickSquadContainer extends Component {
                         </div>
                     )
                 }) : null
-        );
+        : null);
 
         const defenders = (
-            this.props.format.Defender ?
-                this.props.format.Defender.map((element, key) => {
+            data ?
+            data.Defender ?
+                data.Defender.map((element, key) => {
                     return (
                         <div className="col" key={key}>
                             <div className="row justify-content-center">
@@ -175,10 +183,10 @@ class PickSquadContainer extends Component {
                                     animationIn="bounceIn"
                                     animationOut="bounceOut"
                                 >
-                                    {this.props.format.Defender[key] ?
+                                    {data.Defender[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.Defender[key].image} width="80px"
+                                                <img src={data.Defender[key].image} width="80px"
                                                      onClick={this.pickedPlayerOnClick} name="Defender" id={key}
                                                      key={key}
                                                      alt="pic"/>
@@ -192,7 +200,7 @@ class PickSquadContainer extends Component {
                                                     paddingRight: "4px",
                                                     fontWeight: "200",
                                                     backgroundColor: "rgb(90, 247, 220)"
-                                                }}>{this.props.format.Defender[key].name}</div>
+                                                }}>{data.Defender[key].name}</div>
                                             </div>
                                         </div>
 
@@ -220,12 +228,13 @@ class PickSquadContainer extends Component {
                         </div>
                     )
                 }) : null
-        );
+        : null);
 
 
         const mids = (
-            this.props.format.Midfielder ?
-                this.props.format.Midfielder.map((element, key) => {
+            data ?
+            data.Midfielder ?
+                data.Midfielder.map((element, key) => {
                     return (
                         <div className="col" key={key}>
                             <div className="row justify-content-center">
@@ -233,10 +242,10 @@ class PickSquadContainer extends Component {
                                     animationIn="bounceIn"
                                     animationOut="bounceOut"
                                 >
-                                    {this.props.format.Midfielder[key] ?
+                                    {data.Midfielder[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.Midfielder[key].image} width="80px"
+                                                <img src={data.Midfielder[key].image} width="80px"
                                                      alt="pic" onClick={this.pickedPlayerOnClick} name="Midfielder"
                                                      id={key} key={key}/>
                                             </div>
@@ -249,7 +258,7 @@ class PickSquadContainer extends Component {
                                                     paddingRight: "4px",
                                                     fontWeight: "200",
                                                     backgroundColor: "rgb(90, 247, 220)"
-                                                }}>{this.props.format.Midfielder[key].name}</div>
+                                                }}>{data.Midfielder[key].name}</div>
                                             </div>
                                         </div> :
                                         <div className="container">
@@ -276,10 +285,11 @@ class PickSquadContainer extends Component {
                     )
                 }) : null
 
-        );
+        : null);
         const forwards = (
-            this.props.format.Forward ?
-                this.props.format.Forward.map((element, key) => {
+            data ?
+            data.Forward ?
+                data.Forward.map((element, key) => {
                     return (
                         <div className="col" key={key}>
                             <div className="row justify-content-center">
@@ -287,10 +297,10 @@ class PickSquadContainer extends Component {
                                                  animationIn="bounceIn"
                                                  animationOut="bounceOut"
                                 >
-                                    {this.props.format.Forward[key] ?
+                                    {data.Forward[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.Forward[key].image} width="80px" alt="pic"
+                                                <img src={data.Forward[key].image} width="80px" alt="pic"
                                                      onClick={this.pickedPlayerOnClick} name="Forward" id={key}
                                                      key={key}/>
                                             </div>
@@ -303,7 +313,7 @@ class PickSquadContainer extends Component {
                                                     paddingRight: "4px",
                                                     fontWeight: "200",
                                                     backgroundColor: "rgb(90, 247, 220)"
-                                                }}>{this.props.format.Forward[key].name}</div>
+                                                }}>{data.Forward[key].name}</div>
                                             </div>
                                         </div>
                                         :
@@ -330,11 +340,12 @@ class PickSquadContainer extends Component {
                     )
                 }) : null
 
-        );
+        : null);
 
         const bench = (
-            this.props.format.Forward ?
-                this.props.format.bench.map((element, key) => {
+            data ?
+            data.Forward ?
+                data.bench.map((element, key) => {
                     return (
                         <div className="col" key={key}>
                             <div className="row justify-content-center">
@@ -342,10 +353,10 @@ class PickSquadContainer extends Component {
                                                  animationIn="bounceIn"
                                                  animationOut="bounceOut"
                                 >
-                                    {this.props.format.bench[key] ?
+                                    {data.bench[key] ?
                                         <div className="container">
                                             <div className="row justify-content-center">
-                                                <img src={this.props.format.bench[key].image} width="80px"
+                                                <img src={data.bench[key].image} width="80px"
                                                      onClick={this.pickedPlayerOnClick} name="bench" id={key} key={key}
                                                      alt="pic"/>
                                             </div>
@@ -358,7 +369,7 @@ class PickSquadContainer extends Component {
                                                     paddingRight: "4px",
                                                     fontWeight: "200",
                                                     backgroundColor: "rgb(90, 247, 220)"
-                                                }}>{this.props.format.bench[key].name}</div>
+                                                }}>{data.bench[key].name}</div>
                                             </div>
                                         </div> :
                                         <div className="container">
@@ -384,69 +395,93 @@ class PickSquadContainer extends Component {
                         </div>
                     )
                 }) : null
-        )
-        return (
+        : null)
+        return(
             <div>
-                <div className="main-background"></div>
-                <div className="container mt-5">
-                    <div className="row">
-                        <div className="col-lg-4">
+            <div className="main-background"></div>
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-lg-4">
 
 
-                            <FormatModal/>
-                            <PlayersTable/>
-                        </div>
-                        <div className="col-lg-7">
-                            <div className="row align-items-center mt-2">
-                                <div className="col-10">
-                                    <div className="row">
-                                        <h4 className="text-white ml-3">Pick your squad</h4>
-                                        <h5 className="text-white ml-5">Budget: </h5>
-                                        <h5 className="text-white pb-0 ml-2"><CountUp start={50} end={this.props.format.budget}
-                                                                                      duration={1}
-                                                                                      separator="," suffix="$"/></h5>
-                                    </div>
+                        <FormatModal/>
+                        <PlayersTable/>
+                    </div>
+                    <div className="col-lg-7">
+                        <div className="row align-items-center mt-2">
+                            <div className="col-10">
+                                <div className="row">
+                                    <h4 className="text-white ml-3">Pick your squad</h4>
+                                    <h5 className="text-white ml-5">Budget: </h5>
+                                    <h5 className="text-white pb-0 ml-2"><CountUp start={50} end={data.budget}
+                                                                                  duration={1}
+                                                                                  separator="," suffix="$"/></h5>
                                 </div>
-                                <div className="col-2">
-                                    <div className="row justify-content-end">
-                                        <Button variant="primary" size="md" onClick={(event) => this.handleSubmit(event, this.props.format)}>Confirm</Button>
-                                    </div>
+                            </div>
+                            <div className="col-2">
+                                <div className="row justify-content-end">
+                                    <Button variant="primary" size="md" onClick={(event) => this.handleSubmit(event, data)}>Confirm</Button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr style={{background: "white"}}/>
+                        <DetailsModal/>
+                        <div className="row align-items-center">
+                            <div className="container-fluid field-background padding-to-field">
+                                <div className="row justify-content-center">
+                                    {GK}
+                                </div>
+                                <div className="row justify-content-center customized-margin">
+                                    {defenders}
+                                </div>
+                                <div className="row justify-content-center customized-margin">
+                                    {mids}
+                                </div>
+                                <div className="row justify-content-center customized-margin">
+                                    {forwards}
                                 </div>
 
                             </div>
-                            <hr style={{background: "white"}}/>
-                            <DetailsModal/>
-                            <div className="row align-items-center">
-                                <div className="container-fluid field-background padding-to-field">
-                                    <div className="row justify-content-center">
-                                        {GK}
-                                    </div>
-                                    <div className="row justify-content-center customized-margin">
-                                        {defenders}
-                                    </div>
-                                    <div className="row justify-content-center customized-margin">
-                                        {mids}
-                                    </div>
-                                    <div className="row justify-content-center customized-margin">
-                                        {forwards}
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
-                        <div className="col-lg-1">
-                            <div className="container bench-margin">
-                                <div className="row hidden-lg">
-                                    {bench}
-                                </div>
+                    </div>
+                    <div className="col-lg-1">
+                        <div className="container bench-margin">
+                            <div className="row hidden-lg">
+                                {bench}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         );
     }
+    render() {
+        if (this.state.pickName) {
+            Swal.fire({
+                title: 'Enter your squad name :',
+                input: 'text',
+                confirmButtonText: "confirm",
+                inputValidator: (value) => {
+                    this.props.setSquadName(value)
+                    this.setState({pickName: false})
+                }
+            })
+        }
+
+        console.log("fuck haji",this.state.loading)
+        return (
+           <div>
+               {this.state.loading ? "classic fuck" : this.renderList(this.props.format)}
+           </div>
+        );
+    }
+
+
+
 }
+
 
 function mapStateToProps(state) {
     return {
