@@ -1,4 +1,7 @@
 import PlayerImg from "../_assets/p98745.png"
+import picksquad_page_api from "../_api/squadApi"
+import * as acc from "./types"
+
 export function setFormat(format) {
     return{
         type : "setFormat",
@@ -38,31 +41,27 @@ export function setGoalKeeper(gk) {
     }
 }
 
-export async function getWholeItems() {
-    try{
-        const url = "http://172.17.3.123:5000/team/pick-squad";
-        const token = localStorage.getItem("access_token")
-        const response = await fetch(`${url}`,{
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Authorization" : `Bearer ${token}`
-            }
-        });
-        const json = await response.json();
-        for(let i=0 ;i<json.length;i++){
-            json[i].image = PlayerImg;
-        }
-
-        return {
-            type : "getWholeItems",
-            payload : json,
-        }
-    }catch (e) {
-        console.log("the SERVER is DOWN");
+export const getWholeItems = () => {
+    return async function(dispatch){
+    let response = await picksquad_page_api.getPlayers()
+    console.log("i am here",response.data)
+    dispatch(getPlayers(response.data))
     }
+    
+
+    
 
 }
+const getPlayers = players => (
+    {
+        
+      type: acc.picksquad_action_types.SET_PLAYERS_SUCCESS,
+      payload: players,
+  })
+// return {
+//     type : "getWholeItems",
+//     payload : json,
+// }
 export function setWholeItems(items) {
     return{
         type: "setWholeItems",
