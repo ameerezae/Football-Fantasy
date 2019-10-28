@@ -13,7 +13,7 @@ import {
     setWholeItems,
     setFilteredPosition,
     setRemainedMoney
-} from "../../actions";
+} from "../../_actions/squadActions";
 import {connect} from "react-redux";
 import "./playerTable.scss";
 import '@material/react-list/dist/list.css';
