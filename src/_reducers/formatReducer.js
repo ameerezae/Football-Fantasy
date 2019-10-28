@@ -1,3 +1,5 @@
+import * as actions from "../_actions/types"
+
 const initialState = {
     bench : [null,null,null,null],
     Goalkeeper : [null],
@@ -5,6 +7,7 @@ const initialState = {
     "captain-id" : null,
     budget : 100,
     "squad-name" : null,
+    loading : true
 };
 
 
@@ -34,8 +37,8 @@ export default function (state = initialState, action) {
             return {...state, bench: action.payload}
         }
 
-        case "getWholeItems" : {
-            return {...state, wholeItems : action.payload}
+        case actions.picksquad_action_types.SET_PLAYERS_SUCCESS : {
+            return {...state, wholeItems : action.payload , loading : false}
         }
 
         case "setWholeItems" : {
