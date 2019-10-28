@@ -3,15 +3,15 @@ import Modal from "react-awesome-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setFormat, setDefenders, setMiddles, setForwards} from "../../actions";
-import ThreeFourThree from "../../assets/3-4-3.png";
-import ThreeFiveTwo from "../../assets/3-5-2.png";
-import FourThreeThree from "../../assets/4-3-3.png";
-import FourFourTwo from "../../assets/4-4-2.png";
-import FourFiveOne from "../../assets/4-5-1.png";
-import FiveTwoThree from "../../assets/5-2-3.png";
-import FiveThreeTwo from "../../assets/5-3-2.png";
-import FiveFourOne from "../../assets/5-4-1.png";
+import {setFormat, setDefenders, setMiddles, setForwards} from "../../_actions/squadActions";
+import ThreeFourThree from "../../_assets/3-4-3.png";
+import ThreeFiveTwo from "../../_assets/3-5-2.png";
+import FourThreeThree from "../../_assets/4-3-3.png";
+import FourFourTwo from "../../_assets/4-4-2.png";
+import FourFiveOne from "../../_assets/4-5-1.png";
+import FiveTwoThree from "../../_assets/5-2-3.png";
+import FiveThreeTwo from "../../_assets/5-3-2.png";
+import FiveFourOne from "../../_assets/5-4-1.png";
 
 class FormatModal extends Component {
     state = {
