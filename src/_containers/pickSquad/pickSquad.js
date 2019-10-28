@@ -3,10 +3,10 @@ import "./pickSquad.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FormatModal from "./formatModal";
 import PlayersTable from "./playersTable"
-import Anonymous from "../../assets/football-player.svg"
+import Anonymous from "../../_assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
-import GoalK from "../../assets/GK.svg";
-import Bench from "../../assets/bench.svg";
+import GoalK from "../../_assets/GK.svg";
+import Bench from "../../_assets/bench.svg";
 import {Button} from "react-bootstrap"
 import {
     getWholeItems,
@@ -15,7 +15,7 @@ import {
     setPickedKey,
     toggleModal,
     setSquadName
-} from "../../actions";
+} from "../../_actions/squadActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import DetailsModal from "./detailsModal";
