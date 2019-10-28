@@ -14,7 +14,6 @@ const Navbar = () => {
     )
 }
 const mapStateToProps = (state) => {
-    console.log("salam",state);
     return{
 
     }
