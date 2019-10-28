@@ -15,7 +15,7 @@ class App extends Component {
             <Navbar />
             <div className="contain">
             <Switch>
-              <Route path="/signin" component={SignIn} />
+              <Route path="/login" component={SignIn} />
               <Route path="/signup" component={SignUp} />
               <Route path="/picksquad" component={PickSquadContainer} />
             </Switch>
