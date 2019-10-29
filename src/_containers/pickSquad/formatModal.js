@@ -85,7 +85,7 @@ class FormatModal extends Component {
         return (
             <div>
                 <div className="container-fluid">
-                    <div className="row justify-content-center py-3"
+                    <div className="row justify-content-center py-3 mb-0"
                          style={{color: "white", backgroundColor: "#0389fa", cursor: "pointer"}}
                          onClick={() => this.toggleModal()}>{this.props.format.format ?
                         <div className="border px-3 rounded-sm">{this.props.format.format}</div> :
