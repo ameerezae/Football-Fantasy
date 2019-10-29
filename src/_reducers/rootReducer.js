@@ -3,8 +3,8 @@ import formatReducer from "./formatReducer";
 import { authReducer } from './authReducer';
 
 const rootReducer = combineReducers({
-    auth : authReducer,
-    format : formatReducer,
+    authReducer,
+    formatReducer,
 });
 
 export default rootReducer;
