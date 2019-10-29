@@ -5,23 +5,28 @@ import React, { Component } from 'react';
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import { connect } from 'react-redux'
-import PickSquadContainer from "./_containers/pickSquad/pickSquad"
+import PickSquadContainer from "./_containers/pickSquad/pickSquad";
+import  store from "./_helpers/Store";
+import {Provider} from "react-redux";
 class App extends Component {
   render() {
     console.log(this.props)
     return (
-        <Router>
-          <div className="App">
-            <Navbar />
-            <div className="contain">
-            <Switch>
-              <Route path="/login" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/picksquad" component={PickSquadContainer} />
-            </Switch>
-            </div>
-          </div>
-        </Router> 
+        <Provider store={store}>
+            <Router>
+                <div className="App">
+                    {/*<Navbar />*/}
+                    <div className="contain">
+                        <Switch>
+                            <Route path="/login" component={SignIn} />
+                            <Route path="/signup" component={SignUp} />
+                            <Route path="/picksquad" component={PickSquadContainer} />
+                        </Switch>
+                    </div>
+                </div>
+            </Router>
+        </Provider>
+
       
     )
   }
