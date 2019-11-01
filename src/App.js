@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import PickSquadContainer from "./_containers/pickSquad/pickSquad";
 import  store from "./_helpers/Store";
 import {Provider} from "react-redux";
+import ManageTeam from "./_containers/manageTeam/manageTeam";
 class App extends Component {
   render() {
     console.log(this.props)
@@ -21,6 +22,7 @@ class App extends Component {
                             <Route path="/login" component={SignIn} />
                             <Route path="/signup" component={SignUp} />
                             <Route path="/picksquad" component={PickSquadContainer} />
+                            <Route path="manageTeam" component={ManageTeam}/>
                         </Switch>
                     </div>
                 </div>
