@@ -12,7 +12,6 @@ class App extends Component {
   render() {
     console.log(this.props)
     return (
-        <Provider store={store}>
             <Router>
                 <div className="App">
                     {/*<Navbar />*/}
@@ -25,7 +24,6 @@ class App extends Component {
                     </div>
                 </div>
             </Router>
-        </Provider>
 
       
     )
