@@ -40,4 +40,17 @@ const myNewTeam = (newTeam) => (
         type : types.manageTeam_action_types.SET_NEW_TEAM_SUCCESS ,
         payload : newTeam
     }
+);
+
+export const toggleModal = (bool) => {
+    return function (dispatch){
+        dispatch(modal(bool));
+    }
+}
+
+const modal = (bool) => (
+    {
+        type : types.manageTeam_action_types.TOGGLE_MODAL_SUCCESS,
+        payload : bool
+    }
 )
