@@ -27,3 +27,17 @@ const FirstSelected = (index) => (
         payload : index
     }
 );
+
+
+export const setMyNewTeam = (newTeam) => {
+    return function (dispatch) {
+        dispatch(myNewTeam(newTeam))
+    }
+}
+
+const myNewTeam = (newTeam) => (
+    {
+        type : types.manageTeam_action_types.SET_NEW_TEAM_SUCCESS ,
+        payload : newTeam
+    }
+)
