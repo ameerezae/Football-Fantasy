@@ -8,6 +8,8 @@ export default function (state = {}, action) {
         case types.manageTeam_action_types.SET_FIRST_SELECTED_SUCCESS :
             return {...state, firstSelected: action.payload};
 
+        case types.manageTeam_action_types.SET_NEW_TEAM_SUCCESS :
+            return {...state , squad: action.payload};
         default :
             return state;
     }
