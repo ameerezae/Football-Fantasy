@@ -11,4 +11,5 @@ export const picksquad_action_types = {
 export const manageTeam_action_types = {
     GET_MY_TEAM_SUCCESS : "GET_MY_TEAM_SUCCESS",
     SET_FIRST_SELECTED_SUCCESS : "SET_FIRST_SELECTED_SUCCESS",
+    SET_NEW_TEAM_SUCCESS : "SET_NEW_TEAM_SUCCESS"
 }
