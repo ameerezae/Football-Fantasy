@@ -13,4 +13,17 @@ const myTeam = (myteam) => (
         type : types.manageTeam_action_types.GET_MY_TEAM_SUCCESS,
         payload : myteam
     }
-)
+);
+
+export const setFirstSelected = (index) => {
+    return function (dispatch) {
+        dispatch(FirstSelected(index))
+    }
+}
+
+const FirstSelected = (index) => (
+    {
+        type : types.manageTeam_action_types.SET_FIRST_SELECTED_SUCCESS,
+        payload : index
+    }
+);
