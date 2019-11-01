@@ -8,8 +8,10 @@ class Bench extends Component {
 
     substitution = (secondSelectedKey) => {
         let newTeam = this.props.myTeam.squad;
-        newTeam[this.props.myTeam.firstSelected].lineup = false;
-        newTeam[secondSelectedKey].lineup = true;
+        if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup) {
+            newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+            newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+        }
         this.props.setMyNewTeam(newTeam);
     };
 
@@ -24,6 +26,8 @@ class Bench extends Component {
                                     <div onClick={!this.props.myTeam.firstSelected ? () => {
                                         this.props.setFirstSelected(key)
                                     } : () => {
+                                        this.props.setFirstSelected(false);
+
                                         this.substitution(key)
                                     }}>
                                         <Player number={key} info={element}/>
