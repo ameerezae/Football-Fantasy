@@ -6,3 +6,8 @@ export const auth_action_types = {
 export const picksquad_action_types = {
     SET_PLAYERS_SUCCESS : 'SET_PLAYERS_SUCCESS'
   }
+
+
+export const manageTeam_action_types = {
+    GET_MY_TEAM_SUCCESS : "GET_MY_TEAM_SUCCESS",
+}
