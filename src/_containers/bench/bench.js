@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Player from "../player/player";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {setFirstSelected} from "../../_actions/manageTeamActions";
 
 class Bench extends Component {
     render() {
@@ -12,8 +13,9 @@ class Bench extends Component {
                         if(!element.lineup){
                             return(
                                 <div className="col">
-                                    <Player number={key} info={element}/>
-                                    {key}
+                                    <div onClick={()=>{this.props.setFirstSelected(key)}}>
+                                        <Player number={key} info={element}/>
+                                    </div>
                                 </div>
                             )
                         }
@@ -34,4 +36,10 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,null)(Bench);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        setFirstSelected,
+    },dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Bench);

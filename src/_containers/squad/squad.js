@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Player from "../player/player";
+import {bindActionCreators} from "redux";
+import {setFirstSelected} from "../../_actions/manageTeamActions";
 
 class Squad extends Component {
 
@@ -13,9 +15,11 @@ class Squad extends Component {
                         this.props.myTeam.squad.map((element,key)=>{
                         if(element.position === "Goalkeeper" && element.lineup){
                             return(
-                                <div className="col">
-                                    <Player number={key} info={element}/>
-                                    {key}
+                                <div  className="col">
+                                    <div onClick={!this.props.myTeam.firstSelected ? ()=>{this.props.setFirstSelected(key)}:()=>{console.log(key)}}>
+                                        <Player number={key} info={element}/>
+                                    </div>
+
                                 </div>
                             )
                         }
@@ -27,8 +31,9 @@ class Squad extends Component {
                         if(element.position === "Defender" && element.lineup){
                             return(
                                 <div className="col">
-                                    <Player number={key} info={element}/>
-                                    {key}
+                                    <div onClick={()=>{this.props.setFirstSelected(key)}}>
+                                        <Player number={key} info={element}/>
+                                    </div>
                                 </div>
                             )
                         }
@@ -40,8 +45,9 @@ class Squad extends Component {
                             if(element.position === "Midfielder" && element.lineup){
                                 return(
                                     <div className="col">
-                                        <Player number={key} info={element}/>
-                                        {key}
+                                        <div onClick={()=>{this.props.setFirstSelected(key)}}>
+                                            <Player number={key} info={element}/>
+                                        </div>
                                     </div>
                                 )
                             }
@@ -53,8 +59,9 @@ class Squad extends Component {
                             if(element.position === "Forward" && element.lineup){
                                 return(
                                     <div className="col">
-                                        <Player number={key} info={element}/>
-                                        {key}
+                                        <div onClick={()=>{this.props.setFirstSelected(key)}}>
+                                            <Player number={key} info={element}/>
+                                        </div>
                                     </div>
                                 )
                             }
@@ -78,4 +85,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, null)(Squad);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        setFirstSelected,
+    },dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Squad);
