@@ -4,17 +4,37 @@ import Player from "../player/player";
 import {bindActionCreators} from "redux";
 import {setFirstSelected, setMyNewTeam, toggleModal ,localAllowSubs} from "../../_actions/manageTeamActions";
 import DetailModal from "../substitution/detailModal";
+import Swal from "sweetalert2";
 
 class Squad extends Component {
 
     substitution = (secondSelectedKey) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
         let newTeam = this.props.myTeam.squad;
-        if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup) {
+        if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== "Goalkeeper" && newTeam[this.props.myTeam.firstSelected].position !== "Goalkeeper") {
             newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
             newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+            Toast.fire({
+                type: 'success',
+                width : 100
+            })
+        } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === "Goalkeeper" && newTeam[this.props.myTeam.firstSelected].position === "Goalkeeper") {
+            newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+            newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+            Toast.fire({
+                type: 'success',
+                width : 100
+            })
         }
+
         this.props.setMyNewTeam(newTeam);
-    };
+    }
+    ;
 
     render() {
         const sqaud = (
