@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {setFirstSelected, setMyNewTeam, localAllowSubs} from "../../_actions/manageTeamActions";
 import Swal from "sweetalert2";
+import {AnimateOnChange} from "react-animation";
 
 class Bench extends Component {
 
@@ -40,15 +41,20 @@ class Bench extends Component {
                         if (!element.lineup) {
                             return (
                                 <div className="col">
-                                    <div onClick={this.props.myTeam.localAllow ? () => {
+                                    <div className="row justify-content-center" onClick={this.props.myTeam.localAllow ? () => {
                                         this.props.setFirstSelected(key);
                                         this.props.localAllowSubs(false);
                                     } : () => {
                                         this.substitution(key)
                                         this.props.localAllowSubs(true);
-
                                     }}>
-                                        <Player number={key} info={element}/>
+                                        <AnimateOnChange key={key}
+                                                         animationIn="bounceIn"
+                                                         animationOut="bounceOut"
+                                        >
+                                            <Player number={key} info={element}/>
+                                        </AnimateOnChange>
+
                                     </div>
                                 </div>
                             )
