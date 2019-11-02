@@ -1,6 +1,7 @@
 import * as types from "../_actions/types";
 const initialState = {
     visibleModal: false,
+    localAllow : true,
 }
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -15,6 +16,9 @@ export default function (state = initialState, action) {
 
         case types.manageTeam_action_types.TOGGLE_MODAL_SUCCESS :
             return {...state, visibleModal: action.payload};
+
+        case types.manageTeam_action_types.LOCAL_ALLOW_SUCCESS :
+            return {...state, localAllow: action.payload};
 
 
         default :
