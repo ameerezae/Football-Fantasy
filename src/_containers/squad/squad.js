@@ -107,6 +107,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
+                                                    <FaInfo onClick={()=>{
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.toggleModal(true)
+                                                    }}/>
                                                 </div>
                                             </AnimateOnChange>
 
@@ -140,6 +144,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
+                                                    <FaInfo onClick={()=>{
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.toggleModal(true)
+                                                    }}/>
                                                 </div>
                                             </AnimateOnChange>
 
@@ -173,6 +181,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
+                                                    <FaInfo onClick={()=>{
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.toggleModal(true)
+                                                    }}/>
                                                 </div>
                                             </AnimateOnChange>
 
