@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Player from "../player/player";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setFirstSelected ,setMyNewTeam} from "../../_actions/manageTeamActions";
+import {setFirstSelected ,setMyNewTeam, localAllowSubs} from "../../_actions/manageTeamActions";
 
 class Bench extends Component {
 
@@ -23,12 +23,13 @@ class Bench extends Component {
                         if (!element.lineup) {
                             return (
                                 <div className="col">
-                                    <div onClick={!this.props.myTeam.firstSelected ? () => {
-                                        this.props.setFirstSelected(key)
+                                    <div onClick={this.props.myTeam.localAllow ? () => {
+                                        this.props.setFirstSelected(key);
+                                        this.props.localAllowSubs(false);
                                     } : () => {
-                                        this.props.setFirstSelected(false);
-
                                         this.substitution(key)
+                                        this.props.localAllowSubs(true);
+
                                     }}>
                                         <Player number={key} info={element}/>
                                     </div>
@@ -55,7 +56,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setFirstSelected,
-        setMyNewTeam
+        setMyNewTeam,
+        localAllowSubs
     }, dispatch)
 }
 
