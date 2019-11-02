@@ -54,3 +54,16 @@ const modal = (bool) => (
         payload : bool
     }
 )
+
+export const localAllowSubs = (bool) => {
+    return function (dispatch){
+        dispatch(localAllow(bool));
+    }
+}
+
+const localAllow=(bool)=>{
+    return{
+        type : types.manageTeam_action_types.LOCAL_ALLOW_SUCCESS,
+        payload : bool,
+    }
+}
