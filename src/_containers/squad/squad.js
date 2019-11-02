@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Player from "../player/player";
 import {bindActionCreators} from "redux";
-import {setFirstSelected, setMyNewTeam, toggleModal ,localAllowSubs} from "../../_actions/manageTeamActions";
+import {setFirstSelected, setMyNewTeam, toggleModal, localAllowSubs} from "../../_actions/manageTeamActions";
 import DetailModal from "../substitution/detailModal";
 import Swal from "sweetalert2";
+import {FaExchangeAlt, FaInfo} from "react-icons/all";
+import {AnimateOnChange} from "react-animation";
+import "./squad.scss"
 
 class Squad extends Component {
 
@@ -21,18 +24,19 @@ class Squad extends Component {
             newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
             Toast.fire({
                 type: 'success',
-                width : 100
+                width: 100
             })
         } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === "Goalkeeper" && newTeam[this.props.myTeam.firstSelected].position === "Goalkeeper") {
             newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
             newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
             Toast.fire({
                 type: 'success',
-                width : 100
+                width: 100
             })
         }
 
         this.props.setMyNewTeam(newTeam);
+        this.props.setFirstSelected(null);
     }
     ;
 
@@ -45,16 +49,35 @@ class Squad extends Component {
                             if (element.position === "Goalkeeper" && element.lineup) {
                                 return (
                                     <div className="col">
-                                        <div onClick={this.props.myTeam.localAllow ? () => {
-                                            this.props.setFirstSelected(key);
-                                            this.props.localAllowSubs(false);
-                                        } : () => {
-                                            this.substitution(key)
-                                            this.props.localAllowSubs(true);
-                                        }}>
-                                            <Player number={key} info={element}/>
-                                        </div>
 
+                                        <div className="row justify-content-center">
+                                            <AnimateOnChange key={key}
+                                                             animationIn="bounceIn"
+                                                             animationOut="bounceOut"
+                                            >
+                                                <div
+                                                    className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
+                                                    <Player number={key} info={element}/>
+                                                </div>
+                                                <div className="row justify-content-center">
+                                                    <FaExchangeAlt
+                                                        className="mr-1"
+                                                        onClick={this.props.myTeam.localAllow ? () => {
+                                                            this.props.setFirstSelected(key);
+                                                            this.props.localAllowSubs(false);
+                                                        } : () => {
+                                                            this.substitution(key)
+                                                            this.props.localAllowSubs(true);
+                                                        }}/>
+                                                    <FaInfo onClick={()=>{
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.toggleModal(true)
+                                                    }}/>
+
+                                                </div>
+                                            </AnimateOnChange>
+
+                                        </div>
                                     </div>
                                 )
                             }
@@ -66,15 +89,27 @@ class Squad extends Component {
                             if (element.position === "Defender" && element.lineup) {
                                 return (
                                     <div className="col">
-                                        <div onClick={this.props.myTeam.localAllow ? () => {
-                                            this.props.setFirstSelected(key);
-                                            this.props.localAllowSubs(false);
-                                        } : () => {
-                                            this.substitution(key)
-                                            this.props.localAllowSubs(true);
+                                        <div className="row justify-content-center">
+                                            <AnimateOnChange key={key}
+                                                             animationIn="bounceIn"
+                                                             animationOut="bounceOut"
+                                            >
+                                                <div
+                                                    className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
+                                                    <Player number={key} info={element}/>
+                                                </div>
+                                                <div className="row justify-content-center">
+                                                    <FaExchangeAlt
+                                                        onClick={this.props.myTeam.localAllow ? () => {
+                                                            this.props.setFirstSelected(key);
+                                                            this.props.localAllowSubs(false);
+                                                        } : () => {
+                                                            this.substitution(key)
+                                                            this.props.localAllowSubs(true);
+                                                        }}/>
+                                                </div>
+                                            </AnimateOnChange>
 
-                                        }}>
-                                            <Player number={key} info={element}/>
                                         </div>
                                     </div>
                                 )
@@ -87,15 +122,27 @@ class Squad extends Component {
                             if (element.position === "Midfielder" && element.lineup) {
                                 return (
                                     <div className="col">
-                                        <div onClick={this.props.myTeam.localAllow ? () => {
-                                            this.props.setFirstSelected(key);
-                                            this.props.localAllowSubs(false);
-                                        } : () => {
-                                            this.substitution(key)
-                                            this.props.localAllowSubs(true);
+                                        <div className="row justify-content-center">
+                                            <AnimateOnChange key={key}
+                                                             animationIn="bounceIn"
+                                                             animationOut="bounceOut"
+                                            >
+                                                <div
+                                                    className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
+                                                    <Player number={key} info={element}/>
+                                                </div>
+                                                <div className="row justify-content-center">
+                                                    <FaExchangeAlt
+                                                        onClick={this.props.myTeam.localAllow ? () => {
+                                                            this.props.setFirstSelected(key);
+                                                            this.props.localAllowSubs(false);
+                                                        } : () => {
+                                                            this.substitution(key)
+                                                            this.props.localAllowSubs(true);
+                                                        }}/>
+                                                </div>
+                                            </AnimateOnChange>
 
-                                        }}>
-                                            <Player number={key} info={element}/>
                                         </div>
                                     </div>
                                 )
@@ -108,15 +155,27 @@ class Squad extends Component {
                             if (element.position === "Forward" && element.lineup) {
                                 return (
                                     <div className="col">
-                                        <div onClick={this.props.myTeam.localAllow ? () => {
-                                            this.props.setFirstSelected(key);
-                                            this.props.localAllowSubs(false);
-                                        } : () => {
-                                            this.substitution(key)
-                                            this.props.localAllowSubs(true);
+                                        <div className="row justify-content-center">
+                                            <AnimateOnChange key={key}
+                                                             animationIn="bounceIn"
+                                                             animationOut="bounceOut"
+                                            >
+                                                <div
+                                                    className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
+                                                    <Player number={key} info={element}/>
+                                                </div>
+                                                <div className="row justify-content-center">
+                                                    <FaExchangeAlt
+                                                        onClick={this.props.myTeam.localAllow ? () => {
+                                                            this.props.setFirstSelected(key);
+                                                            this.props.localAllowSubs(false);
+                                                        } : () => {
+                                                            this.substitution(key)
+                                                            this.props.localAllowSubs(true);
+                                                        }}/>
+                                                </div>
+                                            </AnimateOnChange>
 
-                                        }}>
-                                            <Player number={key} info={element}/>
                                         </div>
                                     </div>
                                 )

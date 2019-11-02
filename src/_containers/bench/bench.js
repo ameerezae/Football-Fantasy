@@ -5,6 +5,7 @@ import {bindActionCreators} from "redux";
 import {setFirstSelected, setMyNewTeam, localAllowSubs} from "../../_actions/manageTeamActions";
 import Swal from "sweetalert2";
 import {AnimateOnChange} from "react-animation";
+import {FaExchangeAlt} from "react-icons/all";
 
 class Bench extends Component {
 
@@ -31,6 +32,8 @@ class Bench extends Component {
                 width: 100
             })
         }
+        this.props.setMyNewTeam(newTeam);
+        this.props.setFirstSelected(null);
     }
 
     render() {
@@ -41,18 +44,24 @@ class Bench extends Component {
                         if (!element.lineup) {
                             return (
                                 <div className="col">
-                                    <div className="row justify-content-center" onClick={this.props.myTeam.localAllow ? () => {
-                                        this.props.setFirstSelected(key);
-                                        this.props.localAllowSubs(false);
-                                    } : () => {
-                                        this.substitution(key)
-                                        this.props.localAllowSubs(true);
-                                    }}>
+                                    <div className="row justify-content-center">
                                         <AnimateOnChange key={key}
                                                          animationIn="bounceIn"
                                                          animationOut="bounceOut"
                                         >
-                                            <Player number={key} info={element}/>
+                                            <div className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center" }>
+                                                <Player number={key} info={element}/>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <FaExchangeAlt
+                                                    onClick={this.props.myTeam.localAllow ? () => {
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.localAllowSubs(false);
+                                                    } : () => {
+                                                        this.substitution(key)
+                                                        this.props.localAllowSubs(true);
+                                                    }}/>
+                                            </div>
                                         </AnimateOnChange>
 
                                     </div>
