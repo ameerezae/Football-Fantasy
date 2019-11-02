@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleModal,setFirstSelected} from "../../_actions/manageTeamActions";
+import {toggleModal, setFirstSelected} from "../../_actions/manageTeamActions";
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
 
@@ -12,7 +12,10 @@ class DetailModal extends Component {
         return (
             <Modal visible={this.props.myTeam.visibleModal}
                    effect="fadeInDown"
-                   onClickAway={() => {this.props.toggleModal(false);this.props.setFirstSelected(null)}}>
+                   onClickAway={() => {
+                       this.props.toggleModal(false);
+                       this.props.setFirstSelected(null)
+                   }}>
                 <div className="container p-4 background-modal w-100">
                     <div className="row align-items-center">
                         <div className="col-5">
@@ -29,8 +32,10 @@ class DetailModal extends Component {
                     </div>
                     <hr/>
                     <div className="row align-items-center justify-content-center py-4">
+                        {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"/>
+                            : null}
 
-                        <FaRegCopyright className="ml-2" className = "captain-style" />
+
                     </div>
                     <hr/>
                 </div>
