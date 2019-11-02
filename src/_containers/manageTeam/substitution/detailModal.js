@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleModal, setFirstSelected} from "../../_actions/manageTeamActions";
+import {toggleModal, setFirstSelected} from "../../../_actions/manageTeamActions";
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
 

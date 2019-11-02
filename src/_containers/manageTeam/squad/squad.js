@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Player from "../player/player";
 import {bindActionCreators} from "redux";
-import {setFirstSelected, setMyNewTeam, toggleModal, localAllowSubs} from "../../_actions/manageTeamActions";
+import {setFirstSelected, setMyNewTeam, toggleModal, localAllowSubs} from "../../../_actions/manageTeamActions";
 import DetailModal from "../substitution/detailModal";
 import Swal from "sweetalert2";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";

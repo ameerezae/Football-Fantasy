@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Substitution from "../substitution/substitution";
+import Substitution from "./substitution/substitution";
 import {getMyTeam} from "../../_actions/manageTeamActions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
