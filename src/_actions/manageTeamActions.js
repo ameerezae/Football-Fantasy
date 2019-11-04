@@ -109,3 +109,17 @@ const enableTable = (bool) => {
         payload : bool,
     }
 }
+
+
+export const selectSecondTransfer = (indx) =>{
+    return function (dispatch) {
+        dispatch(secondTransfer(indx))
+    }
+}
+
+const secondTransfer = (indx) => {
+    return{
+        type : types.manageTeam_action_types.SELECT_SECOND_TRANSFER_SUCCUSS,
+        payload : indx
+    }
+}
