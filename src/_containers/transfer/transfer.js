@@ -19,7 +19,8 @@ class Transfer extends Component {
                                     this.props.myTeam.secondSelectedTransfer === 0) && (
                                     this.props.myTeam.firstSelected ||
                                     this.props.myTeam.firstSelected === 0))}
-                        onClick={}>Transfer</Button>
+
+                        onClick={this.props.myTeam.allowedToTransfer? ()=>console.log("ok") : ()=>alert("no")}>Transfer</Button>
                     </div>
                     <div className="col-5">
                         <AllPlayers/>
