@@ -3,3 +3,4 @@ export const LOGIN = MAIN + "/auth/login"
 export const SIGNUP = MAIN + "/auth/registeration"
 export const PICKSQUAD = MAIN + "/team/pick-squad"
 export const MANAGE_TEAM = MAIN + "/team/my-team";
+export const GET_TRANSFERABLE = MAIN + "/team/pick-squad";
