@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
         case types.manageTeam_action_types.ENABLE_TRANSFER_TABLE:
             return {...state, enableTable : action.payload};
 
-        case types.manageTeam_action_types.SELECT_SECOND_TRANSFER_SUCCUSS :
+        case types.manageTeam_action_types.SELECT_SECOND_TRANSFER_SUCCESS :
             return {...state, secondSelectedTransfer: action.payload};
 
         default :
