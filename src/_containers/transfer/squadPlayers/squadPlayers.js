@@ -12,25 +12,20 @@ class SquadPlayers extends Component {
         this.props.getMyTeamForTransfer();
     }
 
-    // check_2_5_5_3 = (team) => {
-    //     let gkCounter = 0, defCounter = 0, midCounter = 0, forwardCounter = 0;
-    //     team.forEach((element, key) => {
-    //         switch (element.position) {
-    //             case "goalKeeper" : gkCounter++;break;
-    //             case "Defender" : defCounter++;break;
-    //             case "Midfielder" : midCounter++;break;
-    //             case "Forward" : forwardCounter++;break;
-    //             default : break;
-    //         }
-    //     });
-    //
-    //     return !(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3);
-    // };
-
-
     render() {
         return (
             <div>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        {this.props.myTeam.firstSelected?
+                            <div>
+                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].name}</div>
+                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].position}</div>
+                            </div>
+
+                        :null}
+                    </div>
+                </div>
                 <List twoLine
                       handleSelect={(activatedItemIndex) => {
                           this.props.setFirstSelected(activatedItemIndex);
