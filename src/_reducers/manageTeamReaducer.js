@@ -24,7 +24,10 @@ export default function (state = initialState, action) {
             return {...state, myTeamForTransfer : action.payload};
 
         case types.manageTeam_action_types.GET_TRANSFERABLE_PLAYERS_SUCCESS :
-            return  {...state, transferablePlayers : action.payload}
+            return  {...state, transferablePlayers : action.payload};
+
+        case types.manageTeam_action_types.ENABLE_TRANSFER_TABLE:
+            return {...state, enableTable : action.payload};
 
         default :
             return state;
