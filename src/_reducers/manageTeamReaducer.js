@@ -20,6 +20,10 @@ export default function (state = initialState, action) {
         case types.manageTeam_action_types.LOCAL_ALLOW_SUCCESS :
             return {...state, localAllow: action.payload};
 
+        case types.manageTeam_action_types.GET_MY_TEAM_TRANSFER_SUCCESS:
+            return {...state, myTeamForTransfer : action.payload};
+
+
 
         default :
             return state;
