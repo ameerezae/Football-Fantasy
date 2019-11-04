@@ -67,7 +67,7 @@ class AllPlayers extends Component {
             <div>
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.props.myTeam.secondSelectedTransfer ?
+                        {this.props.myTeam.secondSelectedTransfer || this.props.myTeam.secondSelectedTransfer === 0?
                             <div>
                                 <div>{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].name}</div>
                                 <div>{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].position}</div>

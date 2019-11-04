@@ -17,7 +17,7 @@ class SquadPlayers extends Component {
             <div>
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.props.myTeam.firstSelected?
+                        {this.props.myTeam.firstSelected || this.props.myTeam.firstSelected === 0 ?
                             <div>
                                 <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].name}</div>
                                 <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].position}</div>
