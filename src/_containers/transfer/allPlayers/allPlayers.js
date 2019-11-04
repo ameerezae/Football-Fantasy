@@ -9,7 +9,8 @@ import {
     getTransferablePlayers,
     setFirstSelected,
     enableTransferTable,
-    selectSecondTransfer
+    selectSecondTransfer,
+    isAllowedToTransfer
 } from "../../../_actions/manageTeamActions";
 
 class AllPlayers extends Component {
@@ -57,7 +58,7 @@ class AllPlayers extends Component {
         mySquad.push(second);
         console.log(this.check_2_5_5_3(mySquad),"2553");
         console.log(this.checkTeamMax(mySquad),"MAX")
-        return (this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
+        this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
 
     };
 
@@ -124,7 +125,8 @@ function mapDispatchToProps(dispatch) {
         getTransferablePlayers,
         setFirstSelected,
         enableTransferTable,
-        selectSecondTransfer
+        selectSecondTransfer,
+        isAllowedToTransfer
     }, dispatch)
 }
 
