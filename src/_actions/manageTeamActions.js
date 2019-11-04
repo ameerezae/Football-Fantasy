@@ -119,7 +119,7 @@ export const selectSecondTransfer = (indx) =>{
 
 const secondTransfer = (indx) => {
     return{
-        type : types.manageTeam_action_types.SELECT_SECOND_TRANSFER_SUCCUSS,
+        type : types.manageTeam_action_types.SELECT_SECOND_TRANSFER_SUCCESS,
         payload : indx
     }
 }
