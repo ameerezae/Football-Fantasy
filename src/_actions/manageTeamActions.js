@@ -123,3 +123,17 @@ const secondTransfer = (indx) => {
         payload : indx
     }
 }
+
+
+export const isAllowedToTransfer = (bool) => {
+    return function (dispatch) {
+        dispatch(allowedToTransfer(bool));
+    }
+}
+
+const allowedToTransfer = (bool) => (
+    {
+        type : types.manageTeam_action_types.ALLOWED_TO_TRANSFER_SUCCESS,
+        payload: bool,
+    }
+)
