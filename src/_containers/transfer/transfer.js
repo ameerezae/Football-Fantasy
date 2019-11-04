@@ -4,6 +4,7 @@ import AllPlayers from "./allPlayers/allPlayers";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Button} from "react-bootstrap";
+import ManageTeamApi from "../../_api/manageTeamApi";
 
 class Transfer extends Component {
     render() {
@@ -14,13 +15,20 @@ class Transfer extends Component {
                         <SquadPlayers/>
                     </div>
                     <div className="col-2">
+
+                        <lottie-player
+                            src="https://assets9.lottiefiles.com/packages/lf20_yJgXcu.json" background="transparent"
+                            speed="1" width="300" height="300" loop autoplay>
+                        </lottie-player>
                         <Button variant="primary"
                                 disabled={!((this.props.myTeam.secondSelectedTransfer ||
                                     this.props.myTeam.secondSelectedTransfer === 0) && (
                                     this.props.myTeam.firstSelected ||
                                     this.props.myTeam.firstSelected === 0))}
 
-                        onClick={this.props.myTeam.allowedToTransfer? ()=>console.log("ok") : ()=>alert("no")}>Transfer</Button>
+                                onClick={this.props.myTeam.allowedToTransfer ? () => ManageTeamApi.sendTransferedPlayer(this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer],
+                                    this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected])
+                                    : () => alert("no")}>Transfer</Button>
                     </div>
                     <div className="col-5">
                         <AllPlayers/>
