@@ -71,6 +71,7 @@ const localAllow=(bool)=>{
 export const getMyTeamForTransfer=()=>{
     return async function(dispatch){
         const response = await ManageTeamApi.getMyTeam()
+        console.log(response);
         dispatch(myTeamForTransfer(response.data))
     }
 }
@@ -94,5 +95,17 @@ const getTransferable = (transferable) => {
     return{
         type : types.manageTeam_action_types.GET_TRANSFERABLE_PLAYERS_SUCCESS,
         payload : transferable,
+    }
+};
+
+export const enableTransferTable = (bool) => {
+    return function(dispatch){
+        dispatch(enableTable(bool))
+    }
+};
+const enableTable = (bool) => {
+    return{
+        type : types.manageTeam_action_types.ENABLE_TRANSFER_TABLE,
+        payload : bool,
     }
 }
