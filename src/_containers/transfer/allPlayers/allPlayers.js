@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import "./squadPlayers.scss";
-import {connect} from "react-redux";
+import "./allPlayers.scss"
 import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 import {IoIosInformationCircle} from "react-icons/io";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@material/react-list';
-import {getMyTeamForTransfer} from "../../../_actions/manageTeamActions";
+import {getTransferablePlayers} from "../../../_actions/manageTeamActions";
 
-class SquadPlayers extends Component {
+class AllPlayers extends Component {
     componentWillMount() {
-        this.props.getMyTeamForTransfer();
+        this.props.getTransferablePlayers();
     }
 
     render() {
@@ -16,7 +16,7 @@ class SquadPlayers extends Component {
             <List twoLine
                   handleSelect={(activatedItemIndex) => console.log(activatedItemIndex)} dense>
 
-                {this.props.myTeam.myTeamForTransfer? this.props.myTeam.myTeamForTransfer.map((element,key)=>{
+                {this.props.myTeam.transferablePlayers? this.props.myTeam.transferablePlayers.map((element,key)=>{
                     return(
                         <ListItem key={key} className="text-white">
                             <ListItemGraphic className="list-image" graphic={<img src={element.image} alt="sd"/>}/>
@@ -36,10 +36,10 @@ class SquadPlayers extends Component {
 
 
             </List>
-
-        )
+        );
     }
 }
+
 
 function mapStateToProps(state) {
     return {
@@ -49,8 +49,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getMyTeamForTransfer,
+        getTransferablePlayers
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SquadPlayers);
+export default connect(mapStateToProps, mapDispatchToProps)(AllPlayers);
