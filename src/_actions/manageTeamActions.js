@@ -66,4 +66,18 @@ const localAllow=(bool)=>{
         type : types.manageTeam_action_types.LOCAL_ALLOW_SUCCESS,
         payload : bool,
     }
+};
+
+export const getMyTeamForTransfer=()=>{
+    return async function(dispatch){
+        const response = await ManageTeamApi.getMyTeam()
+        dispatch(myTeamForTransfer(response.data))
+    }
+}
+
+const myTeamForTransfer = (myTeam) => {
+    return{
+        type: types.manageTeam_action_types.GET_MY_TEAM_TRANSFER_SUCCESS,
+        payload : myTeam,
+    }
 }
