@@ -81,3 +81,18 @@ const myTeamForTransfer = (myTeam) => {
         payload : myTeam,
     }
 }
+
+
+export const getTransferablePlayers=()=>{
+    return async function(dispatch){
+        const response = await ManageTeamApi.getTransferablePlayers();
+        dispatch(getTransferable(response.data));
+    }
+}
+
+const getTransferable = (transferable) => {
+    return{
+        type : types.manageTeam_action_types.GET_TRANSFERABLE_PLAYERS_SUCCESS,
+        payload : transferable,
+    }
+}
