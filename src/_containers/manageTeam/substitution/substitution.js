@@ -3,11 +3,16 @@ import Squad from "../squad/squad";
 import Bench from "../bench/bench";
 import {connect} from "react-redux";
 
+import {bindActionCreators} from "redux";
+import {getMyTeam} from "../../../_actions/manageTeamActions";
+
 class Substitution extends Component {
+    componentWillMount() {
+        this.props.getMyTeam();
+    }
     render() {
         return (
             <div>
-                <div className="main-background"></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-10">
@@ -26,4 +31,16 @@ class Substitution extends Component {
     }
 }
 
-export default Substitution;
+function mapStateToProps(state) {
+    return {
+        myTeam: state.manageTeamReaducer,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getMyTeam
+    }, dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Substitution);

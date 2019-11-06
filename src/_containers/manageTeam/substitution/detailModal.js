@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleModal, setFirstSelected} from "../../../_actions/manageTeamActions";
+import {toggleModal, setFirstSelected , localAllowSubs} from "../../../_actions/manageTeamActions";
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
 
@@ -15,6 +15,7 @@ class DetailModal extends Component {
                    onClickAway={() => {
                        this.props.toggleModal(false);
                        this.props.setFirstSelected(null)
+                       this.props.localAllowSubs(true);
                    }}>
                 <div className="container p-4 background-modal w-100">
                     <div className="row align-items-center">
@@ -53,7 +54,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         toggleModal,
-        setFirstSelected
+        setFirstSelected,
+        localAllowSubs
     }, dispatch)
 }
 
