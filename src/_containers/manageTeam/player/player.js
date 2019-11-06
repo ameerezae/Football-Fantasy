@@ -5,7 +5,7 @@ class Player extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <img src={this.props.info.image} width="80" alt="pic"
+                    <img src={this.props.info.image} className="player-image" alt="pic"
                          name={this.props.info.position} id={this.props.info.id}
                     />
                 </div>
