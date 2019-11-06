@@ -4,13 +4,16 @@ import * as types from "../../../_actions/types";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {IoIosInformationCircle} from "react-icons/io";
+import Swal from "sweetalert2";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@material/react-list';
 import {
     getTransferablePlayers,
     setFirstSelected,
     enableTransferTable,
     selectSecondTransfer,
-    isAllowedToTransfer
+    isAllowedToTransfer,
+    setTransferError,
+
 } from "../../../_actions/manageTeamActions";
 
 class AllPlayers extends Component {
@@ -23,6 +26,7 @@ class AllPlayers extends Component {
         for (let i = 0; i < team.length; i++) {
             let num = team.filter(element => element.club === checkingTeam[i].club).length;
             if (num > 3) {
+                this.props.setTransferError("The number of players from this club is maximum");
                 return false
             }
         }
@@ -49,15 +53,26 @@ class AllPlayers extends Component {
                     break;
             }
         });
-
+        if(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3){
+            this.props.setTransferError("The number of players in this position is maximum");
+        }
         return !(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3);
     };
     checkTransfer = (first, second) => {
         let mySquad = this.props.myTeam.myTeamForTransfer;
         mySquad = mySquad.filter(x => x.id !== first.id);
         mySquad.push(second);
-        console.log(this.check_2_5_5_3(mySquad),"2553");
-        console.log(this.checkTeamMax(mySquad),"MAX")
+        if(!(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))){
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: this.props.myTeam.transferError,
+                showConfirmButton: false,
+                timer: 3000
+            })
+            this.props.setFirstSelected(null);
+            this.props.selectSecondTransfer(null);
+        }
         this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
 
     };
@@ -80,7 +95,7 @@ class AllPlayers extends Component {
                     <List twoLine
                           handleSelect={(activatedItemIndex) => {
                               this.props.selectSecondTransfer(activatedItemIndex);
-                              console.log(this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected], this.props.myTeam.transferablePlayers[activatedItemIndex]))
+                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected], this.props.myTeam.transferablePlayers[activatedItemIndex])
                               this.props.enableTransferTable(false)
                           }} dense>
 
@@ -126,7 +141,8 @@ function mapDispatchToProps(dispatch) {
         setFirstSelected,
         enableTransferTable,
         selectSecondTransfer,
-        isAllowedToTransfer
+        isAllowedToTransfer,
+        setTransferError
     }, dispatch)
 }
 
