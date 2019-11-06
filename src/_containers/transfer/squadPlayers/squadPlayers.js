@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux";
 import {IoIosInformationCircle} from "react-icons/io";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@material/react-list';
 import {getMyTeamForTransfer} from "../../../_actions/manageTeamActions";
-import {setFirstSelected, enableTransferTable} from "../../../_actions/manageTeamActions";
+import {selectFirstTransfer, enableTransferTable} from "../../../_actions/manageTeamActions";
 
 class SquadPlayers extends Component {
     componentWillMount() {
@@ -17,10 +17,10 @@ class SquadPlayers extends Component {
             <div>
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.props.myTeam.firstSelected || this.props.myTeam.firstSelected === 0 ?
+                        {this.props.myTeam.firstSelectedTransfer || this.props.myTeam.firstSelectedTransfer === 0 ?
                             <div>
-                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].name}</div>
-                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected].position}</div>
+                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer].name}</div>
+                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer].position}</div>
                             </div>
 
                         :null}
@@ -28,7 +28,7 @@ class SquadPlayers extends Component {
                 </div>
                 <List twoLine
                       handleSelect={(activatedItemIndex) => {
-                          this.props.setFirstSelected(activatedItemIndex);
+                          this.props.selectFirstTransfer(activatedItemIndex);
                           this.props.enableTransferTable(true)
                       }} dense>
 
@@ -68,7 +68,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getMyTeamForTransfer,
-        setFirstSelected,
+        selectFirstTransfer,
         enableTransferTable
     }, dispatch)
 }
