@@ -34,6 +34,9 @@ export default function (state = initialState, action) {
 
         case types.manageTeam_action_types.ALLOWED_TO_TRANSFER_SUCCESS :
             return {...state, allowedToTransfer : action.payload};
+
+        case types.manageTeam_action_types.TRANSFER_ERROR_SUCCESS :
+            return {...state, transferError : action.payload};
         default :
             return state;
     }
