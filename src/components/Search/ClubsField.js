@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from "react-redux";
-import {setPlayerClubsSuccess} from "../../_actions/searchActions"
+import {setPlayerClubs} from "../../_actions/searchActions"
 
 
 const useStyles = makeStyles(theme => ({
@@ -64,7 +64,7 @@ export default function ClubsField() {
         const  options  = event.target.value;
           console.log("hi i am here",options);
           setClubNames(event.target.value);
-        dispatch(setPlayerClubsSuccess(options));
+        dispatch(setPlayerClubs(options));
       };
   
 
