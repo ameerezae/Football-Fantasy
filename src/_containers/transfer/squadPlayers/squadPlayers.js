@@ -15,17 +15,7 @@ class SquadPlayers extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row justify-content-center">
-                        {this.props.myTeam.firstSelectedTransfer || this.props.myTeam.firstSelectedTransfer === 0 ?
-                            <div>
-                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer].name}</div>
-                                <div>{this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer].position}</div>
-                            </div>
 
-                        :null}
-                    </div>
-                </div>
                 <List twoLine
                       handleSelect={(activatedItemIndex) => {
                           this.props.selectFirstTransfer(activatedItemIndex);
