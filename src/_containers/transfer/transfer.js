@@ -14,7 +14,8 @@ import {
     isAllowedToTransfer
 } from "../../_actions/manageTeamActions";
 import {AnimateOnChange} from "react-animation";
-
+import Transfer1 from "../../_assets/transfer1.svg";
+import Transfer2 from "../../_assets/transfer2.svg";
 
 class Transfer extends Component {
     render() {
@@ -48,7 +49,7 @@ class Transfer extends Component {
                                         <div>
                                             <div className="row justify-content-center">
                                                 <img width="150"
-                                                     src={AnonymousPlayer}/>
+                                                     src={Transfer1}/>
                                             </div>
                                             <div className="row justify-content-center">
                                                 <div>&nbsp;</div>
@@ -130,7 +131,7 @@ class Transfer extends Component {
                                         <div>
                                             <div className="row justify-content-center">
                                                 <img width="150"
-                                                     src={AnonymousPlayer}/>
+                                                     src={Transfer2}/>
                                             </div>
                                             <div className="row justify-content-center">
                                                 <div>&nbsp;</div>
