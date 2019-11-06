@@ -21,14 +21,11 @@ class Transfer extends Component {
                             speed="1" width="300" height="300" loop autoplay>
                         </lottie-player>
                         <Button variant="primary"
-                                disabled={!((this.props.myTeam.secondSelectedTransfer ||
-                                    this.props.myTeam.secondSelectedTransfer === 0) && (
-                                    this.props.myTeam.firstSelected ||
-                                    this.props.myTeam.firstSelected === 0))}
+                                disabled={!this.props.myTeam.allowedToTransfer}
 
                                 onClick={this.props.myTeam.allowedToTransfer ? () => ManageTeamApi.sendTransferedPlayer(this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer],
                                     this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected])
-                                    : () => alert("no")}>Transfer</Button>
+                                    : null}>Transfer</Button>
                     </div>
                     <div className="col-5">
                         <AllPlayers/>
