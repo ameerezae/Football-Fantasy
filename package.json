@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.6.0",
+    "@lottiefiles/lottie-player": "^0.2.1",
     "@material/react-list": "^0.15.0",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
@@ -57,6 +58,8 @@
     "react-icons": "^3.7.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
+    "react-smooth-dnd": "^0.11.1",
+    "react-tabs": "^3.0.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
