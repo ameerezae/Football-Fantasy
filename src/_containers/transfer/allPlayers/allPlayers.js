@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@material/react-list';
 import {
     getTransferablePlayers,
-    setFirstSelected,
+    selectFirstTransfer,
     enableTransferTable,
     selectSecondTransfer,
     isAllowedToTransfer,
@@ -70,7 +70,7 @@ class AllPlayers extends Component {
                 showConfirmButton: false,
                 timer: 3000
             })
-            this.props.setFirstSelected(null);
+            this.props.selectFirstTransfer(null);
             this.props.selectSecondTransfer(null);
         }
         this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
@@ -95,7 +95,7 @@ class AllPlayers extends Component {
                     <List twoLine
                           handleSelect={(activatedItemIndex) => {
                               this.props.selectSecondTransfer(activatedItemIndex);
-                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelected], this.props.myTeam.transferablePlayers[activatedItemIndex])
+                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.myTeam.transferablePlayers[activatedItemIndex])
                               this.props.enableTransferTable(false)
                           }} dense>
 
@@ -138,7 +138,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getTransferablePlayers,
-        setFirstSelected,
+        selectFirstTransfer,
         enableTransferTable,
         selectSecondTransfer,
         isAllowedToTransfer,
