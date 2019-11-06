@@ -7,7 +7,7 @@ import DetailModal from "../substitution/detailModal";
 import Swal from "sweetalert2";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
 import {AnimateOnChange} from "react-animation";
-import "./squad.scss"
+import "./squad.scss";
 
 class Squad extends Component {
 
@@ -183,7 +183,7 @@ class Squad extends Component {
                                                         }}/>
                                                     <FaInfo onClick={()=>{
                                                         this.props.setFirstSelected(key);
-                                                        this.props.toggleModal(true)
+                                                        this.props.toggleModal(true);
                                                     }}/>
                                                 </div>
                                             </AnimateOnChange>
@@ -198,7 +198,7 @@ class Squad extends Component {
         )
 
         return (
-            <div className="container-fluid field-background">
+            <div className="container-fluid field-background p-5">
                 <DetailModal/>
                 {sqaud}
             </div>
