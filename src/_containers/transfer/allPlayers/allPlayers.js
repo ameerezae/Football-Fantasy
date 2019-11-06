@@ -81,16 +81,6 @@ class AllPlayers extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row justify-content-center">
-                        {this.props.myTeam.secondSelectedTransfer || this.props.myTeam.secondSelectedTransfer === 0?
-                            <div>
-                                <div>{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].name}</div>
-                                <div>{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].position}</div>
-                            </div>
-                            : null}
-                    </div>
-                </div>
                 <div className={!this.props.myTeam.enableTable ? "disabled-all" : null}>
                     <List twoLine
                           handleSelect={(activatedItemIndex) => {
