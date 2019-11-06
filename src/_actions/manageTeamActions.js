@@ -1,9 +1,13 @@
 import ManageTeamApi from "../_api/manageTeamApi";
 import * as types from "./types";
-
+import Daniel from "../_assets/Daniel Ceballos Fernández.jpg"
+import David from "../_assets/David Luiz Moreira Marinho.jpg";
 export const getMyTeam = () =>{
     return async function(dispatch){
-        const response = await ManageTeamApi.getMyTeam()
+        const response = await ManageTeamApi.getMyTeam();
+        for(let i=0;i<response.data.length;i++){
+            response.data[i].image = Daniel;
+        }
         dispatch(myTeam(response.data))
     }
 }
@@ -70,8 +74,13 @@ const localAllow=(bool)=>{
 
 export const getMyTeamForTransfer=()=>{
     return async function(dispatch){
+        const teams = ["esteghlal","real","barcelona","ac milan","fajr sepasi","inter milan","rome","sepahan","shalke 04","perspolis"
+        ,"teraktor","esteghlal","esteghlal","zob ahan","arcenal"];
         const response = await ManageTeamApi.getMyTeam()
-        console.log(response);
+        for(let i=0;i<response.data.length;i++){
+            response.data[i].image = Daniel;
+            response.data[i].club = teams[i];
+        }
         dispatch(myTeamForTransfer(response.data))
     }
 }
@@ -87,6 +96,9 @@ const myTeamForTransfer = (myTeam) => {
 export const getTransferablePlayers=()=>{
     return async function(dispatch){
         const response = await ManageTeamApi.getTransferablePlayers();
+        for(let i=0;i<response.data.length;i++){
+            response.data[i].image = David;
+        }
         dispatch(getTransferable(response.data));
     }
 }
