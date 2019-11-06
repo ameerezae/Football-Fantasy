@@ -16,14 +16,26 @@ const playerSearchSuccess = players => (
     payload: players
 })
 
-export const setPlayerStatusSuccess = status => (
+export const setPlayerStatus = status => (
   {
     type: acc.search_action_types.SET_PLAYERS_STATUS_SUCCESS,
     payload: status
 })
 
-export const setPlayerClubsSuccess = clubs => (
+export const setPlayerClubs = clubs => (
   {
     type: acc.search_action_types.SET_PLAYERS_CLUBS_SUCCESS,
     payload: clubs
+})
+
+export const setPlayerPositions = positions => (
+  {
+    type: acc.search_action_types.SET_PLAYERS_POSITIONS_SUCCESS,
+    payload: positions
+})
+
+export const setPriceRange = priceRange => (
+  {
+    type: acc.search_action_types.SET_PLAYERS_PRICE_SUCCESS,
+    payload: priceRange
 })
