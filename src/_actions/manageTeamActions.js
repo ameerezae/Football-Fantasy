@@ -137,3 +137,17 @@ const allowedToTransfer = (bool) => (
         payload: bool,
     }
 )
+
+
+export const setTransferError = (e) => {
+    return function (dispatch) {
+        dispatch(transferError(e));
+    }
+}
+
+const transferError = (e) => {
+    return {
+        type : types.manageTeam_action_types.TRANSFER_ERROR_SUCCESS,
+        payload : e,
+    }
+}
