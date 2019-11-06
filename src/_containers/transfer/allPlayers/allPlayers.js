@@ -82,7 +82,7 @@ class AllPlayers extends Component {
         return (
             <div>
                 <div className={!this.props.myTeam.enableTable ? "disabled-all" : null}>
-                    <List twoLine
+                    <List twoLine className="list-style"
                           handleSelect={(activatedItemIndex) => {
                               this.props.selectSecondTransfer(activatedItemIndex);
                               this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.myTeam.transferablePlayers[activatedItemIndex])
