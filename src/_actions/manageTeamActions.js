@@ -111,6 +111,19 @@ const enableTable = (bool) => {
 }
 
 
+export const selectFirstTransfer = (indx) =>{
+    return function (dispatch) {
+        dispatch(firstTransfer(indx));
+    }
+}
+
+const firstTransfer = (indx) => {
+    return{
+        type : types.manageTeam_action_types.SELECT_FIRST_TRANSFER_SUCCESS,
+        payload : indx,
+    }
+}
+
 export const selectSecondTransfer = (indx) =>{
     return function (dispatch) {
         dispatch(secondTransfer(indx))
