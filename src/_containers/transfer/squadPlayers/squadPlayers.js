@@ -24,7 +24,7 @@ class SquadPlayers extends Component {
 
                     {this.props.myTeam.myTeamForTransfer ? this.props.myTeam.myTeamForTransfer.map((element, key) => {
                         return (
-                            <ListItem key={key} className="text-white" disabled={this.props.myTeam.secondSelectedTransfer ? true : false}>
+                            <ListItem key={key} className="text-white" disabled={this.props.myTeam.secondSelectedTransfer || this.props.myTeam.secondSelectedTransfer === 0  ? true : false}>
 
                                 <ListItemGraphic className="list-image" graphic={<img src={element.image} alt="sd"/>}/>
                                 <ListItemText
