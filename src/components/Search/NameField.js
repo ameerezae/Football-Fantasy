@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
+import { useDispatch,useSelector } from "react-redux";
+import {playerSearchRequest} from "../../_actions/searchActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,6 +32,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function NameFiled() {
   const classes = useStyles();
+  const state = useSelector(state => state.searchReducer);
+  const [SelectedName, setSelectedName] = React.useState([]);
+  const searchState = useSelector(state => state.searchReducer);
+  const dispatch = useDispatch();
+  const handleChange = (event) => {
+    setSelectedName(event.target.value)
+    // console.log("this is state",state)
+    // console.log("this is searchState",SelectedName)    
+  };
+  const handleSubmit = () => {
+    console.log(state)
+    // dispatch(playerSearchRequest(state,SelectedName));
+  };
 
   return (
     <Paper className={classes.root}>
@@ -40,8 +55,10 @@ export default function NameFiled() {
         className={classes.input}
         placeholder="Search Player"
         inputProps={{ 'aria-label': 'Search Player' }}
+        onChange={handleChange}
+
       />
-      <IconButton className={classes.iconButton} aria-label="search">
+      <IconButton className={classes.iconButton} onClick={handleSubmit} aria-label="search">
         <SearchIcon />
       </IconButton>
       <Divider className={classes.divider} orientation="vertical" />
