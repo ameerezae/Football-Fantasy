@@ -6,7 +6,7 @@ import {setFirstSelected, setMyNewTeam, localAllowSubs,toggleModal} from "../../
 import Swal from "sweetalert2";
 import {AnimateOnChange} from "react-animation";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
-
+import * as types from "../../../_actions/types";
 class Bench extends Component {
 
     substitution = (secondSelectedKey) => {
@@ -16,25 +16,39 @@ class Bench extends Component {
             showConfirmButton: false,
             timer: 3000
         });
+
         let newTeam = this.props.myTeam.squad;
-        if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== "Goalkeeper" && newTeam[this.props.myTeam.firstSelected].position !== "Goalkeeper") {
-            newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
-            newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
-            Toast.fire({
-                type: 'success',
-                width: 100
-            })
-        } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === "Goalkeeper" && newTeam[this.props.myTeam.firstSelected].position === "Goalkeeper") {
-            newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
-            newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
-            Toast.fire({
-                type: 'success',
-                width: 100
+        if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain-id"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain-id"]){
+            if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+                Toast.fire({
+                    type: 'success',
+                    width: 100
+                })
+            } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position === types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+                Toast.fire({
+                    type: 'success',
+                    width: 100
+                })
+            }
+
+            this.props.setMyNewTeam(newTeam);
+            this.props.setFirstSelected(null);
+        }
+        else{
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: "Captain can not change",
+                showConfirmButton: false,
+                timer: 3000
             })
         }
-        this.props.setMyNewTeam(newTeam);
-        this.props.setFirstSelected(null);
     }
+    ;
 
     render() {
         const bench = (
