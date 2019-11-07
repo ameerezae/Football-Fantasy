@@ -57,7 +57,6 @@ export default function StatusField() {
     const classes = useStyles();
     const theme = useTheme();
     const [selectedStatus, setselectedStatus] = React.useState([]);
-    // const playerStatus = useSelector(state => state.searchReducer);
     const dispatch = useDispatch();
   
     const handleChangeMultiple = event => {
