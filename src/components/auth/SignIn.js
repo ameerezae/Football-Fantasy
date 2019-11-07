@@ -11,6 +11,7 @@ class SignIn extends Component {
     this.state = {
         username : '',
         password :'',
+
     }
 
 
@@ -30,8 +31,18 @@ class SignIn extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.userSignInRequest(this.state)
+        console.log(this.props.userObj)
 
 
+    }
+    loginPhase() {
+        if(this.props.userObj.message != 'successful login')
+        {
+            return this.props.userObj.message
+        }
+        else{
+            this.props.history.push('/')
+        }
 
     }
     render() {
@@ -54,6 +65,7 @@ class SignIn extends Component {
                             </div>
                             <div className="input-field">
                                 <button className="btn pink lighten-1 z-depth-0">LOGIN</button>
+                                    {this.loginPhase()}
                             </div>
                         </form>
                 </div>
@@ -69,4 +81,10 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default  connect(null,mapDispatchToProps)(SignIn)
+function mapStateToProps(state) {
+    return {
+        userObj: state.authReducer,
+    }
+}
+
+export default  connect(mapStateToProps,mapDispatchToProps)(SignIn)
