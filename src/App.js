@@ -6,14 +6,13 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import { connect } from 'react-redux'
 import PickSquadContainer from "./_containers/pickSquad/pickSquad";
-import  store from "./_helpers/Store";
-import {Provider} from "react-redux";
+<<<<<<< HEAD
 import ManageTeam from "./_containers/manageTeam/manageTeam";
+import Search from './components/Search/Search'
 class App extends Component {
   render() {
     console.log(this.props)
     return (
-        <Provider store={store}>
             <Router>
                 <div className="App">
                     {/*<Navbar />*/}
@@ -23,11 +22,11 @@ class App extends Component {
                             <Route path="/signup" component={SignUp} />
                             <Route path="/picksquad" component={PickSquadContainer} />
                             <Route path="/manageTeam" component={ManageTeam}/>
+                            <Route path="/Test_search" component={Search}/>
                         </Switch>
                     </div>
                 </div>
             </Router>
-        </Provider>
 
       
     )
