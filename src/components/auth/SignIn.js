@@ -1,83 +1,129 @@
-import React, { Component } from 'react'
-import { connect } from "react-redux"
-import { userSignInRequest } from "../../_actions/authActions"
-import { bindActionCreators } from "redux"
-
+import React, {Component} from 'react'
+import {connect} from "react-redux"
+import {userSignInRequest} from "../../_actions/authActions"
+import {bindActionCreators} from "redux"
+import {Button} from "react-bootstrap";
+import {TextInput} from "react-responsive-ui";
+import "./SignIn.scss";
+import "react-responsive-ui/style.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TriplePlayer from "../../_assets/src__assets_player-comp-3-1x.7eb15f60.png";
+import SignUp from "./SignUp";
+import {Alert} from "react-bootstrap";
 
 class SignIn extends Component {
-    constructor(props)
-    {
-        super(props);
-    this.state = {
-        username : '',
-        password :'',
+    state = {
+        username: "",
+        password: "",
+    };
 
-    }
-
-
-        
-    
-
-    this.onChange = this.handleChange.bind(this);
-    this.onSubmit = this.handleSubmit.bind(this);
-}
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id] : e.target.value
-        })
-    }
+    handleChange = (name, value) => {
+        this.setState(prevState => {
+            const newState = {...prevState};
+            newState[name] = value;
+            return newState;
+        });
+    };
 
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.userSignInRequest(this.state)
-        console.log(this.props.userObj)
-
-
     }
-    loginPhase() {
-        if(this.props.userObj.message != 'successful login')
-        {
-            return this.props.userObj.message
-        }
-        else{
-            this.props.history.push('/')
-        }
 
-    }
+
     render() {
-        return (
-            <div className="main">
-
-            <section className="signin">
-                {/* <!-- <img src="images/signup-bg.jpg" alt=""> --> */}
-                <div className="container">
-                        <form onSubmit={this.handleSubmit} id="signup-form" className="white">
-                            {/* <h5 className="grey-text text-darken-3">Sign In</h5>*/}
-                            <br/> 
-                            <div className="input-field">
-                                <label htmlFor="username">Username</label>
-                                <input type="text" id="username" value ={this.state.username} onChange={this.handleChange}/>
-                            </div>
-                            <div className="input-field">
-                            <label htmlFor="password">Password</label>
-                                <input type="password" id="password" value ={this.state.password} onChange={this.handleChange}/>
-                            </div>
-                            <div className="input-field">
-                                <button className="btn pink lighten-1 z-depth-0">LOGIN</button>
-                                    {this.loginPhase()}
-                            </div>
-                        </form>
+        if(this.props.userObj.message === "successful login"){
+            this.props.history.push(`/manageteam`)
+        }
+        const loginForm = (
+            <div className="login-center container py-3">
+                <div className="row justify-content-center">
+                    <p className="login-title mt-3"> LOGIN </p>
                 </div>
-            </section>
-    
-        </div>
+                <hr/>
+                <div className="row direct-to-signup-box">
+                    <div className="col-sm-6">
+                        <div className="row justify-content-center guide-to-signup ">
+                            Register if you have no account
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+
+                        <SignUp/>
+                    </div>
+
+                </div>
+                <hr/>
+                <div className="row align-items-center">
+                    <div className="col-sm-6 col-md-6">
+                        <div className="row align-items-center justify-content-center">
+                            <img src={TriplePlayer} alt="img" className="img-fluid mb-4" width="250px" height="200px"/>
+                            {this.props.userObj.message ? <Alert variant={this.props.userObj.message==="successful login"?"success":"danger"}>{this.props.userObj.message}</Alert> :null }
+                        </div>
+                    </div>
+                    <div className="col-sm-6 col-md-6">
+                        <div className="row justify-content-center align-items-center">
+                            <form onSubmit={event => this.handleSubmit(event)}>
+                                <div className="row justify-content-center mb-5">
+                                    <div className="col-sm-12">
+                                        <TextInput
+                                            type="text"
+                                            label="Username"
+                                            value={this.state.username}
+                                            onChange={(value) => {
+                                                this.handleChange("username", value)
+                                            }}
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div className="row justify-content-center mb-5">
+                                    <TextInput
+                                        type="password"
+                                        label="Password"
+                                        value={this.state.password}
+                                        onChange={(value) => {
+                                            this.handleChange("password", value)
+                                        }}
+                                    />
+                                </div>
+                                <div className="row justify-content-center">
+                                    <Button id="button" className=" button-submit-login" type="submit"
+                                            variant="success"
+                                            size="md">
+                                        LOGIN
+                                    </Button>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        );
+
+        return (
+            <div>
+                <div className="background"></div>
+                <div className="d-flex min-vh-100">
+                    <div className="d-flex w-100 align-items-center justify-content-center">
+                        {loginForm}
+                    </div>
+                </div>
+            </div>
         )
     }
 }
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-    userSignInRequest
+        userSignInRequest
     }, dispatch)
 }
 
@@ -87,4 +133,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default  connect(mapStateToProps,mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
