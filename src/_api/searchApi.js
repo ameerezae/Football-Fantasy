@@ -13,7 +13,11 @@ class search_api {
             "Authorization" : `Bearer ${token}`
             }
         }
-        let response = await axios.get(api_urls.PICKSQUAD,config)
+        let response = await axios.post(api_urls.PICKSQUAD,JSON.stringify(
+            {
+                
+            }
+        ),config)
         console.log("response",response)
         return response  
     }
