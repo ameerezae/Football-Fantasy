@@ -6,7 +6,6 @@ import {bindActionCreators} from "redux";
 import {Button} from "react-bootstrap";
 import ManageTeamApi from "../../_api/manageTeamApi";
 import '@lottiefiles/lottie-player';
-import AnonymousPlayer from "../../_assets/football-player.svg";
 import {
     selectSecondTransfer,
     selectFirstTransfer,
