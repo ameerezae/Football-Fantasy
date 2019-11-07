@@ -1,9 +1,9 @@
-import Login_page_api from "../_api/authApi"
+import search_api from "../_api/searchApi"
 import * as acc from "./types"
 
-export const playerSearchRequest = (credentials) => {
+export const playerSearchRequest = (credentials,name) => {
   return async function(dispatch){
-      let response = await Login_page_api.login(credentials)
+      let response = await search_api.getPlayers(credentials,name)
       dispatch(playerSearchSuccess(response))
   }
 }
