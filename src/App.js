@@ -6,7 +6,6 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import { connect } from 'react-redux'
 import PickSquadContainer from "./_containers/pickSquad/pickSquad";
-<<<<<<< HEAD
 import ManageTeam from "./_containers/manageTeam/manageTeam";
 import Search from './components/Search/Search'
 class App extends Component {
