@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleModal, setFirstSelected , localAllowSubs} from "../../../_actions/manageTeamActions";
+import {toggleModal, setFirstSelected , localAllowSubs ,changeCaptain} from "../../../_actions/manageTeamActions";
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
+import Swal from "sweetalert2";
 
 class DetailModal extends Component {
     render() {
@@ -33,7 +34,19 @@ class DetailModal extends Component {
                     </div>
                     <hr/>
                     <div className="row align-items-center justify-content-center py-4">
-                        {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"/>
+                        {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"
+                                                                     onClick = {()=>{
+                                                                         this.props.changeCaptain(clicked.id);
+                                                                         this.props.toggleModal(false);
+                                                                         Swal.fire({
+                                                                             position: 'center',
+                                                                             type: 'success',
+                                                                             showConfirmButton: false,
+                                                                             timer: 3000,
+                                                                             width:200
+                                                                         })
+                                                                     }}
+                            />
                             : null}
 
 
@@ -55,7 +68,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         toggleModal,
         setFirstSelected,
-        localAllowSubs
+        localAllowSubs,
+        changeCaptain
     }, dispatch)
 }
 
