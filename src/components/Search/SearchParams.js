@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function CenteredGrid() {
+export default function SearchParams() {
   const classes = useStyles();
 
   return (
