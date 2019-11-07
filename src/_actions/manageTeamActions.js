@@ -176,3 +176,16 @@ const transferError = (e) => {
         payload : e,
     }
 }
+
+export const changeCaptain=(indx)=>{
+    return function (dispatch) {
+        dispatch(captain(indx))
+    }
+}
+
+const captain = (indx) => {
+    return{
+        type : types.manageTeam_action_types.CHANGE_CAPTAIN_SUCCESS,
+        payload : indx,
+    }
+}
