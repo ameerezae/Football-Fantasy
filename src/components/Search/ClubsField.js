@@ -7,14 +7,16 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from "react-redux";
-import {setPlayerClubs} from "../../_actions/searchActions"
+import {setPlayerClubs,clubGetRequest} from "../../_actions/searchActions"
+import Divider from '@material-ui/core/Divider';
+
 
 
 const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
+      minWidth: 265,
+      maxWidth: 350,
     },
     chips: {
       display: 'flex',
@@ -38,12 +40,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   };
-  
-  const Clubs = [
-    'Barcelona',
-    'Real Madrid',
-  ];
-  
+    
   function getStyles(name, ClubNames, theme) {
     return {
       fontWeight:
@@ -59,13 +56,22 @@ export default function ClubsField() {
     const theme = useTheme();
     const [ClubNames, setClubNames] = React.useState([]);
     const dispatch = useDispatch();
-  
+    const ClubsState = useSelector(state => state.searchReducer);
+   
     const handleChangeMultiple = event => {
         const  options  = event.target.value;
           console.log("hi i am here",options);
           setClubNames(event.target.value);
         dispatch(setPlayerClubs(options));
       };
+      React.useEffect(() => {
+        if(ClubsState.isFetched === false)
+        {
+          console.log("i am fetching data")
+          dispatch(clubGetRequest());
+        }
+        // document.title = `You clicked ${count} times`;
+      });
   
 
     return (
@@ -87,9 +93,22 @@ export default function ClubsField() {
                 )}
                 MenuProps={MenuProps}
                 >
-                    {Clubs.map(name => (
-                        <MenuItem key={name} value={name} style={getStyles(name, ClubNames, theme)}>
-                        {name}
+                    {ClubsState.fetchedClubs.map(element => (
+                        <MenuItem key={element} value={element} style={getStyles(element, ClubNames, theme)}>
+                          <div className="row">
+                            <div className="col">
+                              <div className="row justify-content-start">
+                              <img src={element.image}width="30" className="mr-1" /></div>
+                              </div>
+                              
+                            <div className="col">
+                              <div className="row justify-content-end">
+                                {element.name}
+                              </div>
+                            </div>
+
+                          </div>
+                         {/* <img src={element.image}width="30" className="mr-1" /><Divider/>{element.name} */}
                         </MenuItem>
                     ))}
                 </Select>

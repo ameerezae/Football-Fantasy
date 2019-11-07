@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { useDispatch, useSelector } from "react-redux";
-import {setPriceRange} from "../../_actions/searchActions"
+import { setPriceRange } from "../../_actions/searchActions"
+
 
 const useStyles = makeStyles({
   root: {
@@ -17,12 +18,14 @@ function valuetext(value) {
 
 export default function PriceRange() {
   const classes = useStyles();
-  const [value, setValue] = React.useState([2, 8]);
+  const [value, setValue] = React.useState([0, 12]);
   const dispatch = useDispatch();
+  const priceState = useSelector(state => state.searchReducer);  
 
   const handleChange = (event, newValue) => {
     // console.log("fucking range is",newValue)
     setValue(newValue);
+    // filterByRange(newValue,priceState);
     dispatch(setPriceRange(newValue));
   };
 

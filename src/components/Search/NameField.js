@@ -37,9 +37,7 @@ export default function NameFiled() {
   const searchState = useSelector(state => state.searchReducer);
   const dispatch = useDispatch();
   const handleChange = (event) => {
-    setSelectedName(event.target.value)
-    // console.log("this is state",state)
-    // console.log("this is searchState",SelectedName)    
+    setSelectedName(event.target.value)    
   };
   const handleSubmit = () => {
     console.log(state)
@@ -48,23 +46,12 @@ export default function NameFiled() {
 
   return (
     <Paper className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label="menu">
-        <MenuIcon />
-      </IconButton>
       <InputBase
         className={classes.input}
         placeholder="Search Player"
         inputProps={{ 'aria-label': 'Search Player' }}
         onChange={handleChange}
-
       />
-      <IconButton className={classes.iconButton} onClick={handleSubmit} aria-label="search">
-        <SearchIcon />
-      </IconButton>
-      <Divider className={classes.divider} orientation="vertical" />
-      <IconButton color="primary" className={classes.iconButton} aria-label="directions">
-        <DirectionsIcon />
-      </IconButton>
     </Paper>
   );
 }
