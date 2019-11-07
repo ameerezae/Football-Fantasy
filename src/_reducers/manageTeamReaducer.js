@@ -40,6 +40,10 @@ export default function (state = initialState, action) {
 
         case types.manageTeam_action_types.TRANSFER_ERROR_SUCCESS :
             return {...state, transferError : action.payload};
+
+        case types.manageTeam_action_types.CHANGE_CAPTAIN_SUCCESS :
+            return {...state, "captain-id":action.payload};
+
         default :
             return state;
     }
