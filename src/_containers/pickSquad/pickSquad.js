@@ -7,7 +7,8 @@ import Anonymous from "../../_assets/football-player.svg"
 import {AnimateOnChange} from "react-animation";
 import GoalK from "../../_assets/GK.svg";
 import Bench from "../../_assets/bench.svg";
-import {Button} from "react-bootstrap"
+import {Button} from "react-bootstrap";
+import axios from "axios";
 import {
     getWholeItems,
     setFilteredPosition,
@@ -71,22 +72,32 @@ class PickSquadContainer extends Component {
         for(let i = 0 ;i < picks.length;i++){
             picks[i]["player_id"] = picks[i].id;
         }
-        changedData["picks"] = picks;
-
+        changedData["squad"] = picks;
+        let newChangedData = {};
+        newChangedData["squad"] = changedData["squad"];
+        newChangedData["captain-id"] = changedData["captain-id"];
+        newChangedData["favorite-team"] = "arsenal";
+        newChangedData["squad-name"] = changedData["squad-name"];
+        newChangedData["budget"] = changedData["budget"];
 
         try {
-            const url = "http://172.17.3.123:5000/team/pick-squad";
             const token = localStorage.getItem("access_token")
-            const response = await fetch(`${url}`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization" : `Bearer ${token}`,
-                },
-                body : JSON.stringify(changedData)
+            const config =
+                {
+                    mode: "cors",
+                    headers:
+                        {
+                            'Content-Type': 'application/json',
+                            "Authorization" : `Bearer ${token}`
+                        }
+                }
+            let response = await axios.post(
+                "http://172.17.3.123:5000/team/pick-squad",
+                JSON.stringify(newChangedData)
+                ,config)
 
-            })
+            console.log("response",response)
+
         } catch (e) {
             console.log("SERVER DOWN")
         }
