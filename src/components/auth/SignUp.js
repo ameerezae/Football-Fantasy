@@ -7,6 +7,8 @@ import {TextInput} from "react-responsive-ui";
 import {MdClose} from "react-icons/all";
 import {Button} from "react-bootstrap";
 import Modal from "react-awesome-modal";
+import Swal from "sweetalert2";
+import Alert from "react-bootstrap/Alert";
 
 class SignUp extends Component {
     constructor(props) {
@@ -19,16 +21,19 @@ class SignUp extends Component {
                 password2: ''
             },
             toggle: false,
+            signUpError: null,
         }
         this.onChange = this.handleChange.bind(this);
         this.onSubmit = this.handleSubmit.bind(this);
 
     }
 
-    handleSubmit = (e) => {
+    async handleSubmit(e) {
         e.preventDefault();
-        this.props.userSignUpRequest(this.state.data)
+        const response = await this.props.userSignUpRequest(this.state.data);
+        this.setState({signUpError: response.data.message})
     }
+
     toggleModal = () => {
         this.setState({toggle: !this.state.toggle});
     };
@@ -50,7 +55,7 @@ class SignUp extends Component {
                 }}>REGISTER
                 </div>
                 <Modal style={{overflowY: "auto"}} visible={this.state.toggle} effect="fadeInUp"
-                       onClickAway={() => this.toggleModal()}>
+                       onClickAway={() => this.toggleModal()} width="800">
                     <div className="container">
                         <div className="row mt-3 justify-content-start align-items-center">
                             <MdClose style={{fontSize: "2rem", cursor: "pointer"}} className="mr-4"
@@ -99,9 +104,15 @@ class SignUp extends Component {
                                             this.handleChange("password2", value)
                                         }}
                                     />
+                                    {this.state.signUpError !== null ?
+                                        <Alert className="text-center"
+                                            variant={this.state.signUpError === "Registration successful, confirmation email is sent to your email." ? "success" : "danger"}>{this.state.signUpError}</Alert>
+                                        : null
+                                    }
                                     <div className="row justify-content-center mt-4">
                                         <Button variant="success" size="md" type="submit">register</Button>
                                     </div>
+
                                 </form>
                             </div>
 
