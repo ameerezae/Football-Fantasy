@@ -59,21 +59,33 @@ class AllPlayers extends Component {
         return !(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3);
     };
     checkTransfer = (first, second) => {
-        let mySquad = this.props.myTeam.myTeamForTransfer;
-        mySquad = mySquad.filter(x => x.id !== first.id);
-        mySquad.push(second);
-        if(!(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))){
+        if(second.price < this.props.myTeam.budget){
+            let mySquad = this.props.myTeam.myTeamForTransfer;
+            mySquad = mySquad.filter(x => x.id !== first.id);
+            mySquad.push(second);
+            if(!(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))){
+                Swal.fire({
+                    position: 'center',
+                    type: 'error',
+                    title: this.props.myTeam.transferError,
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                this.props.selectFirstTransfer(null);
+                this.props.selectSecondTransfer(null);
+            }
+            this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
+        }
+        else{
             Swal.fire({
                 position: 'center',
                 type: 'error',
-                title: this.props.myTeam.transferError,
+                title: "You have no enough money!",
                 showConfirmButton: false,
                 timer: 3000
             })
-            this.props.selectFirstTransfer(null);
-            this.props.selectSecondTransfer(null);
         }
-        this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
+
 
     };
 
