@@ -5,11 +5,14 @@ import {connect} from "react-redux";
 import '@lottiefiles/lottie-player';
 import {bindActionCreators} from "redux";
 import {getMyTeam} from "../../../_actions/manageTeamActions";
-
+import {Button} from "react-bootstrap";
+import ManageTeamApi from "../../../_api/manageTeamApi";
+import Swal from "sweetalert2";
 class Substitution extends Component {
     componentWillMount() {
         this.props.getMyTeam();
     }
+
     render() {
         return (
             <div>
@@ -20,9 +23,25 @@ class Substitution extends Component {
                             <Bench/>
                         </div>
                         <div className="col-3">
-                            <div className="bg-white">
-                                <p>amir</p>
-                            </div>
+                            <Button variant="primary" onClick={async () => {
+                                const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain-id"]);
+                                if(res.data.detail === "successfully upgraded"){
+                                    Swal.fire({
+                                        position: 'center',
+                                        type: 'success',
+                                        title: "successfully upgraded",
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    })
+                                }else{
+                                    Swal.fire({
+                                        position: 'center',
+                                        type: 'error',
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    })
+                                }
+                            }}>Confirm</Button>
                         </div>
 
                     </div>
@@ -45,4 +64,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Substitution);
+export default connect(mapStateToProps, mapDispatchToProps)(Substitution);
