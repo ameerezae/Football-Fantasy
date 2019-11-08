@@ -67,7 +67,7 @@ class Transfer extends Component {
                                 <Button variant="primary"
                                         disabled={!this.props.myTeam.allowedToTransfer}
 
-                                        onClick={this.props.myTeam.allowedToTransfer ? () => ManageTeamApi.sendTransferedPlayer(this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer],
+                                        onClick={this.props.myTeam.allowedToTransfer ? () => ManageTeamApi.sendTransferedPlayer(this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer],
                                             this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer])
                                             : null}>
                                     <lottie-player
@@ -114,16 +114,16 @@ class Transfer extends Component {
                                         <div>
                                             <div className="row justify-content-center">
                                                 <div><img width="150"
-                                                          src={this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].image}/>
+                                                          src={this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer].image}/>
                                                 </div>
                                             </div>
                                             <div className="row justify-content-center">
                                                 <div
-                                                    className="text-white">{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].name}</div>
+                                                    className="text-white">{this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer].name}</div>
                                             </div>
                                             <div className="row justify-content-center">
                                                 <div
-                                                    className="text-white">{this.props.myTeam.transferablePlayers[this.props.myTeam.secondSelectedTransfer].position}</div>
+                                                    className="text-white">{this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer].position}</div>
                                             </div>
                                         </div>
                                         :
@@ -162,6 +162,7 @@ class Transfer extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
+        search : state.searchReducer,
     }
 }
 
