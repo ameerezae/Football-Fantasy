@@ -16,6 +16,7 @@ import {
 
 } from "../../../_actions/manageTeamActions";
 import SearchParams from "../../../components/Search/SearchParams";
+
 class AllPlayers extends Component {
 
 
@@ -51,38 +52,28 @@ class AllPlayers extends Component {
                     break;
             }
         });
-        if(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3){
+        if (gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3) {
             this.props.setTransferError("The number of players in this position is maximum");
         }
         return !(gkCounter > 2 || defCounter > 5 || midCounter > 5 || forwardCounter > 3);
     };
     checkTransfer = (first, second) => {
-        if(second.price < this.props.myTeam.budget){
-            let mySquad = this.props.myTeam.myTeamForTransfer;
-            mySquad = mySquad.filter(x => x.id !== first.id);
-            mySquad.push(second);
-            if(!(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))){
-                Swal.fire({
-                    position: 'center',
-                    type: 'error',
-                    title: this.props.myTeam.transferError,
-                    showConfirmButton: false,
-                    timer: 3000
-                })
-                this.props.selectFirstTransfer(null);
-                this.props.selectSecondTransfer(null);
-            }
-            this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
-        }
-        else{
+
+        let mySquad = this.props.myTeam.myTeamForTransfer;
+        mySquad = mySquad.filter(x => x.id !== first.id);
+        mySquad.push(second);
+        if (!(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))) {
             Swal.fire({
                 position: 'center',
                 type: 'error',
-                title: "You have no enough money!",
+                title: this.props.myTeam.transferError,
                 showConfirmButton: false,
                 timer: 3000
             })
+            this.props.selectFirstTransfer(null);
+            this.props.selectSecondTransfer(null);
         }
+        this.props.isAllowedToTransfer(this.checkTeamMax(mySquad) && this.check_2_5_5_3(mySquad))
 
 
     };
@@ -98,7 +89,7 @@ class AllPlayers extends Component {
                     <List twoLine className="list-style"
                           handleSelect={(activatedItemIndex) => {
                               this.props.selectSecondTransfer(activatedItemIndex);
-                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.myTeam.transferablePlayers[activatedItemIndex])
+                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.search.sortedPlayers[activatedItemIndex])
                               this.props.enableTransferTable(false)
                           }} dense>
 
@@ -135,7 +126,7 @@ class AllPlayers extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
-        search : state.searchReducer,
+        search: state.searchReducer,
     }
 }
 
