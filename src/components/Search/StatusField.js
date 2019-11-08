@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from "react-redux";
-import {setPlayerStatus} from "../../_actions/searchActions"
+import {setPlayerStatus,filterByStatusAll} from "../../_actions/searchActions"
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -58,11 +58,13 @@ export default function StatusField() {
     const theme = useTheme();
     const [selectedStatus, setselectedStatus] = React.useState([]);
     const dispatch = useDispatch();
-  
+    const StatusesState = useSelector(state => state.searchReducer);
+
     const handleChangeMultiple = event => {
       const  options  = event.target.value;
       setselectedStatus(event.target.value);
       dispatch(setPlayerStatus(options));
+      filterByStatusAll(options,StatusesState)
     };
 
     return (
