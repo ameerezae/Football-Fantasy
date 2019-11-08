@@ -6,8 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
-import { useDispatch } from "react-redux";
-import {setPlayerPositions} from "../../_actions/searchActions"
+import { useDispatch,useSelector } from "react-redux";
+import {setPlayerPositions,filterByPositionAll} from "../../_actions/searchActions"
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -60,12 +60,14 @@ export default function PositionField() {
     const theme = useTheme();
     const [SelectedPositions, setSelectedPositions] = React.useState([]);
     const dispatch = useDispatch();
+    const posState = useSelector(state => state.searchReducer)
   
     const handleChangeMultiple = event => {
       const  options  = event.target.value;
-        console.log("hi i am here",options);
-        setSelectedPositions(event.target.value);
+      console.log("hi i am here",options);
+      setSelectedPositions(event.target.value);
       dispatch(setPlayerPositions(options));
+      filterByPositionAll(options,posState)
     };
 
     return (
