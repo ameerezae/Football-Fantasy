@@ -7,6 +7,7 @@ export const getMyTeam = () =>{
         const response = await ManageTeamApi.getMyTeam();
         console.log(response);
         dispatch(myTeam(response.data.squad))
+        dispatch(captain(response.data["captain-id"]))
     }
 }
 
