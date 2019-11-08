@@ -19,16 +19,16 @@ class Bench extends Component {
 
         let newTeam = this.props.myTeam.squad;
         if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain-id"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain-id"]){
-            if (newTeam[secondSelectedKey].in_lineup === !newTeam[this.props.myTeam.firstSelected].in_lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
-                newTeam[this.props.myTeam.firstSelected].in_lineup = !newTeam[this.props.myTeam.firstSelected].in_lineup;
-                newTeam[secondSelectedKey].in_lineup = !newTeam[secondSelectedKey].in_lineup;
+            if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
                 Toast.fire({
                     type: 'success',
                     width: 100
                 })
-            } else if (newTeam[secondSelectedKey].in_lineup === !newTeam[this.props.myTeam.firstSelected].in_lineup && newTeam[secondSelectedKey].position === types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position === types.position.GOALKEEPER) {
-                newTeam[this.props.myTeam.firstSelected].in_lineup = !newTeam[this.props.myTeam.firstSelected].in_lineup;
-                newTeam[secondSelectedKey].in_lineup = !newTeam[secondSelectedKey].in_lineup;
+            } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position === types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
+                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
                 Toast.fire({
                     type: 'success',
                     width: 100
@@ -55,7 +55,7 @@ class Bench extends Component {
             <div className="row justify-content-center">
                 {this.props.myTeam.squad ?
                     this.props.myTeam.squad.map((element, key) => {
-                        if (!element.in_lineup) {
+                        if (!element.lineup) {
                             return (
                                 <div className="col">
                                     <div className="row justify-content-center">
