@@ -37,6 +37,32 @@ class ManageTeamApi {
         return response;
     }
 
+    static async sendSubsTeam (team,captain){
+        const token = localStorage.getItem("access_token");
+        const config =
+            {
+                mode: "cors",
+                headers:
+                    {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${token}`
+                    }
+            };
+        const thisBody = {
+            "squad" : team,
+            "captain-id" : captain,
+        }
+        const body = JSON.stringify(
+            thisBody
+        );
+        console.log(thisBody,"Bodyyyyyyy");
+        const response = axios.put(
+            api_urls.MANAGE_TEAM,
+            body,
+            config
+        );
+        return response;
+    }
 
     static async sendTransferedPlayer(playerIn, playerOut) {
         const token = localStorage.getItem("access_token");
