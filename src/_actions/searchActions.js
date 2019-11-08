@@ -18,29 +18,37 @@ export const clubGetRequest = () => {
 
  export const filterByRange = (newRange,temp) => {
   //newRange is the range and temp is the player list
-  temp = temp.filter(item => (item.price<newRange[1] && item.price>newRange[0]))
+
+  temp = temp.filter(item => (item.price<=newRange[1] && item.price>=newRange[0]))
+  
+  return temp
 }
 export const filterByPosition = (newPositions,temp) => {
   //newPosition is the positions and temp is the player list
-  for( var i = 0; i < newPositions.length; i++){
-    if(newPositions[i] == 'GK')
+  let posTemp = [...newPositions]
+  for( var i = 0; i < posTemp.length; i++){
+    if(posTemp[i] == 'GK')
     {
-      newPositions[i] = 'Goalkeeper'
+      posTemp[i] = 'Goalkeeper'
     }
-    else if(newPositions[i] == 'DEF')
+    else if(posTemp[i] == 'DEF')
     {
-      newPositions[i] = 'Defender'
+      posTemp[i] = 'Defender'
     }
-    else if(newPositions[i] == 'MID')
+    else if(posTemp[i] == 'MID')
     {
-      newPositions[i] = 'Midfielder'    
+      posTemp[i] = 'Midfielder'    
     }
-    else if(newPositions[i] == 'FWD')
+    else if(posTemp[i] == 'FWD')
     {
-      newPositions[i] = 'Forward'
+      posTemp[i] = 'Forward'
     }
   }
-  temp = temp.filter(item => newPositions.includes(item.position)==true)
+  if(posTemp.length>0)
+  {
+  temp = temp.filter(item => posTemp.includes(item.position)==true)
+  }
+  return temp
 }
 export const filterByClubs = (temp,state,selectedClubs) => {
   //state is the recent state and temp is the player list
@@ -52,35 +60,103 @@ export const filterByClubs = (temp,state,selectedClubs) => {
       clubIds.push(state.fetchedClubs[j].id)
     }
   }
+  if(clubIds.length>0)
+  {
   temp = temp.filter(item => clubIds.includes(item.club)==true)
+  }
+  return temp
 }
 export const filterByStatus = (newStates,temp) => {
   //newStates is the selected status and temp is players
+  if(newStates.length>0)
+  {
   temp = temp.filter(item => newStates.includes(item.status)==true)
+  }
+  return temp
 }
 export const filterByName = (newName,temp) => {
   //newName is the selected name and temp is players
-  temp = temp.filter(item => item.name.includes(newName)==true)
+  if(newName.length>0)
+  {
+    temp = temp.filter(item => item.name.includes(newName)==true)
+  }
+  return temp
 }
 
 export const filterByNameAll = (newName,state) => {
-  //newName is the selected name and temp is players
   console.log("this is current state",state)
-  let temp = [...state.sortedPlayers]
-  filterByName(newName,temp)
+  let temp = [...state.players]
+  temp = filterByName(newName,temp);
   console.log("temp after name filter",temp)
-  filterByStatus(state.status,temp)
+  temp =filterByStatus(state.status,temp);
   console.log("temp after status filter",temp)
-  filterByClubs(temp,state,state.clubs)
+  temp = filterByClubs(temp,state,state.clubs);
   console.log("temp after club filter",temp)
-  filterByPosition(state.positions,temp)
+  temp =filterByPosition(state.positions,temp);
   console.log("temp after pos filter",temp)
-  filterByRange(state.price,temp)
+  temp =filterByRange(state.price,temp);
   console.log("temp after price filter",temp)
-
-  temp = temp.filter(item => item.name.includes(newName)==true)
 }
 
+export const filterByStatusAll = (newStatus,state) => {
+  console.log("this is current state",state)
+  let temp = [...state.players]
+  temp = filterByName(state.name,temp);
+  console.log("temp after name filter",temp)
+  temp =filterByStatus(newStatus,temp);
+  console.log("temp after status filter",temp)
+  temp = filterByClubs(temp,state,state.clubs);
+  console.log("temp after club filter",temp)
+  temp =filterByPosition(state.positions,temp);
+  console.log("temp after pos filter",temp)
+  temp =filterByRange(state.price,temp);
+  console.log("temp after price filter",temp)
+}
+
+export const filterByClubsAll = (newClubs,state) => {
+  console.log("this is current state",state)
+  let temp = [...state.players]
+  temp = filterByName(state.name,temp);
+  console.log("temp after name filter",temp)
+  temp =filterByStatus(state.status,temp);
+  console.log("temp after status filter",temp)
+  temp = filterByClubs(temp,state,newClubs);
+  console.log("temp after club filter",temp)
+  temp =filterByPosition(state.positions,temp);
+  console.log("temp after pos filter",temp)
+  temp =filterByRange(state.price,temp);
+  console.log("temp after price filter",temp)
+}
+
+export const filterByPositionAll = (newPos,state) => {
+  console.log("this is current state",state)
+  let temp = [...state.players]
+  temp = filterByName(state.name,temp);
+  console.log("temp after name filter",temp)
+  temp =filterByStatus(state.status,temp);
+  console.log("temp after status filter",temp)
+  temp = filterByClubs(temp,state,state.clubs);
+  console.log("temp after club filter",temp)
+  temp =filterByPosition(newPos,temp);
+  console.log("temp after pos filter",temp)
+  temp =filterByRange(state.price,temp);
+  console.log("temp after price filter",temp)
+}
+
+export const filterByRangeAll = (newRange,state) => {
+  console.log("this is current state",state)
+  let temp = [...state.players]
+  temp = filterByName(state.name,temp);
+  console.log("temp after name filter",temp)
+  temp =filterByStatus(state.status,temp);
+  console.log("temp after status filter",temp)
+  temp = filterByClubs(temp,state,state.clubs);
+  console.log("temp after club filter",temp)
+  temp =filterByPosition(state.positions,temp);
+  console.log("temp after pos filter",temp)
+  temp =filterByRange(newRange,temp);
+  console.log("temp after price filter",temp)
+}
 
 const playerSearchSuccess = players => (
   
