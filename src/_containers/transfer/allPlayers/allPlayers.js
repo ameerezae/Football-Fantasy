@@ -15,11 +15,9 @@ import {
     setTransferError,
 
 } from "../../../_actions/manageTeamActions";
-
+import SearchParams from "../../../components/Search/SearchParams";
 class AllPlayers extends Component {
-    componentWillMount() {
-        this.props.getTransferablePlayers();
-    }
+
 
     checkTeamMax = (team) => {
         const checkingTeam = team;
@@ -93,6 +91,9 @@ class AllPlayers extends Component {
     render() {
         return (
             <div>
+                <div className="bg-white">
+                    <SearchParams/>
+                </div>
                 <div className={!this.props.myTeam.enableTable ? "disabled-all" : null}>
                     <List twoLine className="list-style"
                           handleSelect={(activatedItemIndex) => {
@@ -101,7 +102,7 @@ class AllPlayers extends Component {
                               this.props.enableTransferTable(false)
                           }} dense>
 
-                        {this.props.myTeam.transferablePlayers ? this.props.myTeam.transferablePlayers.map((element, key) => {
+                        {this.props.search.sortedPlayers ? this.props.search.sortedPlayers.map((element, key) => {
                             return (
                                 <ListItem key={key} className="text-white"
                                           disabled={!this.props.myTeam.enableTable}>
@@ -134,6 +135,7 @@ class AllPlayers extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
+        search : state.searchReducer,
     }
 }
 
