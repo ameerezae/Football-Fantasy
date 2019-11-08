@@ -22,16 +22,16 @@ class Squad extends Component {
 
         let newTeam = this.props.myTeam.squad;
         if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain-id"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain-id"]){
-            if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
-                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
-                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+            if (newTeam[secondSelectedKey].in_lineup === !newTeam[this.props.myTeam.firstSelected].in_lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].in_lineup = !newTeam[this.props.myTeam.firstSelected].in_lineup;
+                newTeam[secondSelectedKey].in_lineup = !newTeam[secondSelectedKey].in_lineup;
                 Toast.fire({
                     type: 'success',
                     width: 100
                 })
-            } else if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position === types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position === types.position.GOALKEEPER) {
-                newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
-                newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
+            } else if (newTeam[secondSelectedKey].in_lineup === !newTeam[this.props.myTeam.firstSelected].in_lineup && newTeam[secondSelectedKey].position === types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position === types.position.GOALKEEPER) {
+                newTeam[this.props.myTeam.firstSelected].in_lineup = !newTeam[this.props.myTeam.firstSelected].in_lineup;
+                newTeam[secondSelectedKey].in_lineup = !newTeam[secondSelectedKey].in_lineup;
                 Toast.fire({
                     type: 'success',
                     width: 100
@@ -59,7 +59,7 @@ class Squad extends Component {
                 <div className="row justify-content-center">
                     {this.props.myTeam.squad ?
                         this.props.myTeam.squad.map((element, key) => {
-                            if (element.position === "Goalkeeper" && element.lineup) {
+                            if (element.position === "Goalkeeper" && element.in_lineup) {
                                 return (
                                     <div className="col">
 
@@ -100,7 +100,7 @@ class Squad extends Component {
                 <div className="row justify-content-center">
                     {this.props.myTeam.squad ?
                         this.props.myTeam.squad.map((element, key) => {
-                            if (element.position === "Defender" && element.lineup) {
+                            if (element.position === "Defender" && element.in_lineup) {
                                 return (
                                     <div className="col">
                                         <div className="row justify-content-center">
@@ -138,7 +138,7 @@ class Squad extends Component {
                 <div className="row justify-content-center">
                     {this.props.myTeam.squad ?
                         this.props.myTeam.squad.map((element, key) => {
-                            if (element.position === "Midfielder" && element.lineup) {
+                            if (element.position === "Midfielder" && element.in_lineup) {
                                 return (
                                     <div className="col">
                                         <div className="row justify-content-center">
@@ -176,7 +176,7 @@ class Squad extends Component {
                 <div className="row justify-content-center">
                     {this.props.myTeam.squad ?
                         this.props.myTeam.squad.map((element, key) => {
-                            if (element.position === "Forward" && element.lineup) {
+                            if (element.position === "Forward" && element.in_lineup) {
                                 return (
                                     <div className="col">
                                         <div className="row justify-content-center">
