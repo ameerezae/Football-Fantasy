@@ -1,9 +1,16 @@
 import search_api from "../_api/searchApi"
 import * as acc from "./types"
 
-export const playerSearchRequest = (credentials,name) => {
+export const playerSearchRequest = () => {
   return async function(dispatch){
-      let response = await search_api.getPlayers(credentials,name)
+      let response = await search_api.getPlayers()
+      let squadResponse = await search_api.getMyTeam()
+      let temp2 = []
+      for(let i = 0 ;i <squadResponse.data.squad.length;i++)
+      {
+        temp2.push(squadResponse.data.squad[i].name)
+      }
+      response.data = response.data.filter(item => (temp2.includes(item.name)==false))
       dispatch(playerSearchSuccess(response))
   }
 }
