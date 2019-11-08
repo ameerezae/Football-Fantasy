@@ -44,6 +44,8 @@ export default function (state = initialState, action) {
         case types.manageTeam_action_types.CHANGE_CAPTAIN_SUCCESS :
             return {...state, "captain-id":action.payload};
 
+        case types.manageTeam_action_types.SET_REMAINING_BUDGET_SUCCUSS :
+            return {...state, budget : action.payload};
         default :
             return state;
     }
