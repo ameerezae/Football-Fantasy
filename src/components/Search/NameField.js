@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import { useDispatch,useSelector } from "react-redux";
-import {filterByName,filterByNameAll,setPlayerName} from "../../_actions/searchActions";
+import {filterByNameAll,setPlayerName} from "../../_actions/searchActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +39,7 @@ export default function NameFiled() {
   const handleChange = (event) => {
     setSelectedName(event.target.value)
     dispatch(setPlayerName(event.target.value))
-    // filterByNameAll(event.target.value,searchState)    
+    filterByNameAll(event.target.value,searchState)    
   };
   // const handleSubmit = () => {
   //   console.log(state)
