@@ -12,7 +12,7 @@ const initialState = {
     name : '',
     isFetched : false,
     arePlayedFetched : false,
-
+    sortBy : '',
 
 }
 
@@ -36,6 +36,10 @@ export function searchReducer(state = initialState, action) {
                     return {...state, name: action.payload}
             case acc.search_action_types.SET_SORTED_PLAYERS_SUCCESS:
                     return {...state, sortedPlayers: action.payload}
+            case acc.search_action_types.SET_SORT_SUCCESS:
+                    return {...state, sortBy: action.payload}
+            case acc.search_action_types.SET_LISTS_SUCCESS:
+                    return {...state, players: action.players, sortedPlayers: action.sortedPlayers}
             default:
             return state;
         }
