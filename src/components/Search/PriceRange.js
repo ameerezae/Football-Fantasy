@@ -26,7 +26,7 @@ export default function PriceRange() {
     // console.log("fucking range is",newValue)
     setValue(newValue);
     dispatch(setPriceRange(newValue));
-    filterByRangeAll(newValue,priceState);
+    dispatch(filterByRangeAll(newValue,priceState));
   };
 
   return (

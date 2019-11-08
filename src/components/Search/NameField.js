@@ -39,7 +39,7 @@ export default function NameFiled() {
   const handleChange = (event) => {
     setSelectedName(event.target.value)
     dispatch(setPlayerName(event.target.value))
-    filterByNameAll(event.target.value,searchState)    
+    dispatch(filterByNameAll(event.target.value,searchState));    
   };
   // const handleSubmit = () => {
   //   console.log(state)

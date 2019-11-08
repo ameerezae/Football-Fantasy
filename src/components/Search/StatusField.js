@@ -64,7 +64,7 @@ export default function StatusField() {
       const  options  = event.target.value;
       setselectedStatus(event.target.value);
       dispatch(setPlayerStatus(options));
-      filterByStatusAll(options,StatusesState)
+      dispatch(filterByStatusAll(options,StatusesState))
     };
 
     return (

@@ -63,7 +63,7 @@ export default function ClubsField() {
           console.log("hi i am here",options);
           setClubNames(event.target.value);
           dispatch(setPlayerClubs(options));
-          filterByClubsAll(options,ClubsState)
+          dispatch(filterByClubsAll(options,ClubsState))
       };
       React.useEffect(() => {
         if(ClubsState.isFetched === false)

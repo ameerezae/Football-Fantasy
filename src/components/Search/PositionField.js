@@ -67,7 +67,7 @@ export default function PositionField() {
       console.log("hi i am here",options);
       setSelectedPositions(event.target.value);
       dispatch(setPlayerPositions(options));
-      filterByPositionAll(options,posState)
+      dispatch(filterByPositionAll(options,posState));
     };
 
     return (
