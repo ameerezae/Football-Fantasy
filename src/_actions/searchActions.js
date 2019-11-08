@@ -173,6 +173,42 @@ export const filterByRangeAll = (newRange,state) => {
   }
 }
 
+export const sortBy = (value,state) => {
+  //newName is the selected name and temp is players
+  let players = [...state.players]
+  let sortedPlayers = [...state.sortedPlayers]
+  if(value.length>0)
+  {
+    if(value == "Price")
+    {
+      players.sort((a, b) => (a.price > b.price) ? 1 : -1)
+      sortedPlayers.sort((a, b) => (a.price > b.price) ? 1 : -1)
+    }
+    else if(value == "Name")
+    {
+      players.sort((a, b) => (a.name > b.name) ? 1 : -1)
+      sortedPlayers.sort((a, b) => (a.name > b.name) ? 1 : -1)
+
+    }
+  }
+  return function(dispatch){
+    dispatch(setSorteLists(players,sortedPlayers))
+    }
+}
+const setSorteLists = (players,sortedPlayers) =>(
+  {
+    type:acc.search_action_types.SET_LISTS_SUCCESS,
+    players: players,
+    sortedPlayers: sortedPlayers
+  }
+)
+
+export const setSortValue = value => (
+  {
+    type: acc.search_action_types.SET_SORT_SUCCESS,
+    payload: value,
+  })
+
 const playerSearchSuccess = players => (
   
   {
