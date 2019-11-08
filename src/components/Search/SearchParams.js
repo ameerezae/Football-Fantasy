@@ -32,27 +32,27 @@ export default function SearchParams() {
   return (
     <div className={classes.root}>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
-            <Grid item xs={3}>
+            <Grid item xs={11}>
                 <NameField/>
             </Grid>
         </Grid>
-        <Grid container direction="row" justify="space-evenly" alignItems="center">
-          <Grid item xs={1}>
+        <Grid container direction="row" justify="space-around" alignItems="center">
+          <Grid item xs={3}>
               <PositionField/>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={3}>
             <ClubsField/>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={3}>
             < StatusField/>
           </Grid>
           <Grid container direction="row" justify="space-evenly" alignItems="center">
-          <Grid item xs={2}>
+          <Grid item xs={8}>
             <PriceRange/>
           </Grid>
         </Grid>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
-          <Grid item xs={1}>
+          <Grid item xs={4}>
             <SortByField/>
           </Grid>
         </Grid>
