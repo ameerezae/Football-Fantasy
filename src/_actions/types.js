@@ -6,3 +6,11 @@ export const auth_action_types = {
 export const picksquad_action_types = {
     SET_PLAYERS_SUCCESS : 'SET_PLAYERS_SUCCESS'
   }
+
+
+export const position = {
+    GOALKEEPER: "Goalkeeper",
+    DEFENDER: "Defender",
+    MIDFIELDER: "Midfielder",
+    FORWARD: "Forward"
+}
