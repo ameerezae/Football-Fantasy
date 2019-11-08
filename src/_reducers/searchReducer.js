@@ -33,7 +33,9 @@ export function searchReducer(state = initialState, action) {
             case acc.search_action_types.GET_CLUBS_SUCCESS:
                     return {...state, fetchedClubs: action.payload, isFetched: true}
             case acc.search_action_types.SET_NAME_SUCCESS:
-                    return {...state, name: action.payload}  
+                    return {...state, name: action.payload}
+            case acc.search_action_types.SET_SORTED_PLAYERS_SUCCESS:
+                    return {...state, sortedPlayers: action.payload}
             default:
             return state;
         }
