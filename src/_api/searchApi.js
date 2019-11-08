@@ -34,5 +34,22 @@ class search_api {
         console.log("response",response)
         return response  
     }
+    static async getMyTeam() {
+        const token = localStorage.getItem("access_token");
+        const config = {
+            mode: "cors",
+            headers:
+                {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                }
+        }
+
+        const response = await axios.get(
+            api_urls.MANAGE_TEAM,
+            config
+        );
+        return response;
+    }
 }
 export default search_api

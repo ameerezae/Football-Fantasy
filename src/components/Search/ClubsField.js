@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from "react-redux";
-import {setPlayerClubs,clubGetRequest} from "../../_actions/searchActions"
+import {setPlayerClubs,clubGetRequest,filterByClubsAll} from "../../_actions/searchActions"
 import Divider from '@material-ui/core/Divider';
 
 
@@ -62,7 +62,8 @@ export default function ClubsField() {
         const  options  = event.target.value;
           console.log("hi i am here",options);
           setClubNames(event.target.value);
-        dispatch(setPlayerClubs(options));
+          dispatch(setPlayerClubs(options));
+          dispatch(filterByClubsAll(options,ClubsState))
       };
       React.useEffect(() => {
         if(ClubsState.isFetched === false)
@@ -94,7 +95,7 @@ export default function ClubsField() {
                 MenuProps={MenuProps}
                 >
                     {ClubsState.fetchedClubs.map(element => (
-                        <MenuItem key={element} value={element} style={getStyles(element, ClubNames, theme)}>
+                        <MenuItem key={element.name} value={element.name} style={getStyles(element.name, ClubNames, theme)}>
                           <div className="row">
                             <div className="col">
                               <div className="row justify-content-start">

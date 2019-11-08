@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import { useDispatch,useSelector } from "react-redux";
-import {playerSearchRequest} from "../../_actions/searchActions";
+import {filterByNameAll,setPlayerName} from "../../_actions/searchActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,12 +37,14 @@ export default function NameFiled() {
   const searchState = useSelector(state => state.searchReducer);
   const dispatch = useDispatch();
   const handleChange = (event) => {
-    setSelectedName(event.target.value)    
+    setSelectedName(event.target.value)
+    dispatch(setPlayerName(event.target.value))
+    dispatch(filterByNameAll(event.target.value,searchState));    
   };
-  const handleSubmit = () => {
-    console.log(state)
-    // dispatch(playerSearchRequest(state,SelectedName));
-  };
+  // const handleSubmit = () => {
+  //   console.log(state)
+  //   // dispatch(playerSearchRequest(state,SelectedName));
+  // };
 
   return (
     <Paper className={classes.root}>
