@@ -16,14 +16,14 @@ export const clubGetRequest = () => {
   }
 }
 
- export const filterByRange = (newRange,temp) => {
+const filterByRange = (newRange,temp) => {
   //newRange is the range and temp is the player list
 
   temp = temp.filter(item => (item.price<=newRange[1] && item.price>=newRange[0]))
   
   return temp
 }
-export const filterByPosition = (newPositions,temp) => {
+const filterByPosition = (newPositions,temp) => {
   //newPosition is the positions and temp is the player list
   let posTemp = [...newPositions]
   for( var i = 0; i < posTemp.length; i++){
@@ -50,7 +50,7 @@ export const filterByPosition = (newPositions,temp) => {
   }
   return temp
 }
-export const filterByClubs = (temp,state,selectedClubs) => {
+const filterByClubs = (temp,state,selectedClubs) => {
   //state is the recent state and temp is the player list
   let clubIds = [];
   for(var j = 0;j<state.fetchedClubs.length;j++)
@@ -66,7 +66,7 @@ export const filterByClubs = (temp,state,selectedClubs) => {
   }
   return temp
 }
-export const filterByStatus = (newStates,temp) => {
+const filterByStatus = (newStates,temp) => {
   //newStates is the selected status and temp is players
   if(newStates.length>0)
   {
@@ -74,7 +74,7 @@ export const filterByStatus = (newStates,temp) => {
   }
   return temp
 }
-export const filterByName = (newName,temp) => {
+const filterByName = (newName,temp) => {
   //newName is the selected name and temp is players
   if(newName.length>0)
   {
@@ -96,6 +96,9 @@ export const filterByNameAll = (newName,state) => {
   console.log("temp after pos filter",temp)
   temp =filterByRange(state.price,temp);
   console.log("temp after price filter",temp)
+  return function(dispatch){
+     dispatch(setSortedPlayers(temp))
+  }
 }
 
 export const filterByStatusAll = (newStatus,state) => {
@@ -111,6 +114,9 @@ export const filterByStatusAll = (newStatus,state) => {
   console.log("temp after pos filter",temp)
   temp =filterByRange(state.price,temp);
   console.log("temp after price filter",temp)
+  return function(dispatch){
+    dispatch(setSortedPlayers(temp))
+  }
 }
 
 export const filterByClubsAll = (newClubs,state) => {
@@ -126,6 +132,9 @@ export const filterByClubsAll = (newClubs,state) => {
   console.log("temp after pos filter",temp)
   temp =filterByRange(state.price,temp);
   console.log("temp after price filter",temp)
+  return function(dispatch){
+    dispatch(setSortedPlayers(temp))
+  }
 }
 
 export const filterByPositionAll = (newPos,state) => {
@@ -141,6 +150,9 @@ export const filterByPositionAll = (newPos,state) => {
   console.log("temp after pos filter",temp)
   temp =filterByRange(state.price,temp);
   console.log("temp after price filter",temp)
+  return function(dispatch){
+  dispatch(setSortedPlayers(temp))
+  }
 }
 
 export const filterByRangeAll = (newRange,state) => {
@@ -156,6 +168,9 @@ export const filterByRangeAll = (newRange,state) => {
   console.log("temp after pos filter",temp)
   temp =filterByRange(newRange,temp);
   console.log("temp after price filter",temp)
+  return function(dispatch){
+    dispatch(setSortedPlayers(temp))
+  }
 }
 
 const playerSearchSuccess = players => (
@@ -200,4 +215,10 @@ export const setPriceRange = priceRange => (
   {
     type: acc.search_action_types.SET_PLAYERS_PRICE_SUCCESS,
     payload: priceRange
+})
+
+export const setSortedPlayers = sortedPlayers => (
+  {
+    type: acc.search_action_types.SET_SORTED_PLAYERS_SUCCESS,
+    payload: sortedPlayers
 })
