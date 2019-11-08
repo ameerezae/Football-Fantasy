@@ -16,13 +16,7 @@ export const userSignUpRequest = (credentials) => {
       let response = await Login_page_api.signup(credentials) 
       localStorage.setItem("access_token", response.data.access_token)
       localStorage.setItem("refresh_token", response.data.refresh_token)
-      if(response.message == "successful login")
-      {
-      dispatch(loginUserSuccess(response.data))
-      }
-      else{
-        dispatch(loginUserFailure(response.data))
-      }
+      return response;
   }
 }
 
