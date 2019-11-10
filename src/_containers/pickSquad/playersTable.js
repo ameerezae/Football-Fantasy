@@ -22,7 +22,7 @@ import * as types from "../../_actions/types";
 
 class PlayersTable extends Component {
     componentWillMount() {
-        this.props.getWholeItems()
+        // this.props.getWholeItems()
     }
 
     check_2_5_5_3 = (team) => {
@@ -81,7 +81,7 @@ class PlayersTable extends Component {
             let chosenPos = this.props.format[this.props.format.pickedPosition];
             if (chosenPos[this.props.format.pickedKey] == null) {
                 chosenPos[this.props.format.pickedKey] = playerDetails;
-                const newWholeItems = this.props.format.wholeItems.filter(element => element.name !== playerDetails.name);
+                const newWholeItems = this.props.search.sortedPlayers.filter(element => element.id !== playerDetails.id);
                 switch (this.props.format.pickedPosition) {
 
                     case "Defender" :
@@ -150,7 +150,7 @@ class PlayersTable extends Component {
     render() {
         return (
             <List style={{overflow: "auto", height: "500px"}} twoLine
-                  handleSelect={(activatedItemIndex) => this.choosePlayer(activatedItemIndex)} dense>
+                  handleSelect={(activatedItemIndex) => this.choosePlayer(activatedItemIndex)} >
                 {this.props.format.filteredItems ?
                     this.props.format.filteredItems.map((element, key) => {
                         return (
@@ -170,8 +170,8 @@ class PlayersTable extends Component {
 
                         )
                     }) :
-                    this.props.format.wholeItems ?
-                        this.props.format.wholeItems.map((element, key) => {
+                    this.props.search.sortedPlayers ?
+                    this.props.search.sortedPlayers.map((element, key) => {
                             return (
                                 <ListItem key={key}>
                                     <ListItemGraphic className="list-image"
@@ -197,6 +197,7 @@ class PlayersTable extends Component {
 function mapStateToProps(state) {
     return {
         format: state.formatReducer,
+        search : state.searchReducer
     }
 }
 
