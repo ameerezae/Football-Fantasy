@@ -26,7 +26,7 @@ class DetailsModal extends Component {
         if (this.props.format["captain-id"] && this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey].name === this.props.format["captain-id"].name) {
             this.props.setCaptain(null);
         }
-        let newWholeItems = this.props.format.wholeItems;
+        let newWholeItems = [...this.props.search.sortedPlayers];
         newWholeItems.push(this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey])
         this.props.setWholeItems(newWholeItems);
         let filteredPosition;
@@ -116,6 +116,7 @@ class DetailsModal extends Component {
 function mapStateToProps(state) {
     return {
         format: state.formatReducer,
+        search: state.searchReducer
     }
 }
 
