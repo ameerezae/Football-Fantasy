@@ -33,7 +33,7 @@ class SignIn extends Component {
 
 
     render() {
-        if(this.props.userObj.message === "successful login"){
+        if(this.props.userObj.success_message){
             this.props.history.push(`/manageteam`)
         }
         const loginForm = (
@@ -59,7 +59,7 @@ class SignIn extends Component {
                     <div className="col-sm-6 col-md-6">
                         <div className="row align-items-center justify-content-center">
                             <img src={TriplePlayer} alt="img" className="img-fluid mb-4" width="250px" height="200px"/>
-                            {this.props.userObj.message ? <Alert variant={this.props.userObj.message==="successful login"?"success":"danger"}>{this.props.userObj.message}</Alert> :null }
+                            {this.props.userObj.failure_message? <Alert variant={"danger"}>{this.props.userObj.failure_message}</Alert> :null}
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-6">

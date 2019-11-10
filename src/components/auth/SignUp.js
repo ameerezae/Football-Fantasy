@@ -21,6 +21,7 @@ class SignUp extends Component {
                 password2: ''
             },
             toggle: false,
+            signUpSuccess: null,
             signUpError: null,
         }
         this.onChange = this.handleChange.bind(this);
@@ -30,8 +31,15 @@ class SignUp extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        const response = await this.props.userSignUpRequest(this.state.data);
-        this.setState({signUpError: response.data.message})
+        try {
+            const response = await this.props.userSignUpRequest(this.state.data);
+            this.setState({signUpError : null})
+            this.setState({signUpSuccess: response.data.message})
+        }catch (e) {
+            this.setState({signUpSuccess: null})
+            this.setState({signUpError : e.response.data.message})
+        }
+
     }
 
     toggleModal = () => {
@@ -106,7 +114,12 @@ class SignUp extends Component {
                                     />
                                     {this.state.signUpError !== null ?
                                         <Alert className="text-center"
-                                            variant={this.state.signUpError === "Registration successful, confirmation email is sent to your email." ? "success" : "danger"}>{this.state.signUpError}</Alert>
+                                            variant={"danger"}>{this.state.signUpError}</Alert>
+                                        : null
+                                    }
+                                    {this.state.signUpSuccess !== null?
+                                        <Alert className="text-center"
+                                               variant={"success"}>{this.state.signUpSuccess}</Alert>
                                         : null
                                     }
                                     <div className="row justify-content-center mt-4">
