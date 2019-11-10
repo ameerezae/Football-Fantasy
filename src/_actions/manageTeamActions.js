@@ -4,10 +4,15 @@ import Daniel from "../_assets/Daniel Ceballos Fernández.jpg"
 import David from "../_assets/David Luiz Moreira Marinho.jpg";
 export const getMyTeam = () =>{
     return async function(dispatch){
-        const response = await ManageTeamApi.getMyTeam();
-        console.log(response);
-        dispatch(myTeam(response.data.squad))
-        dispatch(captain(response.data["captain-id"]))
+        try {
+            const response = await ManageTeamApi.getMyTeam();
+            dispatch(myTeam(response.data.squad))
+            dispatch(captain(response.data["captain-id"]))
+            return true;
+        }catch (e) {
+            return false;
+        }
+
     }
 }
 
