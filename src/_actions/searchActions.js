@@ -188,8 +188,8 @@ export const sortBy = (value,state) => {
   {
     if(value == "Price")
     {
-      players.sort((a, b) => (a.price > b.price) ? 1 : -1)
-      sortedPlayers.sort((a, b) => (a.price > b.price) ? 1 : -1)
+      players.sort((a, b) => (a.price > b.price) ? -1 : 1)
+      sortedPlayers.sort((a, b) => (a.price > b.price) ? -1 : 1)
     }
     else if(value == "Name")
     {
