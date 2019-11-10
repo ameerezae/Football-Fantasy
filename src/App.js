@@ -18,10 +18,8 @@ class App extends Component {
                     <div className="contain">
                         <Switch>
                             <Route path="/login" component={SignIn} />
-                            <Route path="/signup" component={SignUp} />
                             <Route path="/picksquad" component={PickSquadContainer} />
                             <Route path="/manageTeam" component={ManageTeam}/>
-                            <Route path="/Test_search" component={Search}/>
                         </Switch>
                     </div>
                 </div>
