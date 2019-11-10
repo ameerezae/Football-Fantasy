@@ -22,33 +22,33 @@ import {bindActionCreators} from "redux";
 import DetailsModal from "./detailsModal";
 import CountUp from "react-countup/build";
 import Swal from "sweetalert2";
-import  SearchParams from "../../components/Search/SearchParams"
+import SearchParams from "../../components/Search/SearchParams"
 
 
 class PickSquadContainer extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.state = {
             pickName: true,
-            loading : true
+            loading: true
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         console.log("fucking a")
         this.setState({
             pickName: true,
-            loading : true
+            loading: true
         });
     }
+
     componentDidMount() {
-        console.log("fuck off",this.props.format)
+        console.log("fuck off", this.props.format)
         this.props.getWholeItems();
         this.setState({
             pickName: true,
-            loading : false
+            loading: false
         });
     }
 
@@ -56,22 +56,22 @@ class PickSquadContainer extends Component {
         let changedData = data;
         let picks = [];
         Object.keys(data).forEach((key) => {
-            if (key === "Defender" || key === "Goalkeeper" || key === "Forward" || key === "Midfielder"){
+            if (key === "Defender" || key === "Goalkeeper" || key === "Forward" || key === "Midfielder") {
                 const newData = data[key];
-                for(let i = 0 ; i< newData.length;i++){
+                for (let i = 0; i < newData.length; i++) {
                     newData[i]["lineup"] = true;
                     picks.push(newData[i]);
                 }
-            }else if(key === "bench"){
+            } else if (key === "bench") {
                 const newData = data[key];
-                for(let i = 0 ; i< newData.length;i++){
+                for (let i = 0; i < newData.length; i++) {
                     newData[i]["lineup"] = false;
                     picks.push(newData[i]);
                 }
 
             }
         });
-        for(let i = 0 ;i < picks.length;i++){
+        for (let i = 0; i < picks.length; i++) {
             picks[i]["player_id"] = picks[i].id;
         }
         changedData["squad"] = picks;
@@ -90,18 +90,21 @@ class PickSquadContainer extends Component {
                     headers:
                         {
                             'Content-Type': 'application/json',
-                            "Authorization" : `Bearer ${token}`
+                            "Authorization": `Bearer ${token}`
                         }
                 }
             let response = await axios.post(
                 "http://172.17.3.123:5000/team/pick-squad",
                 JSON.stringify(newChangedData)
-                ,config)
+                , config)
 
-            console.log("response",response)
+            return response;
 
         } catch (e) {
-            console.log("SERVER DOWN")
+            if (e.response) {
+                return e.response;
+
+            }
         }
     }
 
@@ -126,6 +129,7 @@ class PickSquadContainer extends Component {
         this.props.setPickedKey(id);
         this.props.toggleModal(true)
     };
+
     render() {
         if (this.state.pickName) {
             Swal.fire({
@@ -433,7 +437,8 @@ class PickSquadContainer extends Component {
                                     <div className="row">
                                         <h4 className="text-white ml-3">Pick your squad</h4>
                                         <h5 className="text-white ml-5">Budget: </h5>
-                                        <h5 className="text-white pb-0 ml-2"><CountUp start={50} end={this.props.format.budget}
+                                        <h5 className="text-white pb-0 ml-2"><CountUp start={50}
+                                                                                      end={this.props.format.budget}
                                                                                       duration={1}
                                                                                       separator="," suffix="$"/></h5>
                                     </div>
@@ -442,18 +447,27 @@ class PickSquadContainer extends Component {
                                     <div className="row justify-content-end">
                                         <Button variant="primary" size="md" onClick={async (event) => {
                                             const res = await this.handleSubmit(event, this.props.format)
-                                            if(res.data.detail === "your team was successfully registered"){
-                                            Swal.fire({
-                                                position: 'center',
-                                                type: 'success',
-                                                title: res.data.detail,
-                                                showConfirmButton: false,
-                                                timer: 3000
-                                            })
+                                            if (res.status === 200) {
+                                                Swal.fire({
+                                                    position: 'center',
+                                                    type: 'success',
+                                                    title: res.data.detail,
+                                                    showConfirmButton: false,
+                                                    timer: 3000
+                                                })
+                                                this.props.history.push(`/manageteam`)
+                                            } else {
+                                                Swal.fire({
+                                                    position: 'center',
+                                                    type: 'error',
+                                                    title: res.data.message,
+                                                    showConfirmButton: false,
+                                                    timer: 3000
+                                                })
+                                            }
                                         }
-                                        }
-                                            
-                                            }>Confirm</Button>
+
+                                        }>Confirm</Button>
                                     </div>
                                 </div>
 
@@ -492,14 +506,13 @@ class PickSquadContainer extends Component {
     }
 
 
-
 }
 
 
 function mapStateToProps(state) {
     return {
         format: state.formatReducer,
-        search : state.searchReducer
+        search: state.searchReducer
     }
 }
 
