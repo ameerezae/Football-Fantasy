@@ -15,6 +15,7 @@ import {
 import {AnimateOnChange} from "react-animation";
 import Transfer1 from "../../_assets/transfer1.svg";
 import Transfer2 from "../../_assets/transfer2.svg";
+import Swal from "sweetalert2";
 
 class Transfer extends Component {
     render() {
@@ -67,8 +68,27 @@ class Transfer extends Component {
                                 <Button variant="primary"
                                         disabled={!this.props.myTeam.allowedToTransfer}
 
-                                        onClick={this.props.myTeam.allowedToTransfer ? () => ManageTeamApi.sendTransferedPlayer(this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer],
-                                            this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer])
+                                        onClick={this.props.myTeam.allowedToTransfer ? async () => {
+                                                const res = await ManageTeamApi.sendTransferedPlayer(this.props.search.sortedPlayers[this.props.myTeam.secondSelectedTransfer],
+                                                    this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer])
+                                                if(res.status === 200){
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'success',
+                                                        title: res.data.detail,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }else{
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'error',
+                                                        title : res.data.message,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+                                            }
                                             : null}>
                                     <lottie-player
                                         autoplay={!this.props.myTeam.allowedToTransfer}
@@ -162,7 +182,7 @@ class Transfer extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
-        search : state.searchReducer,
+        search: state.searchReducer,
     }
 }
 
