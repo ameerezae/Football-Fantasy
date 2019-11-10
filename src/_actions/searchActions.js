@@ -4,12 +4,17 @@ import * as acc from "./types"
 export const playerSearchRequest = () => {
   return async function(dispatch){
       let response = await search_api.getPlayers()
+      console.log("completed")
       let squadResponse = await search_api.getMyTeam()
+      console.log("we are in playerSearchRequest and this is squadResponse status: ",squadResponse)
       let temp2 = []
+      if(squadResponse.length !== 0)
+      {
       for(let i = 0 ;i <squadResponse.data.squad.length;i++)
       {
         temp2.push(squadResponse.data.squad[i].name)
       }
+    }
       response.data = response.data.filter(item => (temp2.includes(item.name)==false))
       dispatch(playerSearchSuccess(response))
   }
