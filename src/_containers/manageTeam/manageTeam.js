@@ -6,8 +6,17 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import ThreePlayersImage from "../../_assets/player-comp-3-1x.7eb15f60.png"
 import "./manageTeam.scss";
-class ManageTeam extends Component {
+import {getMyTeam} from "../../_actions/manageTeamActions";
+import {bindActionCreators} from "redux";
 
+class ManageTeam extends Component {
+    async componentWillMount() {
+        const response = await this.props.getMyTeam()
+        if(!response){
+            this.props.history.push(`picksquad`)
+        };
+
+    }
 
     render() {
         return (
@@ -54,6 +63,10 @@ function mapStateToProps(state){
     }
 }
 
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        getMyTeam,
+    },dispatch)
+}
 
-
-export default connect(mapStateToProps,null)(ManageTeam);
+export default connect(mapStateToProps,mapDispatchToProps)(ManageTeam);
