@@ -73,34 +73,41 @@ class ManageTeamApi {
     }
 
     static async sendTransferedPlayer(playerIn, playerOut) {
-        const token = localStorage.getItem("access_token");
-        const config =
-            {
-                mode: "cors",
-                headers:
-                    {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${token}`
+        try {
+            const token = localStorage.getItem("access_token");
+            const config =
+                {
+                    mode: "cors",
+                    headers:
+                        {
+                            'Content-Type': 'application/json',
+                            "Authorization": `Bearer ${token}`
+                        }
+                };
+            const body = JSON.stringify(
+                {
+                    "player_in": {
+                        "id" : playerIn.id,
+                        "name" : playerIn.name
+                    },
+                    "player_out": {
+                        "id" : playerOut.id,
+                        "name" : playerOut.name
                     }
-            };
-           const body = JSON.stringify(
-               {
-                   "player_in": {
-                       "id" : playerIn.id,
-                       "name" : playerIn.name
-                   },
-                   "player_out": {
-                       "id" : playerOut.id,
-                       "name" : playerOut.name
-                   }
-               }
-           );
-        const response = axios.post(
-            api_urls.POST_TRANSFERABLE,
-            body,
-            config
-        );
-        return response;
+                }
+            );
+            const response = await axios.post(
+                api_urls.POST_TRANSFERABLE,
+                body,
+                config
+            );
+            return response;
+        }catch (e) {
+            if(e.response){
+                return e.response
+            }
+        }
+
     }
 }
 
