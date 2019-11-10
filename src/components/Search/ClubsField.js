@@ -15,8 +15,8 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 350,
+      width: '100%',
+      boxSizing: 'border-box'
     },
     chips: {
       display: 'flex',

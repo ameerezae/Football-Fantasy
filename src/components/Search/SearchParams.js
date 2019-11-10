@@ -32,7 +32,7 @@ export default function SearchParams() {
   return (
     <div className={classes.root}>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
-            <Grid item xs={11}>
+            <Grid item xs={12}>
                 <NameField/>
             </Grid>
         </Grid>

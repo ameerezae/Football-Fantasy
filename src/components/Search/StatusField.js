@@ -12,8 +12,8 @@ import {setPlayerStatus,filterByStatusAll} from "../../_actions/searchActions"
 const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
+      width: '100%',
+      boxSizing: 'border-box'
     },
     chips: {
       display: 'flex',

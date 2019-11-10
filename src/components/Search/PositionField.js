@@ -12,8 +12,8 @@ import {setPlayerPositions,filterByPositionAll} from "../../_actions/searchActio
 const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
+      width: '100%',
+      boxSizing: 'border-box'
     },
     chips: {
       display: 'flex',

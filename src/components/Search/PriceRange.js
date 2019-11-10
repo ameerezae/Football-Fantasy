@@ -8,7 +8,8 @@ import { setPriceRange,filterByRangeAll } from "../../_actions/searchActions"
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    marginTop: '1rem',
+    width: '100%',
   },
 });
 
