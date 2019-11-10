@@ -4,9 +4,7 @@ import * as acc from "./types"
 export const playerSearchRequest = () => {
   return async function(dispatch){
       let response = await search_api.getPlayers()
-      console.log("completed")
       let squadResponse = await search_api.getMyTeam()
-      console.log("we are in playerSearchRequest and this is squadResponse status: ",squadResponse)
       let temp2 = []
       if(squadResponse.length !== 0)
       {
@@ -21,9 +19,7 @@ export const playerSearchRequest = () => {
 }
 export const clubGetRequest = () => {
   return async function(dispatch){
-    console.log("now i am requesting")
       let response = await search_api.getClubs()
-      console.log("this is club response",response)
       dispatch(clubGetSuccess(response))
   }
 }

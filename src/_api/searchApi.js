@@ -14,11 +14,9 @@ class search_api {
             }
         }
         let response = await axios.get(api_urls.PLAYERS,config)
-        console.log("getPlayers response",response)
         return response  
     }
     static async getClubs(){
-        console.log("hi we are in getCLubs")
 
         const token = localStorage.getItem("access_token")
         const config = 
@@ -31,7 +29,6 @@ class search_api {
             }
         }
         let response = await axios.get(api_urls.CLUBS,config)
-        console.log("response",response)
         return response  
     }
     static async getMyTeam() {
@@ -50,7 +47,6 @@ class search_api {
                 api_urls.MANAGE_TEAM,
                 config
             );
-            console.log("we are in getMyTeam and this is its response")
         } catch (error) {
             console.log("this is error",error)
             response=[]
