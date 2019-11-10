@@ -14,7 +14,7 @@ class search_api {
             }
         }
         let response = await axios.get(api_urls.PLAYERS,config)
-        console.log("response player",response)
+        console.log("getPlayers response",response)
         return response  
     }
     static async getClubs(){
@@ -44,11 +44,18 @@ class search_api {
                     "Authorization": `Bearer ${token}`
                 }
         }
+        let response=[];
+        try {
+            response = await axios.get(
+                api_urls.MANAGE_TEAM,
+                config
+            );
+            console.log("we are in getMyTeam and this is its response")
+        } catch (error) {
+            console.log("this is error",error)
+            response=[]
+        }
 
-        const response = await axios.get(
-            api_urls.MANAGE_TEAM,
-            config
-        );
         return response;
     }
 }
