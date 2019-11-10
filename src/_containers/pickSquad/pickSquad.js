@@ -22,6 +22,8 @@ import {bindActionCreators} from "redux";
 import DetailsModal from "./detailsModal";
 import CountUp from "react-countup/build";
 import Swal from "sweetalert2";
+import  SearchParams from "../../components/Search/SearchParams"
+
 
 class PickSquadContainer extends Component {
 
@@ -109,9 +111,9 @@ class PickSquadContainer extends Component {
 
         let filteredPosition;
         position !== "bench" ?
-            filteredPosition = this.props.format.wholeItems.filter(element => element.position === position)
+            filteredPosition = this.props.search.sortedPlayers.filter(element => element.position === position)
             :
-            filteredPosition = this.props.format.wholeItems;
+            filteredPosition = this.props.search.sortedPlayers;
         this.props.setFilteredPosition(filteredPosition);
         this.props.setPickedPosition(position);
         this.props.setPickedKey(id);
@@ -419,8 +421,9 @@ class PickSquadContainer extends Component {
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-lg-4">
-
-
+                            <div className="bg-white">
+                                <SearchParams/>
+                            </div>
                             <FormatModal/>
                             <PlayersTable/>
                         </div>
@@ -437,7 +440,20 @@ class PickSquadContainer extends Component {
                                 </div>
                                 <div className="col-2">
                                     <div className="row justify-content-end">
-                                        <Button variant="primary" size="md" onClick={(event) => this.handleSubmit(event, this.props.format)}>Confirm</Button>
+                                        <Button variant="primary" size="md" onClick={async (event) => {
+                                            const res = await this.handleSubmit(event, this.props.format)
+                                            if(res.data.detail === "your team was successfully registered"){
+                                            Swal.fire({
+                                                position: 'center',
+                                                type: 'success',
+                                                title: res.data.detail,
+                                                showConfirmButton: false,
+                                                timer: 3000
+                                            })
+                                        }
+                                        }
+                                            
+                                            }>Confirm</Button>
                                     </div>
                                 </div>
 
@@ -483,6 +499,7 @@ class PickSquadContainer extends Component {
 function mapStateToProps(state) {
     return {
         format: state.formatReducer,
+        search : state.searchReducer
     }
 }
 
