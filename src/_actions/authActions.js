@@ -4,10 +4,16 @@ import Login_page_api from "../_api/authApi"
 
 export const userSignInRequest = (credentials) => {
   return async function(dispatch){
-      let response = await Login_page_api.login(credentials)
-      localStorage.setItem("access_token", response.data.access_token)
-      localStorage.setItem("refresh_token", response.data.refresh_token)
-      dispatch(loginUserSuccess(response))
+      try{
+          let response = await Login_page_api.login(credentials)
+          localStorage.setItem("access_token", response.data.access_token)
+          localStorage.setItem("refresh_token", response.data.refresh_token)
+          dispatch(loginUserSuccess(response.data.message))
+      }catch (e) {
+          dispatch(loginUserFailure(e.response.data.message))
+
+      }
+
   }
 }
 
