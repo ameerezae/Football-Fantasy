@@ -10,8 +10,9 @@ export const userSignInRequest = (credentials) => {
           localStorage.setItem("refresh_token", response.data.refresh_token)
           dispatch(loginUserSuccess(response.data.message))
       }catch (e) {
-          dispatch(loginUserFailure(e.response.data.message))
-
+          if(e.response){
+              dispatch(loginUserFailure(e.response.data.message))
+          }
       }
 
   }
