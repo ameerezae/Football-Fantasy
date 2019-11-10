@@ -25,11 +25,11 @@ class Substitution extends Component {
                         <div className="col-3">
                             <Button variant="primary" onClick={async () => {
                                 const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain-id"]);
-                                if(res.data.detail === "successfully upgraded"){
+                                if(res.status === 200){
                                     Swal.fire({
                                         position: 'center',
                                         type: 'success',
-                                        title: "successfully upgraded",
+                                        title: res.data.detail,
                                         showConfirmButton: false,
                                         timer: 3000
                                     })
@@ -37,6 +37,7 @@ class Substitution extends Component {
                                     Swal.fire({
                                         position: 'center',
                                         type: 'error',
+                                        title : res.data.message,
                                         showConfirmButton: false,
                                         timer: 3000
                                     })
