@@ -447,7 +447,7 @@ class PickSquadContainer extends Component {
                                     <div className="row justify-content-end">
                                         <Button variant="primary" size="md" onClick={async (event) => {
                                             const res = await this.handleSubmit(event, this.props.format)
-                                            if (res.status === 200) {
+                                            if (res.status === 201) {
                                                 Swal.fire({
                                                     position: 'center',
                                                     type: 'success',
