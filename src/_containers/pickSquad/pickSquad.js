@@ -131,7 +131,7 @@ class PickSquadContainer extends Component {
     };
 
     render() {
-        if (this.state.pickName) {
+        if (this.state.pickName && this.props.search.arePlayedFetched) {
             Swal.fire({
                 title: 'Enter your squad name :',
                 input: 'text',
