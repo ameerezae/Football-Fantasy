@@ -15,7 +15,9 @@ import {
     setTransferError,
 
 } from "../../../_actions/manageTeamActions";
+import '@lottiefiles/lottie-player';
 import SearchParams from "../../../components/Search/SearchParams";
+import Modal from "react-awesome-modal";
 
 class AllPlayers extends Component {
 
@@ -85,39 +87,47 @@ class AllPlayers extends Component {
                 <div className="bg-white">
                     <SearchParams/>
                 </div>
-                <div className={!this.props.myTeam.enableTable ? "disabled-all" : null}>
-                    <List twoLine className="list-style"
-                          handleSelect={(activatedItemIndex) => {
-                              this.props.selectSecondTransfer(activatedItemIndex);
-                              this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.search.sortedPlayers[activatedItemIndex])
-                              this.props.enableTransferTable(false)
-                          }} dense>
+                {this.props.search.arePlayedFetched ?
+                    <div className={!this.props.myTeam.enableTable ? "disabled-all" : null}>
+                        <List twoLine className="list-style"
+                              handleSelect={(activatedItemIndex) => {
+                                  this.props.selectSecondTransfer(activatedItemIndex);
+                                  this.checkTransfer(this.props.myTeam.myTeamForTransfer[this.props.myTeam.firstSelectedTransfer], this.props.search.sortedPlayers[activatedItemIndex])
+                                  this.props.enableTransferTable(false)
+                              }} dense>
 
-                        {this.props.search.sortedPlayers ? this.props.search.sortedPlayers.map((element, key) => {
-                            return (
-                                <ListItem key={key} className="text-white"
-                                          disabled={!this.props.myTeam.enableTable}>
-                                    <ListItemGraphic className="list-image"
-                                                     graphic={<img src={element.image} alt="sd"/>}/>
-                                    <ListItemText
-                                        className="text-white"
-                                        primaryText={element.name.slice(0, 10)}
-                                        secondaryText={element.club}/>
-                                    <ListItemText
-                                        className="whiteText ml-3"
-                                        primaryText={element.price}
-                                        secondaryText={element.position}/>
-                                    <ListItemMeta style={{color: "white", fontSize: "1.5rem", verticalAlign: "center"}}
-                                                  meta={<IoIosInformationCircle/>}/>
-                                </ListItem>
-                            )
-                        }) : null}
+                            {this.props.search.sortedPlayers ? this.props.search.sortedPlayers.map((element, key) => {
+                                return (
+                                    <ListItem key={key} className="text-white"
+                                              disabled={!this.props.myTeam.enableTable}>
+                                        <ListItemGraphic className="list-image"
+                                                         graphic={<img src={element.image} alt="sd"/>}/>
+                                        <ListItemText
+                                            className="text-white"
+                                            primaryText={element.name.slice(0, 10)}
+                                            secondaryText={element.club}/>
+                                        <ListItemText
+                                            className="whiteText ml-3"
+                                            primaryText={element.price}
+                                            secondaryText={element.position}/>
+                                        <ListItemMeta
+                                            style={{color: "white", fontSize: "1.5rem", verticalAlign: "center"}}
+                                            meta={<IoIosInformationCircle/>}/>
+                                    </ListItem>
+                                )
+                            }) : null}
 
 
-                    </List>
-                </div>
+                        </List>
+                    </div>
+                    : <Modal visible effect="fadeInDown">
+                        <lottie-player
+                            src="https://assets7.lottiefiles.com/datafiles/FiZIpDPgKtqy2Ij/data.json"
+                            background="transparent" speed="1" loop autoplay>
+                        </lottie-player>
+                    </Modal>
+                }
             </div>
-
         );
     }
 }
