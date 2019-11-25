@@ -23,12 +23,13 @@ export default function SearchParams() {
   const dispatch = useDispatch();
   const SearchState = useSelector(state => state.searchReducer);
   React.useEffect(() => {
+    
     if(SearchState.arePlayedFetched === false)
     {
       console.log("i am fetching player")
       dispatch(playerSearchRequest());
     }
-  });
+  },[]);
   return (
     <div className={classes.root}>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
