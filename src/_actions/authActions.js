@@ -9,9 +9,11 @@ export const userSignInRequest = (credentials) => {
           localStorage.setItem("access_token", response.data.access_token)
           localStorage.setItem("refresh_token", response.data.refresh_token)
           dispatch(loginUserSuccess(response.data.message))
+          if(response) return response;
       }catch (e) {
           if(e.response){
               dispatch(loginUserFailure(e.response.data.message))
+              return e.response;
           }
       }
 
