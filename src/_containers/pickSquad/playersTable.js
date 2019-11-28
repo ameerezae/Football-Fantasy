@@ -151,50 +151,53 @@ class PlayersTable extends Component {
         return (
             <div>
                 {this.props.search.arePlayedFetched ?
-                    <List style={{overflow: "auto", height: "500px"}} twoLine
-                          handleSelect={(activatedItemIndex) => this.choosePlayer(activatedItemIndex)}>
-                        {this.props.format.filteredItems ?
-                            this.props.format.filteredItems.map((element, key) => {
-                                return (
-                                    <ListItem key={key} className="text-white">
-                                        <ListItemGraphic className="list-image"
-                                                         graphic={<img src={element.image} alt="sd"/>}/>
-                                        <ListItemText
-                                            className="text-white"
-                                            primaryText={element.name.slice(0, 10)}
-                                            secondaryText={element.club}/>
-                                        <ListItemText
-                                            className="whiteText ml-3"
-                                            primaryText={element.price}
-                                            secondaryText={element.position}/>
-                                        <ListItemMeta
-                                            style={{color: "white", fontSize: "1.5rem", verticalAlign: "center"}}
-                                            meta={<IoIosInformationCircle/>}/>
-                                    </ListItem>
-
-                                )
-                            }) :
-                            this.props.search.sortedPlayers ?
-                                this.props.search.sortedPlayers.map((element, key) => {
+                    <div className={!this.props.format.pickedPosition ? "disabled-all" : null}>
+                        <List style={{overflow: "auto", height: "500px"}} twoLine
+                              handleSelect={(activatedItemIndex) => this.choosePlayer(activatedItemIndex)}>
+                            {this.props.format.filteredItems ?
+                                this.props.format.filteredItems.map((element, key) => {
                                     return (
-                                        <ListItem key={key}>
+                                        <ListItem key={key} className="text-white" disabled={this.props.format.pickedPosition ? false : true}>
                                             <ListItemGraphic className="list-image"
                                                              graphic={<img src={element.image} alt="sd"/>}/>
                                             <ListItemText
+                                                className="text-white"
                                                 primaryText={element.name.slice(0, 10)}
                                                 secondaryText={element.club}/>
                                             <ListItemText
-                                                primaryText={element.price + " $"}
+                                                className="whiteText ml-3"
+                                                primaryText={element.price}
                                                 secondaryText={element.position}/>
                                             <ListItemMeta
                                                 style={{color: "white", fontSize: "1.5rem", verticalAlign: "center"}}
                                                 meta={<IoIosInformationCircle/>}/>
                                         </ListItem>
+
                                     )
+                                }) :
+                                this.props.search.sortedPlayers ?
+                                    this.props.search.sortedPlayers.map((element, key) => {
+                                        return (
+                                            <ListItem key={key} disabled={this.props.format.pickedPosition ? false : true}>
+                                                <ListItemGraphic className="list-image"
+                                                                 graphic={<img src={element.image} alt="sd"/>}/>
+                                                <ListItemText
+                                                    primaryText={element.name.slice(0, 10)}
+                                                    secondaryText={element.club}/>
+                                                <ListItemText
+                                                    primaryText={element.price + " $"}
+                                                    secondaryText={element.position}/>
+                                                <ListItemMeta
+                                                    style={{color: "white", fontSize: "1.5rem", verticalAlign: "center"}}
+                                                    meta={<IoIosInformationCircle/>}/>
+                                            </ListItem>
+                                        )
 
 
-                                }) : null}
-                    </List>
+                                    }) : null}
+                        </List>
+                    </div>
+
                     : <Modal visible effect="fadeInDown">
                         <lottie-player
                             src="https://assets7.lottiefiles.com/datafiles/FiZIpDPgKtqy2Ij/data.json"
