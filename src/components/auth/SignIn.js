@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from "react-redux"
 import {userSignInRequest} from "../../_actions/authActions"
 import {bindActionCreators} from "redux"
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
 import {TextInput} from "react-responsive-ui";
 import "./SignIn.scss";
 import "react-responsive-ui/style.css";
@@ -13,27 +13,34 @@ import {Alert} from "react-bootstrap";
 
 class SignIn extends Component {
     state = {
-        username: "",
-        password: "",
+        data: {
+            username: "",
+            password: "",
+        },
+        preLoader: false,
+
+
     };
 
     handleChange = (name, value) => {
         this.setState(prevState => {
             const newState = {...prevState};
-            newState[name] = value;
+            newState.data[name] = value;
             return newState;
         });
     };
 
 
-    handleSubmit = (e) => {
+    async handleSubmit(e){
         e.preventDefault();
-        this.props.userSignInRequest(this.state)
+        this.setState({preLoader: true});
+        const response = await this.props.userSignInRequest(this.state.data);
+        this.setState({preLoader: false});
     }
 
 
     render() {
-        if(this.props.userObj.success_message){
+        if (this.props.userObj.success_message) {
             this.props.history.push(`/manageteam`)
         }
         const loginForm = (
@@ -59,18 +66,19 @@ class SignIn extends Component {
                     <div className="col-sm-6 col-md-6">
                         <div className="row align-items-center justify-content-center">
                             <img src={TriplePlayer} alt="img" className="img-fluid mb-4" width="250px" height="200px"/>
-                            {this.props.userObj.failure_message? <Alert variant={"danger"}>{this.props.userObj.failure_message}</Alert> :null}
+                            {this.props.userObj.failure_message ?
+                                <Alert variant={"danger"}>{this.props.userObj.failure_message}</Alert> : null}
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-6">
                         <div className="row justify-content-center align-items-center">
-                            <form onSubmit={event => this.handleSubmit(event)}>
+                            <form  onSubmit={event => this.handleSubmit(event)}>
                                 <div className="row justify-content-center mb-5">
                                     <div className="col-sm-12">
                                         <TextInput
                                             type="text"
                                             label="Username"
-                                            value={this.state.username}
+                                            value={this.state.data.username}
                                             onChange={(value) => {
                                                 this.handleChange("username", value)
                                             }}
@@ -83,18 +91,20 @@ class SignIn extends Component {
                                     <TextInput
                                         type="password"
                                         label="Password"
-                                        value={this.state.password}
+                                        value={this.state.data.password}
                                         onChange={(value) => {
                                             this.handleChange("password", value)
                                         }}
                                     />
                                 </div>
-                                <div className="row justify-content-center">
-                                    <Button id="button" className=" button-submit-login" type="submit"
-                                            variant="success"
-                                            size="md">
-                                        LOGIN
-                                    </Button>
+                                <div className="row justify-content-center sign-in-button">
+                                    {this.state.preLoader ? <Spinner animation="grow" variant="success"/> :
+                                        <Button id="button" className=" button-submit-login" type="submit"
+                                                variant="success"
+                                                size="md">
+                                            LOGIN
+                                        </Button>
+                                    }
                                 </div>
 
 
