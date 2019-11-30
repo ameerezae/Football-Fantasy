@@ -31,7 +31,7 @@ class SignIn extends Component {
     };
 
 
-    async handleSubmit(e){
+    async handleSubmit(e) {
         e.preventDefault();
         this.setState({preLoader: true});
         const response = await this.props.userSignInRequest(this.state.data);
@@ -72,9 +72,10 @@ class SignIn extends Component {
                     </div>
                     <div className="col-sm-6 col-md-6">
                         <div className="row justify-content-center align-items-center">
-                            <form  onSubmit={event => this.handleSubmit(event)}>
-                                <div className="row justify-content-center mb-5">
-                                    <div className="col-sm-12">
+                            <form onSubmit={event => this.handleSubmit(event)}>
+                                <div className="container">
+                                    <div className="row justify-content-center mb-5">
+
                                         <TextInput
                                             type="text"
                                             label="Username"
@@ -83,29 +84,31 @@ class SignIn extends Component {
                                                 this.handleChange("username", value)
                                             }}
                                         />
+
+
                                     </div>
 
+                                    <div className="row justify-content-center mb-5">
+                                        <TextInput
+                                            type="password"
+                                            label="Password"
+                                            value={this.state.data.password}
+                                            onChange={(value) => {
+                                                this.handleChange("password", value)
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="row justify-content-center sign-in-button">
+                                        {this.state.preLoader ? <Spinner animation="grow" variant="success"/> :
+                                            <Button id="button" className=" button-submit-login" type="submit"
+                                                    variant="success"
+                                                    size="md">
+                                                LOGIN
+                                            </Button>
+                                        }
+                                    </div>
                                 </div>
 
-                                <div className="row justify-content-center mb-5">
-                                    <TextInput
-                                        type="password"
-                                        label="Password"
-                                        value={this.state.data.password}
-                                        onChange={(value) => {
-                                            this.handleChange("password", value)
-                                        }}
-                                    />
-                                </div>
-                                <div className="row justify-content-center sign-in-button">
-                                    {this.state.preLoader ? <Spinner animation="grow" variant="success"/> :
-                                        <Button id="button" className=" button-submit-login" type="submit"
-                                                variant="success"
-                                                size="md">
-                                            LOGIN
-                                        </Button>
-                                    }
-                                </div>
 
 
                             </form>
