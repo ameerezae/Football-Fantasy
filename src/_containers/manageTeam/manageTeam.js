@@ -8,15 +8,15 @@ import ThreePlayersImage from "../../_assets/player-comp-3-1x.7eb15f60.png"
 import "./manageTeam.scss";
 import {getMyTeam} from "../../_actions/manageTeamActions";
 import {bindActionCreators} from "redux";
-
+import Dashboard from "../dashboard/dashboard/dashboard";
 class ManageTeam extends Component {
-    async componentWillMount() {
-        const response = await this.props.getMyTeam()
-        if(!response){
-            this.props.history.push(`picksquad`)
-        };
-
-    }
+    // async componentWillMount() {
+    //     const response = await this.props.getMyTeam()
+    //     if(!response){
+    //         this.props.history.push(`picksquad`)
+    //     };
+    //
+    // }
 
     render() {
         return (
@@ -37,9 +37,13 @@ class ManageTeam extends Component {
                     <div className="main-background"></div>
                     <Tabs>
                         <TabList>
+                            <Tab>Dashboard</Tab>
                             <Tab>Substitution</Tab>
                             <Tab>Transfer</Tab>
                         </TabList>
+                        <TabPanel>
+                            <Dashboard/>
+                        </TabPanel>
                         <TabPanel>
                             <Substitution/>
                         </TabPanel>
