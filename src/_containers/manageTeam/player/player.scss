@@ -1,0 +1,46 @@
+.player-name-style {
+  text-align: center;
+  font-size: .8rem;
+  color: black;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-weight: 200;
+  background-color: rgb(90, 247, 220);
+}
+
+
+.player-image {
+  width : 85px;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+
+  .player-image{
+    width: 80px;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .player-image{
+    width: 60px;
+  }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+
+  .player-image{
+    width: 30px;
+  }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+  .player-image{
+    width: 10px;
+  }
+
+}

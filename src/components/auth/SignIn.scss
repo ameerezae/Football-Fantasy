@@ -1,0 +1,112 @@
+a{
+  text-decoration: none;
+}
+@media screen and (max-width: 544px) {
+  div.guide-to-signup{
+    font-size: .7rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  div.login-center{
+    width: 100% !important;
+  }
+}
+
+.background {
+  background-size:cover;
+  background-position: top;
+  background: rgb(1,13,37);;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top:0;
+  left:0;
+
+}
+.login-center {
+  width: 50% !important;
+  //border: 3px solid gray;
+  margin-top: 10%;
+  margin-bottom : 10%;
+  box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 3px;
+}
+.login-title{
+  font-weight: bold;
+  font-size: 2rem;
+}
+.guide-to-signup {
+  font-size: 1rem;
+  color: gray;
+  margin-top: 2%;
+  text-align: center;
+
+}
+.link-to-signUp{
+  font-size: 1rem;
+  color: blue;
+
+  margin-top: 2%;
+}
+.email-input-field,
+.password-input-field {
+
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 2%;
+
+}
+
+.placeHolder-input{
+  text-align: right;
+
+}
+
+
+
+.input-style
+{
+  direction: rtl;
+  padding: 3% 1% !important;
+  border-radius: 10px !important;
+  &:active,
+  &:hover,
+  &:focus{
+    outline: none !important;
+
+  }
+}
+
+.button-submit-login{
+  width: 90%;
+  font-size: 1rem;
+  &:hover,
+  &:active{
+    background-color: #fff!important;
+    color: #218838!important;
+  }
+}
+
+#email,#password {
+  font-size : 1.5rem;
+}
+
+#button{
+  font-size: 1rem;
+  &:focus {
+    outline-color: green;
+  }
+}
+
+#ok {
+  text-align: right;
+}
+
+.sign-in-button{
+  height : 2rem;
+}
+.rrui__text-input{
+  width : 100% !important;
+}
