@@ -1,9 +1,10 @@
 import * as types from "./types";
 import * as dashboardConstants from "../constants/dashboard/dashboardConstants";
+import * as universal_constants from "../constants/universalConstants";
 import DashboardApis from "../_api/dashboardApi";
 
 export const getAllCompetitions = () => {
-    return async function(dispatch){
+    return async function (dispatch) {
         const response = await DashboardApis.getAllCompetitions();
         if (response.data[dashboardConstants.COMPETITIONS]) dispatch(dispatchGetAllCompetitions(response.data[dashboardConstants.COMPETITIONS]))
     }
@@ -11,7 +12,23 @@ export const getAllCompetitions = () => {
 
 export const dispatchGetAllCompetitions = (competitions) => (
     {
-        type : types.dashboard_action_types.GET_COMPETITIONS_SUCCESS,
-        payload : competitions
+        type: types.dashboard_action_types.GET_COMPETITIONS_SUCCESS,
+        payload: competitions
     }
-)
+);
+
+
+export const getUserInformation =  () => {
+    return async function (dispatch){
+        const response = await DashboardApis.getUserInformation();
+        if(response.status === universal_constants.REQUESTS_STATUS.OK){
+           dispatch(dispatchGetUserInformation(response.data))
+        }
+        else dispatch(dispatchFailGetUserInformation(true));
+    }
+};
+
+export const dispatchGetUserInformation = (info) => ({ type : types.dashboard_action_types.GET_INFORMATION_SUCCESS , payload : info});
+export const dispatchFailGetUserInformation = (bool) => ({ type : types.dashboard_action_types.GET_INFORMATION_SUCCESS , payload : bool});
+
+
