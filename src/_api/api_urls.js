@@ -8,3 +8,4 @@ export const POST_TRANSFERABLE = MAIN + "/team/my-team/transfer";
 export const CLUBS = MAIN + "/club/2021/clubs"
 export const PLAYERS = MAIN + "/player/2021/pick-squad";
 export const COMPETITIONS = MAIN + "/competition/list";
+export const INFORMATION = MAIN + "/user/profile";
