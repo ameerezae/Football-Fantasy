@@ -29,3 +29,17 @@ export const INFORMATION_CONSTANTS = {
     SQUAD_POINT : "point",
 
 };
+
+export const INFORMATION_SUBJECT = {
+    SQUAD_NAME: "SQUAD NAME",
+    POINT : "POINT",
+    COMPETITION_NAME : "COMPETITION NAME",
+    COMPETITION_END_DATE: "COMPETITION END DATE" ,
+    LEFT_BUDGET : "LEFT BUDGET",
+}
+
+export const CAPTAIN_SUBJECT = {
+    NAME : "name",
+    POINT : "point",
+    POSITION : "position"
+}
