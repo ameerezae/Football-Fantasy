@@ -6,6 +6,7 @@ import {TextInput} from "react-responsive-ui";
 import DashboardApis from "../../../_api/dashboardApi";
 import * as dashboard_constants from "../../../constants/dashboard/dashboardConstants";
 import * as universal_contants from "../../../constants/universalConstants";
+import {Button, Spinner, Alert} from "react-bootstrap";
 
 class Edit extends Component {
     state = {
@@ -15,8 +16,9 @@ class Edit extends Component {
             email: null,
         },
         toggle: false,
-        success: null,
-        failed: null,
+        success : null,
+        failed : null,
+        preloader : false,
     };
 
     toggleModal = () => {
@@ -33,6 +35,7 @@ class Edit extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
+        this.setState({preloader : true});
         const response = await DashboardApis.EditProfile(this.state.data);
         if (response.status === universal_contants.REQUESTS_STATUS.OK) {
 
@@ -50,6 +53,7 @@ class Edit extends Component {
         }else {
             this.setState({failed : response.data[dashboard_constants.EDIT_CONSTANTS.MESSAGE] });
         }
+        this.setState({preloader : false});
 
 
     }
@@ -59,7 +63,7 @@ class Edit extends Component {
             <div>
                 <div className="row justify-content-center cursor-to-pointer" onClick={() => {
                     this.toggleModal()
-                }}>REGISTER
+                }}><Button variant="primary">EDIT</Button>
                 </div>
                 <Modal style={{overflowY: "auto"}} visible={this.state.toggle} effect="fadeInUp"
                        onClickAway={() => this.toggleModal()} width="800">
@@ -102,6 +106,11 @@ class Edit extends Component {
                                             this.handleChange("password1", value)
                                         }}
                                     />
+                                    {this.state.preloader ?   <Spinner animation="grow" variant="success"/> :
+                                        this.state.success ? <Alert variant = "success">{this.state.success}</Alert> :
+                                            this.state.failed ? <Alert variant = "danger">{this.state.failed}</Alert>:
+                                                <Button variant="success">Confirm</Button>
+                                    }
                                 </form>
                             </div>
                         </div>
