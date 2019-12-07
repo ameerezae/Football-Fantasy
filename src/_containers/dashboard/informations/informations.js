@@ -4,7 +4,7 @@ import {bindActionCreators} from "redux";
 import {getUserInformation} from "../../../_actions/dashboardActions";
 import * as dashboardConstants from "../../../constants/dashboard/dashboardConstants";
 import "./scss/information.scss";
-
+import Edit from "./Edit";
 class Information extends Component {
     componentWillMount() {
         this.props.getUserInformation();
@@ -41,6 +41,9 @@ class Information extends Component {
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div className="col-md-2">
+                                <Edit/>
                             </div>
                         </div>
                         <div className="row">
