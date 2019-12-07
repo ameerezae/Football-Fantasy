@@ -1,10 +1,10 @@
 import search_api from "../_api/searchApi"
 import * as acc from "./types"
 
-export const playerSearchRequest = () => {
+export const playerSearchRequest = (competition) => {
   return async function(dispatch){
-      let response = await search_api.getPlayers()
-      let squadResponse = await search_api.getMyTeam()
+      let response = await search_api.getPlayers(competition)
+      let squadResponse = await search_api.getMyTeam(competition)
       let temp2 = []
       if(squadResponse.length !== 0)
       {
@@ -17,9 +17,9 @@ export const playerSearchRequest = () => {
       dispatch(playerSearchSuccess(response))
   }
 }
-export const clubGetRequest = () => {
+export const clubGetRequest = (competition) => {
   return async function(dispatch){
-      let response = await search_api.getClubs()
+      let response = await search_api.getClubs(competition)
       dispatch(clubGetSuccess(response))
   }
 }
