@@ -27,6 +27,19 @@ class DashboardApis{
         }
     }
 
+    static async EditProfile (data){
+        try{
+            const response = await axios.put(
+                api_urls.EDIT_PROFILE,
+                JSON.stringify(data),
+                universal_constants.CONFIG_WITH_AUTH
+            );
+            if(response) return response.data;
+        }catch (e) {
+            if(e.response) return e.response.data;
+        }
+    }
+
 }
 
 export default DashboardApis;
