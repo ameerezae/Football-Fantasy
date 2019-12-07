@@ -42,9 +42,12 @@ export const CAPTAIN_SUBJECT = {
     NAME : "name",
     POINT : "point",
     POSITION : "position"
-}
+};
 
 
-export const EDIT_CONSTANTS : {
-    MESSAGE :
-}
+export const EDIT_CONSTANTS = {
+    MESSAGE : "message",
+    ACCESS_TOKEN : "access_token",
+    REFRESH_TOKEN : "refresh_token",
+
+};
