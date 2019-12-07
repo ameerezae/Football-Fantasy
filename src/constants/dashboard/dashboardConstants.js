@@ -43,3 +43,8 @@ export const CAPTAIN_SUBJECT = {
     POINT : "point",
     POSITION : "position"
 }
+
+
+export const EDIT_CONSTANTS : {
+    MESSAGE :
+}
