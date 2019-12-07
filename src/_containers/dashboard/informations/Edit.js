@@ -4,6 +4,7 @@ import {MdClose} from "react-icons/all";
 import "./scss/information.scss";
 import {TextInput} from "react-responsive-ui";
 import DashboardApis from "../../../_api/dashboardApi";
+import * as dashboard_constants from "../../../constants/dashboard/dashboardConstants";
 import * as universal_contants from "../../../constants/universalConstants";
 
 class Edit extends Component {
@@ -14,8 +15,8 @@ class Edit extends Component {
             email: null,
         },
         toggle: false,
-        success : null,
-        failed : null,
+        success: null,
+        failed: null,
     };
 
     toggleModal = () => {
@@ -30,7 +31,28 @@ class Edit extends Component {
         });
     };
 
-    
+    async handleSubmit(e) {
+        e.preventDefault();
+        const response = await DashboardApis.EditProfile(this.state.data);
+        if (response.status === universal_contants.REQUESTS_STATUS.OK) {
+
+            localStorage.setItem(
+                universal_contants.ACCESS_TOKEN,
+                response.data[dashboard_constants.EDIT_CONSTANTS.ACCESS_TOKEN]
+            );
+
+            localStorage.setItem(
+                universal_contants.REFRESH_TOKEN,
+                response.data[dashboard_constants.EDIT_CONSTANTS.REFRESH_TOKEN]
+            );
+            this.setState({success: response.data[dashboard_constants.EDIT_CONSTANTS.MESSAGE]});
+
+        }else {
+            this.setState({failed : response.data[dashboard_constants.EDIT_CONSTANTS.MESSAGE] });
+        }
+
+
+    }
 
     render() {
         return (
