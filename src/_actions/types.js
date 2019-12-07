@@ -53,5 +53,6 @@ export const search_action_types = {
 
   export const dashboard_action_types = {
     GET_COMPETITIONS_SUCCESS : "GET_COMPETITIONS_SUCCESS",
+    GET_CURRENT_COMPETITION_SUCCESS : "GET_CURRENT_COMPETITION_SUCCESS",
   }
 
