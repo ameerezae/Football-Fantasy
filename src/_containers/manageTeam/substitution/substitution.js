@@ -9,8 +9,12 @@ import {Button} from "react-bootstrap";
 import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
 class Substitution extends Component {
-    componentWillMount() {
-        this.props.getMyTeam(this.props.dashboard.selectedCompetition);
+    async componentWillMount() {
+        const bool = await this.props.getMyTeam(this.props.dashboard.selectedCompetition);
+        if(!bool){
+            console.log("push to history here")
+            this.props.history.push(`/picksquad`);
+        }
     }
 
     render() {
