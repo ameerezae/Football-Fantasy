@@ -25,9 +25,11 @@ class Competitions extends Component {
                         return (
 
                             <Carousel.Item>
-                                <img className="d-block w-100"
-                                     src={"https://assets.sport.bt.com/v1/btsapp/packshots/2019-11-04/1001258311-htm.jpg"}
-                                     alt="competition"/>
+                                <img className="d-block"
+                                     src={element.image}
+                                     alt="competition"
+                                    style={{height:"20%"}}
+                                />
                                 <Carousel.Caption>
                                     <h3>{element.name}</h3>
                                     <p>{element.area.name}</p>
