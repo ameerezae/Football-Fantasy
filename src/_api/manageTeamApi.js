@@ -1,8 +1,10 @@
 import * as api_urls from "./api_urls";
 import axios from "axios";
+import url_handler from "./url_handler"
+
 
 class ManageTeamApi {
-    static async getMyTeam() {
+    static async getMyTeam(competition) {
         const token = localStorage.getItem("access_token");
         const config = {
             mode: "cors",
@@ -12,15 +14,15 @@ class ManageTeamApi {
                     "Authorization": `Bearer ${token}`
                 }
         }
-
+        let url = url_handler.competition_handler(api_urls.MANAGE_TEAM_START,api_urls.MANAGE_TEAM_END,competition)
         const response = await axios.get(
-            api_urls.MANAGE_TEAM,
+            url,
             config
         );
         return response;
     }
 
-    static async getTransferablePlayers() {
+    static async getTransferablePlayers(competition) {
         const token = localStorage.getItem("access_token");
         const config = {
             mode: "cors",
@@ -30,14 +32,15 @@ class ManageTeamApi {
                     "Authorization": `Bearer ${token}`
                 }
         }
+        let url = url_handler.competition_handler(api_urls.GET_TRANSFERABLE_START,api_urls.GET_TRANSFERABLE_END,competition)
         const response = await axios.get(
-            api_urls.GET_TRANSFERABLE,
+            url,
             config
         );
         return response;
     }
 
-    static async sendSubsTeam (team,captain){
+    static async sendSubsTeam (team,captain,competition){
         try{
             const token = localStorage.getItem("access_token");
             const config =
@@ -56,8 +59,9 @@ class ManageTeamApi {
             const body = JSON.stringify(
                 thisBody
             );
+            let url = url_handler.competition_handler(api_urls.MANAGE_TEAM_START,api_urls.MANAGE_TEAM_END,competition)
             const response = await axios.put(
-                api_urls.MANAGE_TEAM,
+                url,
                 body,
                 config
             );
@@ -72,7 +76,7 @@ class ManageTeamApi {
 
     }
 
-    static async sendTransferedPlayer(playerIn, playerOut) {
+    static async sendTransferedPlayer(playerIn, playerOut,competition) {
         try {
             const token = localStorage.getItem("access_token");
             const config =
@@ -96,8 +100,9 @@ class ManageTeamApi {
                     }
                 }
             );
+            let url = url_handler.competition_handler(api_urls.POST_TRANSFERABLE_START,api_urls.POST_TRANSFERABLE_END,competition)
             const response = await axios.post(
-                api_urls.POST_TRANSFERABLE,
+                url,
                 body,
                 config
             );

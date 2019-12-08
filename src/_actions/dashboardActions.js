@@ -10,6 +10,12 @@ export const getAllCompetitions = () => {
     }
 }
 
+export const setCurrentCompitition = (compete) => {
+    return function(dispatch){
+        dispatch(dispatchsetCurrentCompitition(compete))
+      }
+    }
+
 export const dispatchGetAllCompetitions = (competitions) => (
     {
         type: types.dashboard_action_types.GET_COMPETITIONS_SUCCESS,
@@ -32,3 +38,9 @@ export const dispatchGetUserInformation = (info) => ({ type : types.dashboard_ac
 export const dispatchFailGetUserInformation = (bool) => ({ type : types.dashboard_action_types.GET_INFORMATION_SUCCESS , payload : bool});
 
 
+const dispatchsetCurrentCompitition = (compete) => (
+    {
+        type : types.dashboard_action_types.GET_CURRENT_COMPETITION_SUCCESS,
+        payload : compete
+    }
+)

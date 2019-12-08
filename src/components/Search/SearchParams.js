@@ -22,12 +22,13 @@ export default function SearchParams() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const SearchState = useSelector(state => state.searchReducer);
+  const DashboardState = useSelector(state => state.dashboardReducer);
   React.useEffect(() => {
     
     if(SearchState.arePlayedFetched === false)
     {
       console.log("i am fetching player")
-      dispatch(playerSearchRequest());
+      dispatch(playerSearchRequest(DashboardState.selectedCompetition));
     }
   },[]);
   return (

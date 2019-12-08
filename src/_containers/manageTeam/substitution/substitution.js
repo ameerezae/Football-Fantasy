@@ -10,7 +10,7 @@ import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
 class Substitution extends Component {
     componentWillMount() {
-        this.props.getMyTeam();
+        this.props.getMyTeam(this.props.dashboard.selectedCompetition);
     }
 
     render() {
@@ -56,6 +56,7 @@ class Substitution extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
+        dashboard: state.dashboardReducer
     }
 }
 

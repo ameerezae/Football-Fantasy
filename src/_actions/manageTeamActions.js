@@ -2,10 +2,10 @@ import ManageTeamApi from "../_api/manageTeamApi";
 import * as types from "./types";
 import Daniel from "../_assets/Daniel Ceballos Fernández.jpg"
 import David from "../_assets/David Luiz Moreira Marinho.jpg";
-export const getMyTeam = () =>{
+export const getMyTeam = (competition) =>{
     return async function(dispatch){
         try {
-            const response = await ManageTeamApi.getMyTeam();
+            const response = await ManageTeamApi.getMyTeam(competition);
             dispatch(myTeam(response.data.squad))
             dispatch(captain(response.data["captain-id"]))
             return true;
@@ -76,10 +76,10 @@ const localAllow=(bool)=>{
     }
 };
 
-export const getMyTeamForTransfer=()=>{
+export const getMyTeamForTransfer=(competition)=>{
     return async function(dispatch){
 
-        const response = await ManageTeamApi.getMyTeam()
+        const response = await ManageTeamApi.getMyTeam(competition)
         dispatch(myTeamForTransfer(response.data.squad))
         dispatch(Budget(response.data.budget));
     }
@@ -100,9 +100,9 @@ const Budget = (budget) => {
 }
 
 
-export const getTransferablePlayers=()=>{
+export const getTransferablePlayers=(competition)=>{
     return async function(dispatch){
-        const response = await ManageTeamApi.getTransferablePlayers();
+        const response = await ManageTeamApi.getTransferablePlayers(competition);
         dispatch(getTransferable(response.data));
     }
 }
