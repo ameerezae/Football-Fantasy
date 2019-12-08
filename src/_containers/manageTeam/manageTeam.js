@@ -45,7 +45,7 @@ class ManageTeam extends Component {
                             <Dashboard/>
                         </TabPanel>
                         <TabPanel>
-                            <Substitution/>
+                            <Substitution history={this.props.history}/>
                         </TabPanel>
                         <TabPanel>
                             <Transfer/>
