@@ -13,7 +13,6 @@ class picksquad_page_api {
             "Authorization" : `Bearer ${token}`
             }
         }
-        // console.log("fucking bitch")
         let response = await axios.get(api_urls.PLAYERS,config)
         console.log("response",response)
         return response  

@@ -1,6 +1,6 @@
 .main-background{
   position : fixed;
-  background-image: url("../../_assets/pitch-view-side.jpg");
+  background: rgb(1,13,37);
   top : 0;
   left: 0;
   height : 100%;
@@ -13,8 +13,8 @@
   background-image: url("../../_assets/pitch.318c0a20.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  height: 500px;
-  width: 150% !important;
+  //height: 500px;
+  width: 100% !important;
 }
 
 .padding-to-field {

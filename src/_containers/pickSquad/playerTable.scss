@@ -20,3 +20,7 @@
   text-align: center;
   margin-left: 1rem;
 }
+
+.disabled-all .mdc-list {
+  background-color: gray !important;
+}

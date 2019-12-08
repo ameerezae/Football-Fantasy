@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
-// import { connect } from 'http2'
 import {connect} from "react-redux"
 import {userSignUpRequest} from "../../_actions/authActions"
 import {bindActionCreators} from "redux"
 import {TextInput} from "react-responsive-ui";
 import {MdClose} from "react-icons/all";
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
 import Modal from "react-awesome-modal";
-import Swal from "sweetalert2";
 import Alert from "react-bootstrap/Alert";
+import "./SignUp.scss"
 
 class SignUp extends Component {
     constructor(props) {
@@ -21,7 +20,9 @@ class SignUp extends Component {
                 password2: ''
             },
             toggle: false,
+            signUpSuccess: null,
             signUpError: null,
+            preLoader: false,
         }
         this.onChange = this.handleChange.bind(this);
         this.onSubmit = this.handleSubmit.bind(this);
@@ -30,8 +31,17 @@ class SignUp extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        const response = await this.props.userSignUpRequest(this.state.data);
-        this.setState({signUpError: response.data.message})
+        this.setState({preLoader: true});
+        try {
+            const response = await this.props.userSignUpRequest(this.state.data);
+            this.setState({signUpError: null})
+            this.setState({signUpSuccess: response.data.message})
+        } catch (e) {
+            this.setState({signUpSuccess: null})
+            this.setState({signUpError: e.response.data.message})
+        }
+        this.setState({preLoader: false})
+
     }
 
     toggleModal = () => {
@@ -50,7 +60,7 @@ class SignUp extends Component {
 
         return (
             <div>
-                <div className="row justify-content-center link-to-signUp" onClick={() => {
+                <div className="row justify-content-center cursor-to-pointer link-to-signUp" onClick={() => {
                     this.toggleModal()
                 }}>REGISTER
                 </div>
@@ -58,14 +68,17 @@ class SignUp extends Component {
                        onClickAway={() => this.toggleModal()} width="800">
                     <div className="container">
                         <div className="row mt-3 justify-content-start align-items-center">
-                            <MdClose style={{fontSize: "2rem", cursor: "pointer"}} className="mr-4"
+                            <MdClose style={{fontSize: "2rem", cursor: "pointer"}} className="mx-4"
                                      onClick={() => this.toggleModal()}/>
                         </div>
+                        <div className="row justify-content-center">
+                            <h1>REGISTER</h1>
+                        </div>
                     </div>
-                    <div className="container py-3 px-5" style={{direction: "ltr"}}>
+                    <div className="container pb-3 px-5" style={{direction: "ltr"}}>
                         <div className="row align-items-center justify-content-center">
                             <div className="col-sm-12 align-items-center justify-content-center">
-                                <form onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
+                                <form className = "remove-margin" onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
                                     <TextInput
                                         className="mb-4"
                                         type="text"
@@ -106,11 +119,18 @@ class SignUp extends Component {
                                     />
                                     {this.state.signUpError !== null ?
                                         <Alert className="text-center"
-                                            variant={this.state.signUpError === "Registration successful, confirmation email is sent to your email." ? "success" : "danger"}>{this.state.signUpError}</Alert>
+                                               variant={"danger"}>{this.state.signUpError}</Alert>
                                         : null
                                     }
-                                    <div className="row justify-content-center mt-4">
-                                        <Button variant="success" size="md" type="submit">register</Button>
+                                    {this.state.signUpSuccess !== null ?
+                                        <Alert className="text-center"
+                                               variant={"success"}>{this.state.signUpSuccess}</Alert>
+                                        : null
+                                    }
+                                    <div className="row justify-content-center mt-4 sign-up-button">
+                                        {this.state.preLoader ? <Spinner animation="grow" variant="success"/> :
+                                            <Button variant="success" size="md" type="submit">register</Button>
+                                        }
                                     </div>
 
                                 </form>
