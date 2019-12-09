@@ -57,3 +57,8 @@ export const dashboard_action_types = {
     SET_CURRENT_COMPETITION_SUCCESS: "SET_CURRENT_COMPETITION_SUCCESS",
 }
 
+export const weeklygames_action_types = {
+    GET_GAMES_SUCCESS: 'GET_GAMES_SUCCESS',
+    GET_GAMES_FAILURE: 'GET_GAMES_FAILURE',
+}
+
