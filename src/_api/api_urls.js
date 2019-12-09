@@ -19,6 +19,9 @@ export const POST_TRANSFERABLE_END ="/my-team/transfer";
 export const CLUBS_START = MAIN + "/club/"
 export const CLUBS_END ="/clubs"
 // export const PLAYERS = MAIN + "/player/2021/pick-squad";
+export const GAMES_START = ""
+export const GAMES_END = ""
+//not yet have end point in server
 export const PLAYERS_START = MAIN + "/player/";
 export const PLAYERS_END ="/pick-squad";
 export const COMPETITIONS = MAIN + "/competition/list";
