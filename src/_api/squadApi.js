@@ -1,8 +1,10 @@
 import * as api_urls from "./api_urls"
 import axios from "axios"
+import url_handler from "./url_handler"
+
 
 class picksquad_page_api {
-    static async getPlayers(){
+    static async getPlayers(competition){
         const token = localStorage.getItem("access_token")
         const config = 
         {
@@ -13,7 +15,8 @@ class picksquad_page_api {
             "Authorization" : `Bearer ${token}`
             }
         }
-        let response = await axios.get(api_urls.PLAYERS,config)
+        let url = url_handler.competition_handler(api_urls.PLAYERS_START,api_urls.PLAYERS_END,competition)
+        let response = await axios.get(url,config)
         console.log("response",response)
         return response  
     }

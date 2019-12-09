@@ -45,7 +45,7 @@ class PickSquadContainer extends Component {
 
     componentDidMount() {
         console.log("fuck off", this.props.format)
-        this.props.getWholeItems();
+        this.props.getWholeItems(this.props.dashboard.selectedCompetition);
         this.setState({
             pickName: true,
             loading: false
@@ -512,7 +512,8 @@ class PickSquadContainer extends Component {
 function mapStateToProps(state) {
     return {
         format: state.formatReducer,
-        search: state.searchReducer
+        search: state.searchReducer,
+        dashboard: state.dashboardReducer
     }
 }
 

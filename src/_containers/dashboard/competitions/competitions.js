@@ -2,27 +2,34 @@ import React, {Component} from 'react';
 import {Carousel} from "react-bootstrap";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {getAllCompetitions} from "../../../_actions/dashboardActions";
+import {getAllCompetitions,setCurrentCompitition} from "../../../_actions/dashboardActions";
 import Competition from "./competiton/competition";
 
 class Competitions extends Component {
     componentWillMount() {
         this.props.getAllCompetitions();
     }
-
+    handleSelect = (selectedIndex, e) => {
+        // console.log("hi we are in handleSelect: ",selectedIndex,e)
+        let compete = this.props.dashboard.competitions[selectedIndex]
+        console.log("hi we are in handleSelect: ",compete)
+        this.props.setCurrentCompitition(compete);
+      };
     render() {
 
 
         return (
-            <Carousel>
+            <Carousel interval={0} onSelect={this.handleSelect}>
                 {this.props.dashboard.areCompetitionsFetched ?
                     this.props.dashboard.competitions.map((element) => {
                         return (
 
                             <Carousel.Item>
-                                <img className="d-block w-100"
-                                     src={"https://assets.sport.bt.com/v1/btsapp/packshots/2019-11-04/1001258311-htm.jpg"}
-                                     alt="competition"/>
+                                <img className="d-block"
+                                     src={element.image}
+                                     alt="competition"
+                                    style={{height:"20%"}}
+                                />
                                 <Carousel.Caption>
                                     <h3>{element.name}</h3>
                                     <p>{element.area.name}</p>
@@ -46,6 +53,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getAllCompetitions,
+        setCurrentCompitition,
     }, dispatch)
 }
 

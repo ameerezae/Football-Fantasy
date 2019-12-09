@@ -57,7 +57,8 @@ export default function ClubsField() {
     const [ClubNames, setClubNames] = React.useState([]);
     const dispatch = useDispatch();
     const ClubsState = useSelector(state => state.searchReducer);
-   
+    const DashboardState = useSelector(state => state.dashboardReducer);
+
     const handleChangeMultiple = event => {
         const  options  = event.target.value;
           console.log("hi i am here",options);
@@ -69,7 +70,7 @@ export default function ClubsField() {
         if(ClubsState.isFetched === false)
         {
           console.log("i am fetching data")
-          dispatch(clubGetRequest());
+          dispatch(clubGetRequest(DashboardState.selectedCompetition));
         }
         // document.title = `You clicked ${count} times`;
       });

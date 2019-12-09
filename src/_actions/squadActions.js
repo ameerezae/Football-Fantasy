@@ -41,9 +41,9 @@ export function setGoalKeeper(gk) {
     }
 }
 
-export const getWholeItems = () => {
+export const getWholeItems = (competition) => {
     return async function(dispatch){
-    let response = await picksquad_page_api.getPlayers()
+    let response = await picksquad_page_api.getPlayers(competition)
     console.log("i am here",response.data)
     dispatch(getPlayers(response.data))
     }

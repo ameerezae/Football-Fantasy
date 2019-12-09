@@ -9,7 +9,7 @@ import {selectFirstTransfer, enableTransferTable} from "../../../_actions/manage
 
 class SquadPlayers extends Component {
     componentWillMount() {
-        this.props.getMyTeamForTransfer();
+        this.props.getMyTeamForTransfer(this.props.dashboard.selectedCompetition);
     }
 
     render() {
@@ -53,6 +53,7 @@ class SquadPlayers extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
+        dashboard: state.dashboardReducer
     }
 }
 
