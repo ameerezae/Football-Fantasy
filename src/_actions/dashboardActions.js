@@ -40,7 +40,7 @@ export const dispatchFailGetUserInformation = (bool) => ({ type : types.dashboar
 
 const dispatchsetCurrentCompitition = (compete) => (
     {
-        type : types.dashboard_action_types.GET_CURRENT_COMPETITION_SUCCESS,
+        type : types.dashboard_action_types.SET_CURRENT_COMPETITION_SUCCESS,
         payload : compete
     }
 )
