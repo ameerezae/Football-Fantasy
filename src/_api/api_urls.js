@@ -22,3 +22,4 @@ export const CLUBS_END ="/clubs"
 export const PLAYERS_START = MAIN + "/player/";
 export const PLAYERS_END ="/pick-squad";
 export const COMPETITIONS = MAIN + "/competition/list";
+export const PLAYER_STATISTICS = MAIN + "/statistics/player/";
