@@ -6,12 +6,17 @@ import DashboardApis from "../_api/dashboardApi";
 export const getAllCompetitions = () => {
     return async function (dispatch) {
         const response = await DashboardApis.getAllCompetitions();
-        if (response.data[dashboardConstants.COMPETITIONS]) dispatch(dispatchGetAllCompetitions(response.data[dashboardConstants.COMPETITIONS]))
+        if (response.data[dashboardConstants.COMPETITIONS])
+        {
+            localStorage.setItem("current_competition", response.data[dashboardConstants.COMPETITIONS][0][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+            dispatch(dispatchGetAllCompetitions(response.data[dashboardConstants.COMPETITIONS]))
+        }
     }
 }
 
 export const setCurrentCompitition = (compete) => {
     return function(dispatch){
+        localStorage.setItem("current_competition", compete[dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
         dispatch(dispatchsetCurrentCompitition(compete))
       }
     }
