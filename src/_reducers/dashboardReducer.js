@@ -3,7 +3,7 @@ import * as types from "../_actions/types";
 const initialState = {
     areCompetitionsFetched : false,
     competitions: [],
-    selectedCompetition: null,
+    selectedCompetition: 0,
     areInformationFetched : false,
     information : [],
     informationFailed : false,
