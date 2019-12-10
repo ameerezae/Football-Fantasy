@@ -7,6 +7,10 @@ class url_handler{
         return url  
     }
 
+    static player_handler(start_url, player_id){
+        return start_url + player_id;
+    }
+
 
 }
 
