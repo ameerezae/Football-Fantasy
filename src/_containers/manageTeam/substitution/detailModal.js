@@ -2,13 +2,23 @@ import React, {Component} from 'react';
 import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleModal, setFirstSelected , localAllowSubs ,changeCaptain} from "../../../_actions/manageTeamActions";
+import {toggleModal, setFirstSelected, localAllowSubs, changeCaptain} from "../../../_actions/manageTeamActions";
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
 import Swal from "sweetalert2";
+import StatisticApi from "../../../_api/statisticApi";
 
 class DetailModal extends Component {
+
+    async trigger() {
+        if (this.props.myTeam.squad && this.props.myTeam.firstSelected  !== undefined && this.props.myTeam.firstSelected !== null  ) {
+            const response = await StatisticApi.getPlayerStatistics(this.props.myTeam.squad[this.props.myTeam.firstSelected].id)
+            console.log(response, "RESPONSE STATIS");
+        }
+    }
+
     render() {
+        this.trigger();
         const clicked = this.props.myTeam.squad ? this.props.myTeam.squad[this.props.myTeam.firstSelected] : null;
         return (
             <Modal visible={this.props.myTeam.visibleModal}
@@ -35,7 +45,7 @@ class DetailModal extends Component {
                     <hr/>
                     <div className="row align-items-center justify-content-center py-4">
                         {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"
-                                                                     onClick = {()=>{
+                                                                     onClick={() => {
                                                                          this.props.changeCaptain(clicked.id);
                                                                          this.props.toggleModal(false);
                                                                          Swal.fire({
@@ -43,7 +53,7 @@ class DetailModal extends Component {
                                                                              type: 'success',
                                                                              showConfirmButton: false,
                                                                              timer: 3000,
-                                                                             width:200
+                                                                             width: 200
                                                                          })
                                                                      }}
                             />
