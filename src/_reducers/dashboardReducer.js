@@ -4,6 +4,9 @@ const initialState = {
     areCompetitionsFetched : false,
     competitions: [],
     selectedCompetition: null,
+    areInformationFetched : false,
+    information : [],
+    informationFailed : false,
 }
 
 
