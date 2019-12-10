@@ -101,15 +101,15 @@ class Edit extends Component {
                                         className="mb-4"
                                         type="password"
                                         label="password"
-                                        value={this.state.data.password1}
+                                        value={this.state.data.password}
                                         onChange={(value) => {
-                                            this.handleChange("password1", value)
+                                            this.handleChange("password", value)
                                         }}
                                     />
                                     {this.state.preloader ?   <Spinner animation="grow" variant="success"/> :
                                         this.state.success ? <Alert variant = "success">{this.state.success}</Alert> :
                                             this.state.failed ? <Alert variant = "danger">{this.state.failed}</Alert>:
-                                                <Button variant="success">Confirm</Button>
+                                                <Button type="submit" variant="success">Confirm</Button>
                                     }
                                 </form>
                             </div>
