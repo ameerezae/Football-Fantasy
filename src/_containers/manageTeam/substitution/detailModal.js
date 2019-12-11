@@ -28,40 +28,49 @@ class DetailModal extends Component {
                        this.props.setFirstSelected(null)
                        this.props.localAllowSubs(true);
                    }}>
-                <div className="container p-4 background-modal w-100">
+                <div className="container p-4">
                     <div className="row align-items-center">
-                        <div className="col-5">
-                            {clicked ? <img style={{backgroundColor: "white", borderRadius: "50%"}} src={clicked.image}
-                                            alt="img" width="100px"/>
+                        <div className="container statistics-background" >
+                            <div className="row">
+                                <div className="col-5">
+                                    {clicked ? <img style={{backgroundColor: "white", borderRadius: "50%"}} src={clicked.image}
+                                                    alt="img" width="100px"/>
 
-                                : null}
-                        </div>
-                        <div className="col-7">
-                            <h5 className="text-white">{clicked ? clicked.name : null}</h5>
-                            <div className="text-white">{clicked ? clicked.club : null}</div>
-                            <div className="text-white">{clicked ? clicked.price : null} $</div>
+                                        : null}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr/>
-                    <div className="row align-items-center justify-content-center py-4">
-                        {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"
-                                                                     onClick={() => {
-                                                                         this.props.changeCaptain(clicked.id);
-                                                                         this.props.toggleModal(false);
-                                                                         Swal.fire({
-                                                                             position: 'center',
-                                                                             type: 'success',
-                                                                             showConfirmButton: false,
-                                                                             timer: 3000,
-                                                                             width: 200
-                                                                         })
-                                                                     }}
-                            />
-                            : null}
+                {/*</div>*/}
+                {/*<div className="container p-4  w-100">*/}
+                {/*    <div className="row align-items-center">*/}
+                {/*        <div className="col-5">*/}
+                {/*            {clicked ? <img style={{backgroundColor: "white", borderRadius: "50%"}} src={clicked.image}*/}
+                {/*                            alt="img" width="100px"/>*/}
+
+                {/*                : null}*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    <hr/>*/}
+                {/*    <div className="row align-items-center justify-content-center py-4">*/}
+                {/*        {clicked && clicked.lineup ? <FaRegCopyright className="ml-2" className="captain-style"*/}
+                {/*                                                     onClick={() => {*/}
+                {/*                                                         this.props.changeCaptain(clicked.id);*/}
+                {/*                                                         this.props.toggleModal(false);*/}
+                {/*                                                         Swal.fire({*/}
+                {/*                                                             position: 'center',*/}
+                {/*                                                             type: 'success',*/}
+                {/*                                                             showConfirmButton: false,*/}
+                {/*                                                             timer: 3000,*/}
+                {/*                                                             width: 200*/}
+                {/*                                                         })*/}
+                {/*                                                     }}*/}
+                {/*            />*/}
+                {/*            : null}*/}
 
 
-                    </div>
-                    <hr/>
+                {/*    </div>*/}
+                {/*    <hr/>*/}
                 </div>
             </Modal>
         );
