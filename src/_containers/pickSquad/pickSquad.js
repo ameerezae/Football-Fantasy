@@ -8,6 +8,7 @@ import {AnimateOnChange} from "react-animation";
 import GoalK from "../../_assets/GK.svg";
 import Bench from "../../_assets/bench.svg";
 import {Button} from "react-bootstrap";
+import * as api_urls from "../../_api/api_urls";
 import axios from "axios";
 import {
     getWholeItems,
@@ -36,7 +37,6 @@ class PickSquadContainer extends Component {
     }
 
     componentWillMount() {
-        console.log("fucking a")
         this.setState({
             pickName: true,
             loading: true
@@ -77,9 +77,9 @@ class PickSquadContainer extends Component {
         changedData["squad"] = picks;
         let newChangedData = {};
         newChangedData["squad"] = changedData["squad"];
-        newChangedData["captain-id"] = changedData["captain-id"];
+        newChangedData["captain"] = changedData["captain-id"];
         newChangedData["favorite-team"] = "arsenal";
-        newChangedData["squad-name"] = changedData["squad-name"];
+        newChangedData["name"] = changedData["squad-name"];
         newChangedData["budget"] = changedData["budget"];
 
         try {
@@ -94,7 +94,7 @@ class PickSquadContainer extends Component {
                         }
                 }
             let response = await axios.post(
-                "http://172.17.3.123:5000/team/pick-squad",
+                `${api_urls.MAIN}/team/${localStorage.getItem("current_competition")}/pick-squad`,
                 JSON.stringify(newChangedData)
                 , config)
 

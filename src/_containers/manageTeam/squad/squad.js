@@ -21,7 +21,7 @@ class Squad extends Component {
         });
 
         let newTeam = this.props.myTeam.squad;
-        if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain-id"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain-id"]){
+        if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain"]){
             if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
                 newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
                 newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
@@ -72,7 +72,7 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain-id"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         className="mr-1"
@@ -112,7 +112,7 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain-id"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
@@ -150,7 +150,7 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain-id"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
@@ -188,7 +188,7 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain-id"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
