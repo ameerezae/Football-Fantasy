@@ -3,22 +3,22 @@ import Modal from "react-awesome-modal";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {toggleModal, setFirstSelected, localAllowSubs, changeCaptain} from "../../../_actions/manageTeamActions";
+import {getOnePlayerStatistics} from "../../../_actions/statisticsActions"
 import {FaRegCopyright} from "react-icons/all";
 import "./detailModal.scss"
 import Swal from "sweetalert2";
-import StatisticApi from "../../../_api/statisticApi";
+
 
 class DetailModal extends Component {
 
-    async trigger() {
+    async getPlayerStatistics() {
         if (this.props.myTeam.squad && this.props.myTeam.firstSelected  !== undefined && this.props.myTeam.firstSelected !== null  ) {
-            const response = await StatisticApi.getPlayerStatistics(this.props.myTeam.squad[this.props.myTeam.firstSelected].id)
-            console.log(response, "RESPONSE STATIS");
+            this.props.getOnePlayerStatistics(this.props.myTeam.squad[this.props.myTeam.firstSelected].id);
         }
     }
 
     render() {
-        this.trigger();
+        this.getPlayerStatistics();
         const clicked = this.props.myTeam.squad ? this.props.myTeam.squad[this.props.myTeam.firstSelected] : null;
         return (
             <Modal visible={this.props.myTeam.visibleModal}
@@ -79,7 +79,8 @@ function mapDispatchToProps(dispatch) {
         toggleModal,
         setFirstSelected,
         localAllowSubs,
-        changeCaptain
+        changeCaptain,
+        getOnePlayerStatistics
     }, dispatch)
 }
 
