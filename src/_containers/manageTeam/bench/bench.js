@@ -18,7 +18,7 @@ class Bench extends Component {
         });
 
         let newTeam = this.props.myTeam.squad;
-        if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain-id"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain-id"]){
+        if(newTeam[secondSelectedKey].id !== this.props.myTeam["captain"] && newTeam[this.props.myTeam.firstSelected].id !== this.props.myTeam["captain"]){
             if (newTeam[secondSelectedKey].lineup === !newTeam[this.props.myTeam.firstSelected].lineup && newTeam[secondSelectedKey].position !== types.position.GOALKEEPER && newTeam[this.props.myTeam.firstSelected].position !== types.position.GOALKEEPER) {
                 newTeam[this.props.myTeam.firstSelected].lineup = !newTeam[this.props.myTeam.firstSelected].lineup;
                 newTeam[secondSelectedKey].lineup = !newTeam[secondSelectedKey].lineup;
