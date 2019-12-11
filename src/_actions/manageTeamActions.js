@@ -7,7 +7,7 @@ export const getMyTeam = (competition) =>{
         try {
             const response = await ManageTeamApi.getMyTeam(competition);
             dispatch(myTeam(response.data.squad))
-            dispatch(captain(response.data["captain-id"]))
+            dispatch(captain(response.data["captain"]))
             return true;
         }catch (e) {
             return false;
