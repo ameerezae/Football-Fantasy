@@ -15,10 +15,14 @@ class weekly_game_api {
             "Authorization" : `Bearer ${token}`
             }
         }
-        let url = url_handler.competition_handler(api_urls.PLAYERS_START,api_urls.PLAYERS_END,competition)
-        // let url = url_handler.competition_handler(api_urls.GAMES_START,api_urls.GAMES_END,competition)
-        //not yet have endpoint in server
-        let response = await axios.get(url,config)
+        // let url = url_handler.competition_handler(api_urls.PLAYERS_START,api_urls.PLAYERS_END,competition)
+        let url = url_handler.competition_handler(api_urls.GAMES_START,api_urls.GAMES_END)
+        let response = []
+        try {
+            response = await axios.get(url,config)
+        } catch (error) {
+            response = []
+        }
         console.log("response",response)
         return response  
     }
