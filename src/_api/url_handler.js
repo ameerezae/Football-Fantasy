@@ -1,5 +1,5 @@
 class url_handler{
-    static competition_handler(start_url,end_url,competition){
+    static competition_handler(start_url,end_url){
         let id = localStorage.getItem("current_competition")
         console.log("this is current compete: ",id)
         let url = start_url + id + end_url
