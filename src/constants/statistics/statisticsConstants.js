@@ -16,12 +16,16 @@ export const ONE_PLAYER_STATISTICS = {
     EVENT_MINUTE : "minute",
     MATCHES : "matches" ,
     HOME_AWAY : "home_away",
+    HOME : "Home",
+    AWAY : "Away",
     MATCH_RESULT:"match_result",
     AWAY_TEAM_SCORE: "awayTeamScore",
     HOME_TEAM_SCORE:"homeTeamScore",
     MINUTES_PLAYED : "minutes_played",
     MATCH_OPPONENT: "opponent",
+    MATCH_OPPONENT_IMAGE : "image",
     PLAYER_SCORE: "player_score",
     DATE : "utcDate",
+    PLAYER_PLAYING_STATUS : "playerPlayingStatus",
 
 };
