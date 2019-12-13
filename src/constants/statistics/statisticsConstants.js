@@ -11,6 +11,17 @@ export const ONE_PLAYER_STATISTICS = {
     EVENTS : "events",
     EVENT_TYPE : "event_type",
     MATCH_ID : "match",
-    EVENT_OPPONENT_NAME : "Opponent_name",
+    EVENT_OPPONENT_NAME : "event_opponent",
+    EVENT_IMAGE : "image",
     EVENT_MINUTE : "minute",
+    MATCHES : "matches" ,
+    HOME_AWAY : "home_away",
+    MATCH_RESULT:"match_result",
+    AWAY_TEAM_SCORE: "awayTeamScore",
+    HOME_TEAM_SCORE:"homeTeamScore",
+    MINUTES_PLAYED : "minutes_played",
+    MATCH_OPPONENT: "opponent",
+    PLAYER_SCORE: "player_score",
+    DATE : "utcDate",
+
 };
