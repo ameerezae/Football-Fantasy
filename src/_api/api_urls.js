@@ -1,4 +1,4 @@
-export const MAIN = "http://172.17.3.123:5000"
+export const MAIN = "http://198.143.179.72:5000"
 export const LOGIN = MAIN + "/auth/login"
 export const SIGNUP = MAIN + "/auth/registeration"
 export const INFORMATION = MAIN + "/user/profile";
