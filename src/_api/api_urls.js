@@ -1,4 +1,5 @@
-export const MAIN = "http://198.143.179.72:5000"
+const MAIN = "http://198.143.179.72:5000"
+//MAIN is private no need to export it
 export const LOGIN = MAIN + "/auth/login"
 export const SIGNUP = MAIN + "/auth/registeration"
 export const INFORMATION = MAIN + "/user/profile";
