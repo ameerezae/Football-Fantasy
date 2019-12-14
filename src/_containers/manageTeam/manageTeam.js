@@ -9,6 +9,7 @@ import "./manageTeam.scss";
 import {getMyTeam} from "../../_actions/manageTeamActions";
 import {bindActionCreators} from "redux";
 import Dashboard from "../dashboard/dashboard/dashboard";
+import WeeklyGames from "../games/game_list/WeeklyGames"
 class ManageTeam extends Component {
     // async componentWillMount() {
     //     const response = await this.props.getMyTeam()
@@ -40,6 +41,7 @@ class ManageTeam extends Component {
                             <Tab>Dashboard</Tab>
                             <Tab>Substitution</Tab>
                             <Tab>Transfer</Tab>
+                            <Tab>Weekly Games</Tab>
                         </TabList>
                         <TabPanel>
                             <Dashboard/>
@@ -49,6 +51,9 @@ class ManageTeam extends Component {
                         </TabPanel>
                         <TabPanel>
                             <Transfer/>
+                        </TabPanel>
+                        <TabPanel>
+                            <WeeklyGames/>
                         </TabPanel>
                     </Tabs>
                 </div>
