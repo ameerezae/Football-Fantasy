@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
             return {...state, transferError : action.payload};
 
         case types.manageTeam_action_types.CHANGE_CAPTAIN_SUCCESS :
-            return {...state, "captain-id":action.payload};
+            return {...state, "captain":action.payload};
 
         case types.manageTeam_action_types.SET_REMAINING_BUDGET_SUCCUSS :
             return {...state, budget : action.payload};

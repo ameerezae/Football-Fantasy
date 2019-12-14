@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {getAllCompetitions,setCurrentCompitition} from "../../../_actions/dashboardActions";
 import Competition from "./competiton/competition";
+import "./competitions.scss"
 
 class Competitions extends Component {
     componentWillMount() {
@@ -28,11 +29,12 @@ class Competitions extends Component {
                                 <img className="d-block"
                                      src={element.image}
                                      alt="competition"
-                                    style={{height:"20%"}}
+                                     height = "500px"
+                                     width = "100%"
                                 />
                                 <Carousel.Caption>
-                                    <h3>{element.name}</h3>
-                                    <p>{element.area.name}</p>
+                                    <h3 className="text-black-50">{element.name}</h3>
+                                    <p className="text-black-50">{element.area.name}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         )

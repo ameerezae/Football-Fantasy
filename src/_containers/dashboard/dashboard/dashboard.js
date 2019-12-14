@@ -5,8 +5,8 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <Information/>
                 <Competitions/>
+                <Information/>
             </div>
         );
     }

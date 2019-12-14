@@ -1,4 +1,5 @@
-export const MAIN = "http://172.17.3.123:5000"
+export const MAIN = "http://198.143.179.72:5000"
+//MAIN is private no need to export it
 export const LOGIN = MAIN + "/auth/login"
 export const SIGNUP = MAIN + "/auth/registeration"
 export const INFORMATION = MAIN + "/user/profile";
@@ -19,6 +20,10 @@ export const POST_TRANSFERABLE_END ="/my-team/transfer";
 export const CLUBS_START = MAIN + "/club/"
 export const CLUBS_END ="/clubs"
 // export const PLAYERS = MAIN + "/player/2021/pick-squad";
+export const GAMES_START =MAIN+ "/match/"
+export const GAMES_END = "/current-week-matches"
+// export const GAMES = MAIN + "/match/2021/current-week-matches";
 export const PLAYERS_START = MAIN + "/player/";
 export const PLAYERS_END ="/pick-squad";
 export const COMPETITIONS = MAIN + "/competition/list";
+export const PLAYER_STATISTICS = MAIN + "/statistics/player/";

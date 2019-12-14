@@ -34,9 +34,9 @@ class DashboardApis{
                 JSON.stringify(data),
                 universal_constants.CONFIG_WITH_AUTH
             );
-            if(response) return response.data;
+            if(response) return response;
         }catch (e) {
-            if(e.response) return e.response.data;
+            if(e.response) return e.response;
         }
     }
 

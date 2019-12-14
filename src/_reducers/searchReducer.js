@@ -1,6 +1,4 @@
 import * as acc from "../_actions/types"
-import { element } from "prop-types"
-import { template } from "@babel/core"
 const initialState = {
     players : [],
     sortedPlayers : [],

@@ -28,7 +28,7 @@ class Substitution extends Component {
                         </div>
                         <div className="col-3">
                             <Button variant="primary" onClick={async () => {
-                                const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain-id"]);
+                                const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain"]);
                                 if(res.status === 200){
                                     Swal.fire({
                                         position: 'center',

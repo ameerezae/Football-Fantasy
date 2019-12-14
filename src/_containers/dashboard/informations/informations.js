@@ -190,8 +190,14 @@ class Information extends Component {
                     </div>
                 :
                     <div>
-                        <div style={{color:"white",fontSize:"2rem"}}>
-                            you have no fucking team you mother fuckaa.
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <div className="row align-items-center justify-content-center">
+                                        <h3 className="text-white">you have no team in this competition.</h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>}
             </div>

@@ -54,7 +54,7 @@ class ManageTeamApi {
                 };
             const thisBody = {
                 "squad" : team,
-                "captain-id" : captain,
+                "captain" : captain,
             }
             const body = JSON.stringify(
                 thisBody
