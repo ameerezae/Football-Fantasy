@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 
 
 class DetailModal extends Component {
+    componentWillUnmount() {
+        console.log("kossher")
+    }
 
     async getPlayerStatistics() {
         if (this.props.myTeam.squad && this.props.myTeam.firstSelected !== undefined && this.props.myTeam.firstSelected !== null) {
