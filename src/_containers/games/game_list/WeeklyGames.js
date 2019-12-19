@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import {getGames} from '../../../_actions/weeklyGamesActions'
+import {getGames,clearReducer} from '../../../_actions/weeklyGamesActions'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Alert,Spinner} from "react-bootstrap";
@@ -8,6 +8,10 @@ import {Alert,Spinner} from "react-bootstrap";
 class WeeklyGames extends Component {
     componentWillMount() {
         this.props.getGames();
+    }
+
+    componentWillUnmount() {
+        this.props.clearReducer();
     }
 
     render() {
@@ -80,7 +84,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getGames
+        getGames,
+        clearReducer
     }, dispatch)
 }
 
