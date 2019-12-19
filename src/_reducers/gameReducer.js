@@ -11,6 +11,8 @@ export function gameReducer(state = initialState, action) {
                 return {...state, games: action.payload, games_fetched_success : action.games_fetched = true}
             case acc.weeklygames_action_types.GET_GAMES_FAILURE:
                 return {...state, games_fetched_failed:action.games_fetched};
+            case acc.weeklygames_action_types.CLEAR_REDUCER_SUCCESS :
+                return {games: [],games_fetched_failed: false,games_fetched_success: false};
             default:
             return state;
         }
