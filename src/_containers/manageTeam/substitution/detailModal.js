@@ -16,14 +16,8 @@ class DetailModal extends Component {
         console.log("kossher")
     }
 
-    async getPlayerStatistics() {
-        if (this.props.myTeam.squad && this.props.myTeam.firstSelected !== undefined && this.props.myTeam.firstSelected !== null) {
-            this.props.getOnePlayerStatistics(this.props.myTeam.squad[this.props.myTeam.firstSelected].id);
-        }
-    }
-
     render() {
-        this.getPlayerStatistics();
+
         const clicked = this.props.myTeam.squad ? this.props.myTeam.squad[this.props.myTeam.firstSelected] : null;
         return (
             <div>
