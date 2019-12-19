@@ -60,6 +60,7 @@ export const dashboard_action_types = {
 export const weeklygames_action_types = {
     GET_GAMES_SUCCESS: 'GET_GAMES_SUCCESS',
     GET_GAMES_FAILURE: 'GET_GAMES_FAILURE',
+    CLEAR_REDUCER_SUCCESS : "CLEAR_REDUCER_SUCCESS",
 }
 
 
