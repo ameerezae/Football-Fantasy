@@ -25,3 +25,12 @@ const dispatchGetGamesFailure = () => (
         games_fetched: true,
     }
 );
+
+
+export const clearReducer = () => {
+    return function (dispatch) {
+        dispatch(dispatchClearReducer())
+    }
+};
+
+const dispatchClearReducer = () => ({type: types.weeklygames_action_types.CLEAR_REDUCER_SUCCESS});
