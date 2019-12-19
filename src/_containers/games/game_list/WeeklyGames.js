@@ -22,34 +22,36 @@ class WeeklyGames extends Component {
                         {this.props.games.games.map((element, key) => {
                             console.log(element)
                             return (
-                                <ListGroup.Item variant='dark'>
-                                    <div style={{display: 'table-row'}}>
-                                        <div style={{display: 'table-cell', width: '50%'}}>
-                                            <div style={{display: 'table-row'}}>
-                                                <div style={{width: '20%', display: 'table-cell', align: "left"}}>
-                                                    <img src={element.homeTeam.image} alt="sd"
-                                                         style={{height: 'auto', width: '50%'}}/>
-                                                </div>
-                                                <div style={{width: '40%', display: 'table-cell', align: "left"}}>
-                                                    <h5>{element.homeTeam.name}</h5>
-                                                </div>
-                                                <div style={{width: '40%', display: 'table-cell', align: "left"}}>
-                                                    <h5>{element.homeTeamScore}</h5>
-                                                </div>
+                                <ListGroup.Item variant='success'>
+                                    <div className="row align-items-center">
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                <img src={element.homeTeam.image} width={50} alt=""/>
                                             </div>
                                         </div>
-                                        <div style={{display: 'table-cell', width: '50%'}}>
-                                            <div style={{display: 'table-row'}}>
-                                                <div style={{width: '40%', display: 'table-cell', align: "right"}}>
-                                                    <h5>{element.awayTeamScore}</h5>
-                                                </div>
-                                                <div style={{width: '40%', display: 'table-cell', align: "right"}}>
-                                                    <h5>{element.awayTeam.name}</h5>
-                                                </div>
-                                                <div style={{width: '20%', display: 'table-cell', align: "right"}}>
-                                                    <img src={element.awayTeam.image} alt="sd"
-                                                         style={{height: 'auto', width: '50%'}}/>
-                                                </div>
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                {element.homeTeam.name}
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                {element.homeTeamScore}
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                {element.awayTeamScore}
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                {element.awayTeam.name}
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="row justify-content-center">
+                                                <img src={element.awayTeam.image} width={50} alt=""/>
                                             </div>
                                         </div>
                                     </div>
