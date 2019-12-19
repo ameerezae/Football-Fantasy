@@ -71,8 +71,10 @@ class WeeklyGames extends Component {
                             Whenever you need to, be sure to use margin utilities to keep things nice
                             and tidy.
                         </p>
-                    </Alert> : <Spinner animation="border" variant="danger" />
-                }
+                    </Alert> :
+                        <div className="row justify-content-center">
+                            <Spinner animation="border" variant="danger" />
+                        </div>}
             </div>
         )
     }
