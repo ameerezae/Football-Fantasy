@@ -22,6 +22,6 @@ const dispatchGetGamesSuccess = (games) => (
 const dispatchGetGamesFailure = () => (
     {
         type: types.weeklygames_action_types.GET_GAMES_FAILURE,
-        games_fetched: false,
+        games_fetched: true,
     }
 );
