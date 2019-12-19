@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import {AnimateOnChange} from "react-animation";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
 import * as types from "../../../_actions/types";
+import {getOnePlayerStatistics} from "../../../_actions/statisticsActions";
+
 class Bench extends Component {
 
     substitution = (secondSelectedKey) => {
@@ -50,6 +52,10 @@ class Bench extends Component {
     }
     ;
 
+    async getPlayerStatistics(id) {
+        await this.props.getOnePlayerStatistics(id);
+    }
+
     render() {
         const bench = (
             <div className="row justify-content-center">
@@ -75,9 +81,10 @@ class Bench extends Component {
                                                         this.substitution(key)
                                                         this.props.localAllowSubs(true);
                                                     }}/>
-                                                <FaInfo onClick={()=>{
+                                                <FaInfo onClick={async () => {
                                                     this.props.setFirstSelected(key);
-                                                    this.props.toggleModal(true)
+                                                    await this.getPlayerStatistics(element.id);
+                                                    this.props.toggleModal(true);
                                                 }}/>
                                             </div>
                                         </AnimateOnChange>
@@ -112,7 +119,8 @@ mapDispatchToProps(dispatch) {
         setFirstSelected,
         setMyNewTeam,
         localAllowSubs,
-        toggleModal
+        toggleModal,
+        getOnePlayerStatistics
     }, dispatch)
 }
 

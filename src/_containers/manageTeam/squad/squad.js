@@ -7,6 +7,8 @@ import DetailModal from "../substitution/detailModal";
 import Swal from "sweetalert2";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
 import {AnimateOnChange} from "react-animation";
+import {getOnePlayerStatistics} from "../../../_actions/statisticsActions";
+
 import "./squad.scss";
 import * as types from "../../../_actions/types";
 
@@ -53,6 +55,10 @@ class Squad extends Component {
     }
     ;
 
+    async getPlayerStatistics(id) {
+        await this.props.getOnePlayerStatistics(id);
+    }
+
     render() {
         const sqaud = (
             <div>
@@ -72,7 +78,8 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"] ?
+                                                    <div>CAPTAIN</div> : null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         className="mr-1"
@@ -83,9 +90,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
-                                                    <FaInfo onClick={()=>{
+                                                    <FaInfo onClick={async () => {
                                                         this.props.setFirstSelected(key);
-                                                        this.props.toggleModal(true)
+                                                        await this.getPlayerStatistics(element.id);
+                                                        this.props.toggleModal(true);
                                                     }}/>
 
                                                 </div>
@@ -112,7 +120,8 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"] ?
+                                                    <div>CAPTAIN</div> : null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
@@ -122,9 +131,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
-                                                    <FaInfo onClick={()=>{
+                                                    <FaInfo onClick={async () => {
                                                         this.props.setFirstSelected(key);
-                                                        this.props.toggleModal(true)
+                                                        await this.getPlayerStatistics(element.id);
+                                                        this.props.toggleModal(true);
                                                     }}/>
                                                 </div>
                                             </AnimateOnChange>
@@ -150,7 +160,8 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"] ?
+                                                    <div>CAPTAIN</div> : null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
@@ -160,9 +171,10 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
-                                                    <FaInfo onClick={()=>{
+                                                    <FaInfo onClick={async () => {
                                                         this.props.setFirstSelected(key);
-                                                        this.props.toggleModal(true)
+                                                        await this.getPlayerStatistics(element.id);
+                                                        this.props.toggleModal(true);
                                                     }}/>
                                                 </div>
                                             </AnimateOnChange>
@@ -188,7 +200,8 @@ class Squad extends Component {
                                                     className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center"}>
                                                     <Player number={key} info={element}/>
                                                 </div>
-                                                <div>{element.id === this.props.myTeam["captain"]?<div>CAPTAIN</div>:null}</div>
+                                                <div>{element.id === this.props.myTeam["captain"] ?
+                                                    <div>CAPTAIN</div> : null}</div>
                                                 <div className="row justify-content-center">
                                                     <FaExchangeAlt
                                                         onClick={this.props.myTeam.localAllow ? () => {
@@ -198,8 +211,9 @@ class Squad extends Component {
                                                             this.substitution(key)
                                                             this.props.localAllowSubs(true);
                                                         }}/>
-                                                    <FaInfo onClick={()=>{
+                                                    <FaInfo onClick={async () => {
                                                         this.props.setFirstSelected(key);
+                                                        await this.getPlayerStatistics(element.id);
                                                         this.props.toggleModal(true);
                                                     }}/>
                                                 </div>
@@ -235,7 +249,8 @@ function mapDispatchToProps(dispatch) {
         setFirstSelected,
         setMyNewTeam,
         toggleModal,
-        localAllowSubs
+        localAllowSubs,
+        getOnePlayerStatistics
     }, dispatch)
 }
 
