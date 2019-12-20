@@ -19,7 +19,7 @@ class WeeklyGames extends Component {
     render() {
         return (
             <div>
-                <h4 className="text-white mb-3">FINISHED GAMES</h4>
+                <h4 className="text-white mt-5 mb-3">FINISHED GAMES</h4>
                 {this.props.games.games_fetched_success ?
                     <div>
                         <ListGroup>
