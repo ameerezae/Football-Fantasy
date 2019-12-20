@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import {getGames,clearReducer} from '../../../_actions/weeklyGamesActions'
+import {getGames, clearReducer} from '../../../_actions/weeklyGamesActions'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {Alert,Spinner} from "react-bootstrap";
+import {Alert, Spinner} from "react-bootstrap";
 
 class WeeklyGames extends Component {
     componentWillMount() {
@@ -13,67 +13,141 @@ class WeeklyGames extends Component {
     componentWillUnmount() {
         this.props.clearReducer();
     }
+//
+
 
     render() {
         return (
             <div>
+                <h4 className="text-white mb-3">FINISHED GAMES</h4>
                 {this.props.games.games_fetched_success ?
-                    <ListGroup>
-                        {this.props.games.games.map((element, key) => {
-                            console.log(element)
-                            return (
-                                <ListGroup.Item variant='success'>
-                                    <div className="row align-items-center">
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                <img src={element.homeTeam.image} width={50} alt=""/>
-                                            </div>
+                    <div>
+                        <ListGroup>
+                            {this.props.games.games.map((element, key) => {
+
+
+                                    return (
+                                        <div>
+                                            {element.status === "Finished"?
+                                                <ListGroup.Item variant='success'>
+                                                    <div className="row align-items-center">
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                <img src={element.homeTeam.image} width={50} alt=""/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                {element.homeTeam.name}
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                {element.homeTeamScore}
+                                                            </div>
+                                                        </div>
+                                                        <div className="col  row justify-content-center">
+                                                            <div className="container">
+                                                                <div className="row justify-content-center">
+                                                                    <h5>-</h5>
+                                                                </div>
+                                                                <div className="row justify-content-center text-center">
+                                                                    {element.utcDate.replace("T","  ")}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                {element.awayTeamScore}
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                {element.awayTeam.name}
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="row justify-content-center">
+                                                                <img src={element.awayTeam.image} width={50} alt=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ListGroup.Item>
+                                                : null }
                                         </div>
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                {element.homeTeam.name}
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                {element.homeTeamScore}
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                {element.awayTeamScore}
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                {element.awayTeam.name}
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="row justify-content-center">
-                                                <img src={element.awayTeam.image} width={50} alt=""/>
-                                            </div>
-                                        </div>
+
+                                                )
+
+
+                            })}
+                        </ListGroup>
+                        <h4 className="text-white mt-5 mb-3">Scheduled GAMES</h4>
+                        <ListGroup>
+                            {this.props.games.games.map((element, key) => {
+
+
+                                return (
+                                    <div>
+                                        {element.status === "Scheduled"?
+                                            <ListGroup.Item variant='info'>
+                                                <div className="row align-items-center">
+                                                    <div className="col">
+                                                        <div className="row justify-content-center">
+                                                            <img src={element.homeTeam.image} width={50} alt=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col">
+                                                        <div className="row justify-content-center">
+                                                            {element.homeTeam.name}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col">
+                                                        <div className="row justify-content-center align-items-center">
+                                                            <h5>Scheduled</h5>
+                                                        </div>
+                                                        <div className="row justify-content-center align-items-center">
+                                                            <h6>{element.utcDate.replace("T"," ")}</h6>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col">
+                                                        <div className="row justify-content-center">
+                                                            {element.awayTeam.name}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col">
+                                                        <div className="row justify-content-center">
+                                                            <img src={element.awayTeam.image} width={50} alt=""/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ListGroup.Item>
+                                            : null }
                                     </div>
-                                </ListGroup.Item>
-                            )
-                        })}
-                    </ListGroup> :
+
+                                )
+
+
+                            })}
+                        </ListGroup>
+
+                    </div>
+                    :
                     this.props.games.games_fetched_failed ?
 
-                    <Alert variant="success">
-                        <Alert.Heading>No recent match!!!</Alert.Heading>
-                        <p>
-                            There are no recent matches, Come back later
-                        </p>
-                        <hr/>
-                        <p className="mb-0">
-                            Whenever you need to, be sure to use margin utilities to keep things nice
-                            and tidy.
-                        </p>
-                    </Alert> :
+                        <Alert variant="success">
+                            <Alert.Heading>No recent match!!!</Alert.Heading>
+                            <p>
+                                There are no recent matches, Come back later
+                            </p>
+                            <hr/>
+                            <p className="mb-0">
+                                Whenever you need to, be sure to use margin utilities to keep things nice
+                                and tidy.
+                            </p>
+                        </Alert> :
                         <div className="row justify-content-center">
-                            <Spinner animation="border" variant="danger" />
+                            <Spinner animation="border" variant="danger"/>
                         </div>}
             </div>
         )
