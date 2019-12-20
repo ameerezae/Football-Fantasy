@@ -195,7 +195,7 @@ class Information extends Component {
                     </div>
                     :
 
-                    <div className="row align-items-center">
+                    <div className="row align-items-center mt-5">
                         <div className="col-12">
                             <Alert variant="info">
                                 <Alert.Heading>No Team</Alert.Heading>
