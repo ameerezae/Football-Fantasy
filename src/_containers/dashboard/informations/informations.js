@@ -5,27 +5,31 @@ import {getUserInformation} from "../../../_actions/dashboardActions";
 import * as dashboardConstants from "../../../constants/dashboard/dashboardConstants";
 import "./scss/information.scss";
 import Edit from "./Edit";
+import {Alert} from "react-bootstrap";
+
 class Information extends Component {
     componentWillMount() {
         this.props.getUserInformation();
     }
+
     findSelectedSquadCompInfo = () => {
-        if (this.props.dashboard.areInformationFetched){
-            const  squads = this.props.dashboard.information[dashboardConstants.INFORMATION_CONSTANTS.SQUADS];
-            for (let i= 0 ;i<squads.length; i++ ){
-                if(squads[i][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID] === this.props.dashboard.selectedCompetition.id){
+        if (this.props.dashboard.areInformationFetched) {
+            const squads = this.props.dashboard.information[dashboardConstants.INFORMATION_CONSTANTS.SQUADS];
+            for (let i = 0; i < squads.length; i++) {
+                if (squads[i][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID] === this.props.dashboard.selectedCompetition.id) {
                     return i;
                 }
             }
             return -1;
         }
     }
+
     render() {
         let indexOfSquad = this.findSelectedSquadCompInfo();
         console.log("rendered again")
         return (
             <div>
-                { indexOfSquad !== -1 ?
+                {indexOfSquad !== -1 ?
                     <div className="container emp-profile">
                         {this.props.dashboard.areInformationFetched ?
                             <form method="post">
@@ -50,7 +54,8 @@ class Information extends Component {
                                             <h5 className="proile-rating">RANKINGS : <span>8/10</span></h5>
                                             <ul className="nav nav-tabs" id="myTab" role="tablist">
                                                 <li className="nav-item">
-                                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                                    <a className="nav-link active" id="home-tab" data-toggle="tab"
+                                                       href="#home"
                                                        role="tab" aria-controls="home" aria-selected="true">About</a>
                                                 </li>
                                             </ul>
@@ -188,18 +193,19 @@ class Information extends Component {
                                 </div>
                             </form> : null}
                     </div>
-                :
-                    <div>
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <div className="row align-items-center justify-content-center">
-                                        <h3 className="text-white">you have no team in this competition.</h3>
-                                    </div>
-                                </div>
-                            </div>
+                    :
+
+                    <div className="row align-items-center">
+                        <div className="col-12">
+                            <Alert variant="info">
+                                <Alert.Heading>No Team</Alert.Heading>
+                                <p>
+                                    you have no team in this competition. </p>
+                                <hr/>
+                            </Alert>
                         </div>
-                    </div>}
+                    </div>
+                }
             </div>
 
         );
