@@ -3,8 +3,8 @@ import * as universal_constants from "../constants/universalConstants";
 import * as cardsConstants from "../constants/cards/cardsConstants";
 import CardsApi from "../_api/cardsApi";
 
-export const getAllCards = (dispatch) => {
-    return async function (){
+export const getAllCards = () => {
+    return async function (dispatch){
         const response = await CardsApi.getAllCards() ;
         if(response.status === universal_constants.REQUESTS_STATUS.OK){
             dispatch(dispatchGetAllCards(response.data));
