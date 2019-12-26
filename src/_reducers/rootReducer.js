@@ -6,6 +6,7 @@ import {searchReducer} from "./searchReducer"
 import {dashboardReducer} from "./dashboardReducer";
 import {statisticsReducer} from "./statisticsReducer";
 import {gameReducer} from "./gameReducer"
+import {gameDetailReducer} from "./gameDetailReducer"
 
 const rootReducer = combineReducers({
     authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     dashboardReducer,
     statisticsReducer,
     gameReducer,
+    gameDetailReducer,
 });
 
 export default rootReducer;
