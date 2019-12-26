@@ -14,9 +14,30 @@ export const getGames = () => {
 
 export const setSelectedGame = (game) => {
     return function (dispatch) {
+        if(game === null)
+        {
+            localStorage.setItem("selected_game", game)
+        }
+        else
+        {
+            localStorage.setItem("selected_game", game.id)
+        }
         dispatch(dispatchSetSelectedGame(game))
     }
 }
+
+export const toggleModal = (toOpen) => {
+    return function (dispatch) {
+        dispatch(dispatchToggleModalSuccess(toOpen))
+    }
+}
+
+const dispatchToggleModalSuccess = (toOpen) => (
+    {
+        type: types.weeklygames_action_types.SET_TOGGLE_MODAL_SUCCESS,
+        visibleModal: toOpen,
+    }
+)
 
 const dispatchGetGamesSuccess = (games) => (
     {
