@@ -12,6 +12,12 @@ export const getGames = () => {
     }
 }
 
+export const setSelectedGame = (game) => {
+    return function (dispatch) {
+        dispatch(dispatchSetSelectedGame(game))
+    }
+}
+
 const dispatchGetGamesSuccess = (games) => (
     {
         type: types.weeklygames_action_types.GET_GAMES_SUCCESS,
@@ -23,6 +29,13 @@ const dispatchGetGamesFailure = () => (
     {
         type: types.weeklygames_action_types.GET_GAMES_FAILURE,
         games_fetched: true,
+    }
+);
+
+const dispatchSetSelectedGame = (game) => (
+    {
+        type: types.weeklygames_action_types.SET_SELECTED_GAME_SUCCESS,
+        payload: game,
     }
 );
 
