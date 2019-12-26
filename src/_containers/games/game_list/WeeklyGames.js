@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import {getGames, clearReducer} from '../../../_actions/weeklyGamesActions'
+import {getGames, clearReducer, setSelectedGame} from '../../../_actions/weeklyGamesActions'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Alert, Spinner} from "react-bootstrap";
@@ -13,8 +13,11 @@ class WeeklyGames extends Component {
     componentWillUnmount() {
         this.props.clearReducer();
     }
-//
 
+    onClickHandler(element) {
+        this.props.setSelectedGame(element)
+
+    }
 
     render() {
         return (
@@ -29,7 +32,9 @@ class WeeklyGames extends Component {
                                     return (
                                         <div>
                                             {element.status === "Finished"?
-                                                <ListGroup.Item variant='success'>
+                                            <ListGroup.Item variant='success' action onClick={() => {
+                                                this.onClickHandler(element)
+                                            }}>
                                                     <div className="row align-items-center">
                                                         <div className="col">
                                                             <div className="row justify-content-center">
@@ -89,7 +94,9 @@ class WeeklyGames extends Component {
                                 return (
                                     <div>
                                         {element.status === "Scheduled"?
-                                            <ListGroup.Item variant='info'>
+                                            <ListGroup.Item variant='info' action onClick={() => {
+                                                this.onClickHandler(element)
+                                            }}>
                                                 <div className="row align-items-center">
                                                     <div className="col">
                                                         <div className="row justify-content-center">
@@ -163,7 +170,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getGames,
-        clearReducer
+        clearReducer,
+        setSelectedGame
+
     }, dispatch)
 }
 
