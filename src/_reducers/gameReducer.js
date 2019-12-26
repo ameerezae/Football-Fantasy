@@ -4,6 +4,7 @@ const initialState = {
     games_fetched_success: false,
     games_fetched_failed: false,
     selected_game: null,
+    visible_modal: false,
   }
 
 export function gameReducer(state = initialState, action) {
@@ -15,7 +16,9 @@ export function gameReducer(state = initialState, action) {
             case acc.weeklygames_action_types.CLEAR_REDUCER_SUCCESS :
                 return {games: [],games_fetched_failed: false,games_fetched_success: false};
             case acc.weeklygames_action_types.SET_SELECTED_GAME_SUCCESS :
-                    return {...state,selected_game: action.payload};
+                return {...state,selected_game: action.payload};
+            case acc.weeklygames_action_types.SET_TOGGLE_MODAL_SUCCESS :
+                return {...state,visible_modal: action.visibleModal}
             default:
             return state;
         }
