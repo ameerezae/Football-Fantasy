@@ -3,6 +3,7 @@ const initialState = {
     games: [],
     games_fetched_success: false,
     games_fetched_failed: false,
+    selected_game: null,
   }
 
 export function gameReducer(state = initialState, action) {
@@ -13,6 +14,8 @@ export function gameReducer(state = initialState, action) {
                 return {...state, games_fetched_failed:action.games_fetched};
             case acc.weeklygames_action_types.CLEAR_REDUCER_SUCCESS :
                 return {games: [],games_fetched_failed: false,games_fetched_success: false};
+            case acc.weeklygames_action_types.SET_SELECTED_GAME_SUCCESS :
+                    return {...state,selected_game: action.payload};
             default:
             return state;
         }
