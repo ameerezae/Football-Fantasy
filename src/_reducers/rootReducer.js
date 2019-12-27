@@ -5,8 +5,9 @@ import manageTeamReaducer from "./manageTeamReaducer";
 import {searchReducer} from "./searchReducer"
 import {dashboardReducer} from "./dashboardReducer";
 import {statisticsReducer} from "./statisticsReducer";
-import {gameReducer} from "./gameReducer"
-import {gameDetailReducer} from "./gameDetailReducer"
+import {gameReducer} from "./gameReducer";
+import {gameDetailReducer} from "./gameDetailReducer";
+import {leaderBoardReducer} from "./leaderBoardReducer";
 
 const rootReducer = combineReducers({
     authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     statisticsReducer,
     gameReducer,
     gameDetailReducer,
+    leaderBoardReducer,
 });
 
 export default rootReducer;
