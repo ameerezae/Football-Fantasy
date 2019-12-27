@@ -43,6 +43,7 @@ class Substitution extends Component {
     render() {
         return (
             <div>
+                <h3 className="text-white font-weight-bold mt-5">SUBSTITUTION</h3>
                 <div className="container mb-5">
                     <div className="row">
                         <div className="col-11">
