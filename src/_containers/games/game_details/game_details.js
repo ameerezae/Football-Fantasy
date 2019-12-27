@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Modal} from "react-bootstrap";
 import {toggleModal,setSelectedGame} from "../../../_actions/weeklyGamesActions";
+import {clearReducer} from "../../../_actions/gameDetailActions";
 import {DETAIL_SUBJECT} from "../../../constants/games/gamesConstants"
 class Game_details extends Component {
 
@@ -14,6 +15,7 @@ class Game_details extends Component {
                      onHide={() => this.props.toggleModal(false)}
                      onExit={() => {this.props.toggleModal(false)
                         this.props.setSelectedGame(null)
+                        this.props.clearReducer()
                     }}>
                     <Modal.Header closeButton>
                         <Modal.Title>MATCH DETAILS</Modal.Title>
@@ -68,6 +70,8 @@ class Game_details extends Component {
                         <hr/>
                         <div className="row p-3">
                             <div className="container">
+                                {this.props.gameDetail.game_details[DETAIL_SUBJECT.EVENTS].length !== 0 ?
+                                <div>
                                 <h5>GAME EVENTS</h5>
                                 <div className="row align-items-center justify-content-center mt-4">
                                     <div className="col">
@@ -87,10 +91,10 @@ class Game_details extends Component {
                                     </div>
                                     <div className="col">
                                         <div className="row justify-content-center">
-                                            <h6>IMAGE</h6>
+                                            <h6>CLUB</h6>
                                         </div>
                                     </div>
-                                </div>
+                                </div></div> : null }
                                 {this.props.gameDetail.game_details[DETAIL_SUBJECT.EVENTS].length !== 0 ?
                                     this.props.gameDetail.game_details[DETAIL_SUBJECT.EVENTS].map((element) => {
                                         return (
@@ -108,25 +112,27 @@ class Game_details extends Component {
                                                 <div className="col">
                                                     <div className="row justify-content-center text-center">
                                                         {element[DETAIL_SUBJECT.PLAYER][DETAIL_SUBJECT.NAME]}
-                                                        {console.log("fuucjjksjsdjfadjfhajsdf",element[DETAIL_SUBJECT.PLAYER][DETAIL_SUBJECT.NAME])}
-                                                        {console.log("fuucjjksjsdjfadjfhajsdaaaaaaaaf",element[DETAIL_SUBJECT.PLAYER][DETAIL_SUBJECT.PLAYER_IMAGE])}
-
                                                     </div>
                                                 </div>
                                                 <div className="col">
                                                     <div className="row justify-content-center text-center">
                                                         <img width={50}
-                                                                src={element[DETAIL_SUBJECT.PLAYER][DETAIL_SUBJECT.PLAYER_IMAGE]}
-                                                                alt=""/>
+                                                                src={element[DETAIL_SUBJECT.PLAYER][DETAIL_SUBJECT.CLUB][DETAIL_SUBJECT.CLUB_IMAGE]}
+                                                                alt="" height="60"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         )
                                     })
                                     :
-                                    <div className="row align-items-center justify-content-center">
-                                        THERE IS NO LAST EVENT FOR THIS PLAYER
-                                    </div>}
+                                <div className="col">
+                                    <div className="row justify-content-center align-items-center">
+                                        <h5>Scheduled</h5>
+                                    </div>
+                                    <div className="row justify-content-center align-items-center">
+                                        <h6>{this.props.gameDetail.game_details.utcDate.replace("T"," ")}</h6>
+                                    </div>
+                                </div>}
                             </div>
                         </div>
                     </Modal.Body>
@@ -156,6 +162,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         toggleModal,
         setSelectedGame,
+        clearReducer,
     }, dispatch)
 }
 
