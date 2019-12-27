@@ -7,11 +7,23 @@ export const getAllCards = () => {
     return async function (dispatch){
         const response = await CardsApi.getAllCards() ;
         if(response.status === universal_constants.REQUESTS_STATUS.OK){
+            dispatch(findActiveCard(response.data));
             dispatch(dispatchGetAllCards(response.data));
         }
         else dispatch(dispatchGetAllCardsFailed(response.data[cardsConstants.MESSAGE]));
     }
 };
+
+
+function findActiveCard(cards) {
+    let activeCard = "nothing";
+    Object.keys(cards).forEach(key => {
+        if(cards[key] === cardsConstants.CARDS_MODES.ACTIVE){
+            activeCard = key;
+        }
+    });
+    return {type : types.cards_action_types.FIND_ACTIVE_CARD_SUCCESS, payload : activeCard};
+}
 
 const dispatchGetAllCards = (cards) => ({type : types.cards_action_types.GET_ALL_CARDS_SUCCESS, payload : cards});
 const dispatchGetAllCardsFailed = (message) => ({type : types.cards_action_types.GET_ALL_CARDS_FAILED, payload : message});
@@ -21,11 +33,7 @@ export const postCard = (name,mode) => {
         const res = await CardsApi.postCard(name, mode);
 
         if(res.status === universal_constants.REQUESTS_STATUS.OK){
-            const response = await CardsApi.getAllCards() ;
-            if(response.status === universal_constants.REQUESTS_STATUS.OK){
-                dispatch(dispatchGetAllCards(response.data));
-            }
-            else dispatch(dispatchGetAllCardsFailed(response.data[cardsConstants.MESSAGE]));
+            dispatch(getAllCards());
         }
     }
 }
