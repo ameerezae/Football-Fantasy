@@ -8,6 +8,8 @@ import {getMyTeam} from "../../../_actions/manageTeamActions";
 import {Button} from "react-bootstrap";
 import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
+import Cards from "./Cards/cards";
+
 class Substitution extends Component {
     async componentWillMount() {
         const bool = await this.props.getMyTeam(this.props.dashboard.selectedCompetition);
@@ -17,39 +19,42 @@ class Substitution extends Component {
         }
     }
 
+    async confirmSubs(){
+        const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain"]);
+        if(res.status === 200){
+            Swal.fire({
+                position: 'center',
+                type: 'success',
+                title: res.data.detail,
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }else{
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title : res.data.message,
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+    }
+
     render() {
         return (
             <div>
                 <div className="container mb-5">
                     <div className="row">
-                        <div className="col-9">
+                        <div className="col-11">
                             <Squad/>
                             <Bench/>
                         </div>
-                        <div className="col-3">
-                            <Button variant="primary" onClick={async () => {
-                                const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain"]);
-                                if(res.status === 200){
-                                    Swal.fire({
-                                        position: 'center',
-                                        type: 'success',
-                                        title: res.data.detail,
-                                        showConfirmButton: false,
-                                        timer: 3000
-                                    })
-                                }else{
-                                    Swal.fire({
-                                        position: 'center',
-                                        type: 'error',
-                                        title : res.data.message,
-                                        showConfirmButton: false,
-                                        timer: 3000
-                                    })
-                                }
-                            }}>Confirm</Button>
-                        </div>
-
+                        <div className="col-1">
+                            <Button variant="primary" onClick={() => this.confirmSubs()}>Confirm</Button>
+                       </div>
                     </div>
+
+                    <Cards/>
                 </div>
 
             </div>
