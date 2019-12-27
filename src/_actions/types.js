@@ -75,3 +75,9 @@ export const gamedetail_action_types = {
     GET_GAME_DETAIL_FAILURE : "GET_GAME_DETAIL_FAILURE",
     CLEAR_REDUCER_SUCCESS : "CLEAR_REDUCER_SUCCESS",
 }
+
+export const leaderboard_action_types = {
+    GET_USERS_SUCCESS : "GET_USERS_SUCCESS",
+    GET_USERS_FAILURE : "GET_USERS_FAILURE",
+    CLEAR_REDUCER_SUCCESS : "CLEAR_REDUCER_SUCCESS",
+}
