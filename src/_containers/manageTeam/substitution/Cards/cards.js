@@ -13,8 +13,9 @@ class Cards extends Component {
     render() {
         return (
             <div>
+                <h3 className="text-white font-weight-bold mt-5">CARDS</h3>
                 {this.props.cardsState.fetchedCards ?
-                    <div className="row">
+                    <div className="row mt-3">
 
                         {Object.keys(this.props.cardsState.cards).map((key) => {
                                 return (
