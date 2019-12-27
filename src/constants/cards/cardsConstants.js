@@ -12,3 +12,8 @@ export const CARDS_NAMES = {
     TRIPLE_CAPTAIN : "triple_captain",
     WILD_CARD : "wild_card",
 };
+
+export const CARDS_POST = {
+    MODE : "mode",
+    NAME : "name",
+};
