@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import {bindActionCreators} from "redux";
 import {postCard} from "../../../../_actions/cardsActions";
 import * as universalConstants from "../../../../constants/universalConstants";
+import {IoIosFootball} from "react-icons/all";
 class Card extends Component {
     state = {
         isFlipped: false
@@ -45,34 +46,41 @@ class Card extends Component {
     render() {
         return (
             <div className="">
+
                 <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="vertical">
                     <div>
                         <div className={this.props.mode === cardsConstants.CARDS_MODES.INACTIVE? "card bg-c-pink order-card" : "card bg-c-green order-card" }>
                             <div className="card-block">
-                                <h6 className="m-b-20">{this.props.name}</h6>
-                                <h2 className="text-right"><i className="fa fa-rocket f-left"></i><span>486</span></h2>
-                                <p className="m-b-0">{this.props.mode}<span className="f-right">351</span></p>
+                                <h6 className="m-b-20 text-uppercase">{this.props.name}</h6>
+                                <h2 className="text-right"><i className="fa fa-rocket f-left"></i><span><IoIosFootball/></span></h2>
+                                <p className="m-b-0 mt-3">status<span className="f-right text-uppercase">{this.props.mode}</span></p>
+                                <hr/>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <Button className="w-100 text-uppercase" disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant={this.props.mode === cardsConstants.CARDS_MODES.INACTIVE? "primary" : "warning"} onClick={()=>this.postTheCard(this.props.name)}>
+                                            {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="row justify-content-center">
-                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.postTheCard(this.props.name)}>
-                                {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
-                            </Button>
                         </div>
                     </div>
 
                     <div>
                         <div className={this.props.mode === cardsConstants.CARDS_MODES.INACTIVE? "card bg-c-pink order-card" : "card bg-c-green order-card" }>
                             <div className="card-block">
-                                <h6 className="m-b-20">{this.props.name}</h6>
-                                <h2 className="text-right"><i className="fa fa-credit-card f-left"></i><span>486</span></h2>
-                                <p className="m-b-0">{this.props.mode}<span className="f-right">351</span></p>
+                                <h6 className="m-b-20 text-uppercase">{this.props.name}</h6>
+                                <h2 className="text-right"><i className="fa fa-rocket f-left"></i><span><IoIosFootball/></span></h2>
+                                <p className="m-b-0 mt-3">status<span className="f-right text-uppercase">{this.props.mode}</span></p>
+                                <hr/>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <Button className="w-100 text-uppercase" disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant={this.props.mode === cardsConstants.CARDS_MODES.INACTIVE? "primary" : "warning"} onClick={()=>this.postTheCard(this.props.name)}>
+                                            {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="row justify-content-center">
-                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.postTheCard(this.props.name)}>
-                                {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
-                            </Button>
                         </div>
                     </div>
                 </ReactCardFlip>
