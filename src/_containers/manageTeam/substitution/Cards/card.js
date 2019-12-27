@@ -1,13 +1,44 @@
 import React, {Component} from 'react';
-import ReactCardFlipper from "react-card-flipper";
 import ReactCardFlip from 'react-card-flip';
 import {Button} from "react-bootstrap";
 import * as cardsConstants from "../../../../constants/cards/cardsConstants";
 import {connect} from "react-redux";
+import Swal from "sweetalert2";
+import {bindActionCreators} from "redux";
+import {postCard} from "../../../../_actions/cardsActions";
+import * as universalConstants from "../../../../constants/universalConstants";
 class Card extends Component {
     state = {
         isFlipped: false
     };
+
+    postTheCard = (card) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: card === cardsConstants.CARDS_NAMES.WILD_CARD || card === cardsConstants.CARDS_NAMES.FREE_HIT ? "You won't be able to revert this!" : "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then(async (result) => {
+            if (result.value) {
+                const response = await this.props.postCard(card, this.props.cardsState.cards[card] === cardsConstants.CARDS_MODES.ACTIVE ? cardsConstants.CARDS_MODES.INACTIVE : cardsConstants.CARDS_MODES.ACTIVE);
+                console.log(response);
+                if(response.status === universalConstants.REQUESTS_STATUS.OK){
+                    this.toggle();
+                }
+                else{
+                    const message = response.data.message;
+                    Swal.fire(
+                        'Oooooops!!',
+                        message,
+                        'error'
+                    )
+                }
+            }
+        })
+    }
     toggle = () => {
         this.setState({isFlipped : !this.state.isFlipped})
     }
@@ -24,7 +55,7 @@ class Card extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.toggle()}>
+                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.postTheCard(this.props.name)}>
                                 {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
                             </Button>
                         </div>
@@ -39,7 +70,7 @@ class Card extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.toggle()}>
+                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.postTheCard(this.props.name)}>
                                 {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
                             </Button>
                         </div>
@@ -56,4 +87,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Card);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        postCard
+    }, dispatch)
+
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Card);
