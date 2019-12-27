@@ -2,8 +2,6 @@ import axios from "axios";
 import * as api_urls from "./api_urls";
 import url_handler from "./url_handler";
 import * as universalConstants from "../constants/universalConstants";
-import * as cardsConstants from "../constants/cards/cardsConstants";
-import {CARDS_POST} from "../constants/cards/cardsConstants";
 
 
 class CardsApi {
@@ -27,7 +25,7 @@ class CardsApi {
                 url,
                 JSON.stringify(
                     {
-                        name : name,
+                        card : name,
                         mode : mode
                     }
                 ),
