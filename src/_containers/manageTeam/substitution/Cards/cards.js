@@ -4,7 +4,6 @@ import "./Cards.scss";
 import {getAllCards, postCard} from "../../../../_actions/cardsActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import * as cardsConstants from "../../../../constants/cards/cardsConstants";
 
 class Cards extends Component {
     componentWillMount() {
@@ -19,9 +18,7 @@ class Cards extends Component {
 
                         {Object.keys(this.props.cardsState.cards).map((key) => {
                                 return (
-                                    <div className="col-3" onClick={() => {
-                                        this.props.postCard(key, this.props.cardsState.cards[key] === cardsConstants.CARDS_MODES.ACTIVE ? cardsConstants.CARDS_MODES.INACTIVE : cardsConstants.CARDS_MODES.ACTIVE);
-                                    }}>
+                                    <div className="col-3" >
                                         <Card name={key} mode={this.props.cardsState.cards[key]}/>
                                     </div>
                                 )
