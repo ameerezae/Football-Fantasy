@@ -7,6 +7,8 @@ export const getSelectedGame = () => {
         const response = await game_detail_api.getSelectedGame();
         console.log("getSelectedGame response" , response)
         // if (response.data[dashboardConstants.COMPETITIONS]) dispatch(dispatchGetGames(response.data[dashboardConstants.COMPETITIONS]))
+        response.data.match[gameConstants.DETAIL_SUBJECT.EVENTS].sort((a, b) => (a.event_type < b.event_type) ? -1 : 1)
+        response.data.match[gameConstants.DETAIL_SUBJECT.EVENTS].sort((a, b) => (a.minute < b.minute) ? -1 : 1)
         if (response !== null) dispatch(dispatchGetGameDetailSuccess(response.data.match))
         else dispatch(dispatchGetGameDetailFailure())
     }
@@ -33,4 +35,4 @@ export const clearReducer = () => {
     }
 };
 
-const dispatchClearReducer = () => ({type: types.gamedetail_action_types.CLEAR_REDUCER_SUCCESS});
+const dispatchClearReducer = () => ({type: types.gamedetail_action_types.GAME_DETAIL_CLEAR_REDUCER_SUCCESS});
