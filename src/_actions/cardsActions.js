@@ -35,5 +35,6 @@ export const postCard = (name,mode) => {
         if(res.status === universal_constants.REQUESTS_STATUS.OK){
             dispatch(getAllCards());
         }
+        return res;
     }
 }
