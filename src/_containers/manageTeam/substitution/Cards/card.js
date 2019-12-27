@@ -3,7 +3,7 @@ import ReactCardFlipper from "react-card-flipper";
 import ReactCardFlip from 'react-card-flip';
 import {Button} from "react-bootstrap";
 import * as cardsConstants from "../../../../constants/cards/cardsConstants";
-
+import {connect} from "react-redux";
 class Card extends Component {
     state = {
         isFlipped: false
@@ -24,7 +24,7 @@ class Card extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <Button variant="primary" onClick={()=>this.toggle()}>
+                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.toggle()}>
                                 {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
                             </Button>
                         </div>
@@ -39,7 +39,7 @@ class Card extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <Button variant="primary" onClick={()=>this.toggle()}>
+                            <Button disabled={this.props.cardsState.activeCard !== "nothing" && this.props.cardsState.activeCard !== this.props.name} variant="primary" onClick={()=>this.toggle()}>
                                 {this.props.mode === cardsConstants.CARDS_MODES.INACTIVE ? cardsConstants.CARDS_MODES.ACTIVE : cardsConstants.CARDS_MODES.INACTIVE}
                             </Button>
                         </div>
@@ -50,4 +50,10 @@ class Card extends Component {
     }
 }
 
-export default Card;
+function mapStateToProps(state) {
+    return {
+        cardsState: state.cardsReducer,
+    }
+}
+
+export default connect(mapStateToProps)(Card);
