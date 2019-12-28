@@ -1,4 +1,4 @@
-export const MAIN = "http://198.143.179.72:5000"
+export const MAIN = "http://198.143.179.72:1337";
 //MAIN is private no need to export it
 export const LOGIN = MAIN + "/auth/login"
 export const SIGNUP = MAIN + "/auth/registeration"
@@ -27,3 +27,5 @@ export const PLAYERS_START = MAIN + "/player/";
 export const PLAYERS_END ="/pick-squad";
 export const COMPETITIONS = MAIN + "/competition/list";
 export const PLAYER_STATISTICS = MAIN + "/statistics/player/";
+export const CARDS_START = MAIN + "/team/";
+export const CARDS_END = "/my-team/cards";

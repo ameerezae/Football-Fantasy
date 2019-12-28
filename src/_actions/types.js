@@ -67,3 +67,10 @@ export const weeklygames_action_types = {
 export const statistics_action_types = {
     GET_PLAYER_STATISTICS_SUCCESS : "GET_PLAYER_STATISTICS_SUCCESS",
 };
+
+
+export const cards_action_types = {
+    GET_ALL_CARDS_SUCCESS : "GET_ALL_CARDS_SUCCESS",
+    GET_ALL_CARDS_FAILED : "GET_ALL_CARDS_FAILED",
+    FIND_ACTIVE_CARD_SUCCESS : "FIND_ACTIVE_CARD_SUCCESS"
+}
