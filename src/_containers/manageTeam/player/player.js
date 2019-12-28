@@ -10,7 +10,7 @@ class Player extends Component {
                     />
                 </div>
                 <div className="row mt-1 justify-content-center">
-                    <div className="player-name-style">{this.props.info.name}</div>
+                    <h6 className="player-name-style">{this.props.info.name}</h6>
                 </div>
             </div>
         );
