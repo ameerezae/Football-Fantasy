@@ -11,7 +11,7 @@ export function leaderBoardReducer(state = initialState, action) {
                 return {...state, users: action.payload, users_fetched_success : action.users_fetched}
             case acc.leaderboard_action_types.GET_USERS_FAILURE:
                 return {...state, users_fetched_failed:action.users_fetched};
-            case acc.leaderboard_action_types.CLEAR_REDUCER_SUCCESS :
+            case acc.leaderboard_action_types.CLEAR_LEADERBOARD_REDUCER_SUCCESS :
                 return {users: [],users_fetched_failed: false,users_fetched_success: false};
             default:
             return state;
