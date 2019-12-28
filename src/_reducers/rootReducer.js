@@ -5,8 +5,10 @@ import manageTeamReaducer from "./manageTeamReaducer";
 import {searchReducer} from "./searchReducer"
 import {dashboardReducer} from "./dashboardReducer";
 import {statisticsReducer} from "./statisticsReducer";
-import {gameReducer} from "./gameReducer"
-import {gameDetailReducer} from "./gameDetailReducer"
+
+import {gameReducer} from "./gameReducer";
+import {gameDetailReducer} from "./gameDetailReducer";
+import {leaderBoardReducer} from "./leaderBoardReducer";
 import {cardsReducer} from "./cardsReducer";
 
 const rootReducer = combineReducers({
@@ -18,6 +20,7 @@ const rootReducer = combineReducers({
     statisticsReducer,
     gameReducer,
     gameDetailReducer,
+    leaderBoardReducer,
     cardsReducer,
 });
 

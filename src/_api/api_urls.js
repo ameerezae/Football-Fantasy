@@ -30,5 +30,7 @@ export const COMPETITIONS = MAIN + "/competition/list";
 export const PLAYER_STATISTICS = MAIN + "/statistics/player/";
 export const GAME_DETAIL_START = MAIN + "/match/";
 export const GAME_DETAIL_END = "/details";
+export const USER_RANKS_START= MAIN +"/team/";
+export const USER_RANKS_END= "/leaderboard";
 export const CARDS_START = MAIN + "/team/";
 export const CARDS_END = "/my-team/cards";
