@@ -6,7 +6,7 @@ export const getUsers = () => {
     return async function (dispatch) {
         const response = await leader_board_api.getUsers();
         // if (response.data[dashboardConstants.COMPETITIONS]) dispatch(dispatchGetUsers(response.data[dashboardConstants.COMPETITIONS]))
-        if (response.length !== 0) dispatch(dispatchGetUsersSuccess(response.data))
+        if (response.data.squads.length !== 0) dispatch(dispatchGetUsersSuccess(response.data))
         else dispatch(dispatchGetUsersFailure())
     }
 }
@@ -15,14 +15,14 @@ export const getUsers = () => {
 
 const dispatchGetUsersSuccess = (users) => (
     {
-        type: types.weeklygames_action_types.GET_GAMES_SUCCESS,
+        type: types.leaderboard_action_types.GET_USERS_SUCCESS,
         payload: users,
         users_fetched: true,
     }
 );
 const dispatchGetUsersFailure = () => (
     {
-        type: types.weeklygames_action_types.GET_GAMES_FAILURE,
+        type: types.leaderboard_action_types.GET_USERS_FAILURE,
         users_fetched: true,
     }
 );
@@ -34,4 +34,4 @@ export const clearReducer = () => {
     }
 };
 
-const dispatchClearReducer = () => ({type: types.weeklygames_action_types.CLEAR_REDUCER_SUCCESS});
+const dispatchClearReducer = () => ({type: types.leaderboard_action_types.CLEAR_LEADERBOARD_REDUCER_SUCCESS});
