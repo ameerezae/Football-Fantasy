@@ -7,6 +7,7 @@ import {dashboardReducer} from "./dashboardReducer";
 import {statisticsReducer} from "./statisticsReducer";
 import {gameReducer} from "./gameReducer"
 import {gameDetailReducer} from "./gameDetailReducer"
+import {cardsReducer} from "./cardsReducer";
 
 const rootReducer = combineReducers({
     authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     statisticsReducer,
     gameReducer,
     gameDetailReducer,
+    cardsReducer,
 });
 
 export default rootReducer;
