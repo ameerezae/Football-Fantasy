@@ -19,9 +19,26 @@ class LeaderBoard extends Component {
                 <div>
                     <h4 className="text-white mt-5 mb-3">LEADERBOARD</h4>
                     {this.props.leaderboard.users_fetched_success ?
-                        <div>
+                        <div className="container">
+                            <div className="row align-items-center">
+                                <div className="col">
+                                    <div className="row justify-content-center text-white">
+                                        RANK
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="row justify-content-center text-white">
+                                        SQUAD NAME
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="row justify-content-center text-white">
+                                        POINT
+                                    </div>
+                                </div>
+                            </div>
                             <ListGroup>
-                                {this.props.leaderboard.users.map((element, key) => {
+                                {this.props.leaderboard.users.squads.map((element, key) => {
 
 
                                         return (
@@ -33,42 +50,17 @@ class LeaderBoard extends Component {
                                                         <div className="row align-items-center">
                                                             <div className="col">
                                                                 <div className="row justify-content-center">
-                                                                    <img src={element.homeTeam.image} width={50} alt=""/>
+                                                                    {key + 1}
                                                                 </div>
                                                             </div>
                                                             <div className="col">
                                                                 <div className="row justify-content-center">
-                                                                    {element.homeTeam.name}
+                                                                    {element.name}
                                                                 </div>
                                                             </div>
                                                             <div className="col">
                                                                 <div className="row justify-content-center">
-                                                                    {element.homeTeamScore}
-                                                                </div>
-                                                            </div>
-                                                            <div className="col  row justify-content-center">
-                                                                <div className="container">
-                                                                    <div className="row justify-content-center">
-                                                                        <h5>-</h5>
-                                                                    </div>
-                                                                    <div className="row justify-content-center text-center">
-                                                                        {element.utcDate.replace("T","  ")}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col">
-                                                                <div className="row justify-content-center">
-                                                                    {element.awayTeamScore}
-                                                                </div>
-                                                            </div>
-                                                            <div className="col">
-                                                                <div className="row justify-content-center">
-                                                                    {element.awayTeam.name}
-                                                                </div>
-                                                            </div>
-                                                            <div className="col">
-                                                                <div className="row justify-content-center">
-                                                                    <img src={element.awayTeam.image} width={50} alt=""/>
+                                                                    {element.point}
                                                                 </div>
                                                             </div>
                                                         </div>
