@@ -6,6 +6,7 @@ import {searchReducer} from "./searchReducer"
 import {dashboardReducer} from "./dashboardReducer";
 import {statisticsReducer} from "./statisticsReducer";
 import {gameReducer} from "./gameReducer"
+import {gameDetailReducer} from "./gameDetailReducer"
 import {cardsReducer} from "./cardsReducer";
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     dashboardReducer,
     statisticsReducer,
     gameReducer,
+    gameDetailReducer,
     cardsReducer,
 });
 
