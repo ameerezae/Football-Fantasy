@@ -71,6 +71,7 @@ class Bench extends Component {
                                         >
                                             <div className={key === this.props.myTeam.firstSelected ? "row justify-content-center exchange-color" : "row justify-content-center" }>
                                                 <Player number={key} info={element}/>
+                                                <p style={{backgroundColor:"#ffb400",color:"white"}}>{element.position}</p>
                                             </div>
                                             <div className="row justify-content-center">
                                                 <FaExchangeAlt

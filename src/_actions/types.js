@@ -73,7 +73,13 @@ export const statistics_action_types = {
 export const gamedetail_action_types = {
     GET_GAME_DETAIL_SUCCESS : "GET_GAME_DETAIL_SUCCESS",
     GET_GAME_DETAIL_FAILURE : "GET_GAME_DETAIL_FAILURE",
-    CLEAR_REDUCER_SUCCESS : "CLEAR_REDUCER_SUCCESS",
+    GAME_DETAIL_CLEAR_REDUCER_SUCCESS : "GAME_DETAIL_CLEAR_REDUCER_SUCCESS",
+}
+
+export const cards_action_types = {
+    GET_ALL_CARDS_SUCCESS : "GET_ALL_CARDS_SUCCESS",
+    GET_ALL_CARDS_FAILED : "GET_ALL_CARDS_FAILED",
+    FIND_ACTIVE_CARD_SUCCESS : "FIND_ACTIVE_CARD_SUCCESS"
 }
 
 export const leaderboard_action_types = {
