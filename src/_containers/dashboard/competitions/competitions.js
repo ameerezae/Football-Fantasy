@@ -28,7 +28,7 @@ class Competitions extends Component {
                         return (
                             <div className="card-custom card">
                                 <div className="card-img card-custom-img"
-                                     style={{backgroundImage:"url(https://images.unsplash.com/photo-1491374812364-00028bbe7d2f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a22e4862c36c552e726815949fbcb41a&auto=format&fit=crop&w=500&q=60"}}>
+                                     style={{backgroundImage: `url(${element.image})`}}>
                                     <div className="overlay">
                                         <div key={key} className="overlay-content">
                                             <a href="#!" onClick={(event)=>{this.handleSelect(key,event)}}>Choose</a>
