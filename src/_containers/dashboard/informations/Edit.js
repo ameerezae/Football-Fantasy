@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Modal from "react-awesome-modal";
+// import Modal from "react-awesome-modal";
 import {MdClose} from "react-icons/all";
 import "./scss/information.scss";
 import {TextInput} from "react-responsive-ui";
 import DashboardApis from "../../../_api/dashboardApi";
 import * as dashboard_constants from "../../../constants/dashboard/dashboardConstants";
 import * as universal_contants from "../../../constants/universalConstants";
-import {Button, Spinner, Alert} from "react-bootstrap";
+import {Button, Spinner, Alert, Modal} from "react-bootstrap";
 
 class Edit extends Component {
     state = {
@@ -21,8 +21,8 @@ class Edit extends Component {
         preloader : false,
     };
 
-    toggleModal = () => {
-        this.setState({toggle: !this.state.toggle});
+    toggleModal = (state) => {
+        this.setState({toggle: state});
     };
 
     handleChange = (name, value) => {
@@ -62,59 +62,61 @@ class Edit extends Component {
         return (
             <div>
                 <div className="row justify-content-center cursor-to-pointer" onClick={() => {
-                    this.toggleModal()
+                    this.toggleModal(true)
                 }}><Button variant="primary">EDIT</Button>
                 </div>
-                <Modal style={{overflowY: "auto"}} visible={this.state.toggle} effect="fadeInUp"
-                       onClickAway={() => this.toggleModal()} width="800">
-                    <div className="container">
-                        <div className="row mt-3 justify-content-start align-items-center">
-                            <MdClose style={{fontSize: "2rem", cursor: "pointer"}} className="mx-4"
-                                     onClick={() => this.toggleModal()}/>
-                        </div>
-                    </div>
-                    <div className="container pb-3 px-5" style={{direction: "ltr"}}>
-                        <div className="row align-items-center justify-content-center">
-                            <div className="col-sm-12 align-items-center justify-content-center">
-                                <form className="remove-margin"
-                                      onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
-                                    <TextInput
-                                        className="mb-4"
-                                        type="text"
-                                        label="username"
+                <Modal show={this.state.toggle} size="xl" scrollable
+                       onHide={() => {this.toggleModal(false);console.log(this.state.toggle)}}
+                       onExit={() => {this.toggleModal(false);console.log(this.state.toggle)}}
 
-                                        value={this.state.data.username}
-                                        onChange={(value) => {
-                                            this.handleChange("username", value)
-                                        }}
-                                    />
-                                    <TextInput
-                                        className="mb-4"
-                                        type="email"
-                                        label="email"
-                                        value={this.state.data.email}
-                                        onChange={(value) => {
-                                            this.handleChange("email", value)
-                                        }}
-                                    />
-                                    <TextInput
-                                        className="mb-4"
-                                        type="password"
-                                        label="password"
-                                        value={this.state.data.password}
-                                        onChange={(value) => {
-                                            this.handleChange("password", value)
-                                        }}
-                                    />
-                                    {this.state.preloader ?   <Spinner animation="grow" variant="success"/> :
-                                        this.state.success ? <Alert variant = "success">{this.state.success}</Alert> :
-                                            this.state.failed ? <Alert variant = "danger">{this.state.failed}</Alert>:
-                                                <Button type="submit" variant="success">Confirm</Button>
-                                    }
-                                </form>
+                       >
+                    <Modal.Header closeButton>
+                        <Modal.Title>MATCH DETAILS</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="container pb-3 px-5" style={{direction: "ltr"}}>
+                            <div className="row align-items-center justify-content-center">
+                                <div className="col-sm-12 align-items-center justify-content-center">
+                                    <form className="remove-margin"
+                                          onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
+                                        <TextInput
+                                            className="mb-4"
+                                            type="text"
+                                            label="username"
+
+                                            value={this.state.data.username}
+                                            onChange={(value) => {
+                                                this.handleChange("username", value)
+                                            }}
+                                        />
+                                        <TextInput
+                                            className="mb-4"
+                                            type="email"
+                                            label="email"
+                                            value={this.state.data.email}
+                                            onChange={(value) => {
+                                                this.handleChange("email", value)
+                                            }}
+                                        />
+                                        <TextInput
+                                            className="mb-4"
+                                            type="password"
+                                            label="password"
+                                            value={this.state.data.password}
+                                            onChange={(value) => {
+                                                this.handleChange("password", value)
+                                            }}
+                                        />
+                                        {this.state.preloader ?   <Spinner animation="grow" variant="success"/> :
+                                            this.state.success ? <Alert variant = "success">{this.state.success}</Alert> :
+                                                this.state.failed ? <Alert variant = "danger">{this.state.failed}</Alert>:
+                                                    <Button type="submit" variant="success">Confirm</Button>
+                                        }
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Modal.Body>
                 </Modal>
             </div>
         );
