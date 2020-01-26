@@ -35,7 +35,9 @@ class PersonalInfo extends Component {
                                             </div>
                                             <div className="row mt-2">
                                                 <div className="col-3   whiteText text-center"><Edit/></div>
-                                                <div className="col-9  whiteText text-center"><Button variant="danger">LOGOUT</Button></div>
+                                                <div className="col-9  whiteText text-center"><Button href={"/"} variant="danger" onClick={()=>{
+                                                    localStorage.removeItem("access-token");
+                                                }}>LOGOUT</Button></div>
                                             </div>
                                         </div>
 
