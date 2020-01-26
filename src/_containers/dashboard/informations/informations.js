@@ -5,7 +5,7 @@ import {getUserInformation} from "../../../_actions/dashboardActions";
 import * as dashboardConstants from "../../../constants/dashboard/dashboardConstants";
 import "./scss/information.scss";
 import Edit from "./Edit";
-import {Alert} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
 class Information extends Component {
     componentWillMount() {
@@ -195,14 +195,26 @@ class Information extends Component {
                     </div>
                     :
 
-                    <div className="row align-items-center mt-5">
-                        <div className="col-12">
-                            <Alert variant="info">
-                                <Alert.Heading>No Team</Alert.Heading>
-                                <p>
-                                    you have no team in this competition. </p>
-                                <hr/>
-                            </Alert>
+                    <div className="row">
+                        <div style={{width:"100%"}} className="card-custom card">
+                            <div className="card-img card-custom-img"
+                                 style={{backgroundImage:"url(https://www.itl.cat/pngfile/big/38-381433_photo-wallpaper-wallpaper-sport-stadium-football-allianz-arena.jpg)"}}>
+                                <div className="row align-items-center justify-content-center">
+                                    <div className="col-6 offset-6">
+                                        <div className="no-team-background">
+                                            <div className="container">
+                                                <div className="row">
+                                                    <h5 className="mt-5 p-4 whiteText text-center">you have no team in this competition if you want to have a team hover this box.</h5>
+                                                </div>
+                                                <div className="row justify-content-center">
+                                                    <Button variant="success" href="/picksquad">MAKE YOUR TEAM NOW!</Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 }
