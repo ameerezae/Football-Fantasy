@@ -4,6 +4,7 @@ import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@mat
 import {bindActionCreators} from "redux";
 import {calculateMoney} from "./calculateMoney";
 import Swal from "sweetalert2";
+import {setSortedPlayers} from "../../_actions/searchActions"
 import {
     setDefenders,
     setMiddles,
@@ -66,6 +67,9 @@ class PlayersTable extends Component {
         return true;
     };
 
+    endHandler = () => {
+        console.log("hi")
+    }
 
     choosePlayer = (index) => {
         const playerDetails = this.props.format.filteredItems[index];
@@ -83,9 +87,12 @@ class PlayersTable extends Component {
             if (chosenPos[this.props.format.pickedKey] == null) {
                 chosenPos[this.props.format.pickedKey] = playerDetails;
                 const newWholeItems = this.props.search.sortedPlayers.filter(element => element.id !== playerDetails.id);
+                this.props.setSortedPlayers(newWholeItems);
+                console.log("ay baba ajab giri kardim",chosenPos)
                 switch (this.props.format.pickedPosition) {
 
                     case "Defender" :
+
                         this.props.setDefenders(chosenPos);
                         break;
 
@@ -113,7 +120,7 @@ class PlayersTable extends Component {
                 this.props.format.pickedPosition !== "bench" ?
                     filteredPosition = newWholeItems.filter(element => element.position === this.props.format.pickedPosition)
                     :
-                    filteredPosition = newWholeItems;
+                    filteredPosition = this.props.search.partsortedPlayers;
                 this.props.setFilteredPosition(filteredPosition);
                 const remainedMoney = calculateMoney(this.props.format.Defender, this.props.format.Midfielder, this.props.format.Forward, this.props.format.bench, this.props.format.Goalkeeper)
                 this.props.setRemainedMoney(remainedMoney)
@@ -153,7 +160,7 @@ class PlayersTable extends Component {
                 {this.props.search.arePlayedFetched ?
                     <div className={!this.props.format.pickedPosition ? "disabled-all" : null}>
                         <List style={{overflow: "auto", height: "500px"}} twoLine
-                              handleSelect={(activatedItemIndex) => this.choosePlayer(activatedItemIndex)}>
+                              handleSelect={(activatedItemIndex) => {this.choosePlayer(activatedItemIndex)}} onEndReached={()=>{console.log("heelloooooo\n\n\n\n\n\n\n\nhhiiiiii")}}>
                             {this.props.format.filteredItems ?
                                 this.props.format.filteredItems.map((element, key) => {
                                     return (
@@ -175,8 +182,8 @@ class PlayersTable extends Component {
 
                                     )
                                 }) :
-                                this.props.search.sortedPlayers ?
-                                    this.props.search.sortedPlayers.map((element, key) => {
+                                this.props.search.partsortedPlayers?
+                                    this.props.search.partsortedPlayers.map((element, key) => {
                                         return (
                                             <ListItem key={key} disabled={this.props.format.pickedPosition ? false : true}>
                                                 <ListItemGraphic className="list-image"
@@ -194,7 +201,7 @@ class PlayersTable extends Component {
                                         )
 
 
-                                    }) : null}
+                                    }) : console.log("element.name") }
                         </List>
                     </div>
 
@@ -228,7 +235,8 @@ function mapDispatchToProps(dispatch) {
         setBench,
         setWholeItems,
         setFilteredPosition,
-        setRemainedMoney
+        setRemainedMoney,
+        setSortedPlayers
 
     }, dispatch)
 }
