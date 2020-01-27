@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {connect} from "react-redux";
 import {calculateMoney} from "./calculateMoney";
 import Swal from 'sweetalert2'
+import {setSortedPlayers} from "../../_actions/searchActions"
 import {
     toggleModal,
     setGoalKeeper,
@@ -28,6 +29,7 @@ class DetailsModal extends Component {
         }
         let newWholeItems = [...this.props.search.sortedPlayers];
         newWholeItems.push(this.props.format[this.props.format.pickedPosition][this.props.format.pickedKey])
+        this.props.setSortedPlayers(newWholeItems);
         this.props.setWholeItems(newWholeItems);
         let filteredPosition;
         this.props.format.pickedPosition !== "bench" ?
@@ -131,7 +133,8 @@ function mapDispatchToProps(dispatch) {
         setWholeItems,
         setFilteredPosition,
         setCaptain,
-        setRemainedMoney
+        setRemainedMoney,
+        setSortedPlayers
     }, dispatch)
 }
 

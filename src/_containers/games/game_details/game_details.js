@@ -4,7 +4,8 @@ import {bindActionCreators} from "redux";
 import {Modal} from "react-bootstrap";
 import {toggleModal,setSelectedGame} from "../../../_actions/weeklyGamesActions";
 import {clearReducer} from "../../../_actions/gameDetailActions";
-import {DETAIL_SUBJECT} from "../../../constants/games/gamesConstants"
+import {DETAIL_SUBJECT} from "../../../constants/games/gamesConstants";
+import "./game_details.scss";
 class Game_details extends Component {
 
     render() {
@@ -21,7 +22,7 @@ class Game_details extends Component {
                         <Modal.Title>MATCH DETAILS</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div className="container">
+                        <div className="container match-event-background p-2">
                             <div className="row align-items-center">
                                 <div className="col">
                                     <div className="row justify-content-center">

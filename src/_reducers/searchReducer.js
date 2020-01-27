@@ -2,6 +2,7 @@ import * as acc from "../_actions/types"
 const initialState = {
     players : [],
     sortedPlayers : [],
+    partsortedPlayers : [],
     status : [],
     clubs : [],
     fetchedClubs : [],
@@ -17,7 +18,7 @@ const initialState = {
 export function searchReducer(state = initialState, action) {
         switch (action.type) {
             case acc.search_action_types.GET_PLAYERS_SUCCESS:
-                return {...state, players: action.payload, sortedPlayers: [...action.payload], arePlayedFetched:true}
+                return {...state, players: action.payload, sortedPlayers: [...action.payload],partsortedPlayers: action.payload.slice(0,15), arePlayedFetched:true}
             case acc.search_action_types.GET_PLAYERS_FAILURE:
                 console.log("internal_server_error")
             case acc.search_action_types.SET_PLAYERS_STATUS_SUCCESS:
@@ -33,11 +34,11 @@ export function searchReducer(state = initialState, action) {
             case acc.search_action_types.SET_NAME_SUCCESS:
                     return {...state, name: action.payload}
             case acc.search_action_types.SET_SORTED_PLAYERS_SUCCESS:
-                    return {...state, sortedPlayers: action.payload}
+                    return {...state, sortedPlayers: action.payload , partsortedPlayers: action.payload.slice(0,15)}
             case acc.search_action_types.SET_SORT_SUCCESS:
                     return {...state, sortBy: action.payload}
             case acc.search_action_types.SET_LISTS_SUCCESS:
-                    return {...state, players: action.players, sortedPlayers: action.sortedPlayers}
+                    return {...state, players: action.players, sortedPlayers: action.sortedPlayers,partsortedPlayers: action.sortedPlayers.slice(0,15)}
             default:
             return state;
         }
