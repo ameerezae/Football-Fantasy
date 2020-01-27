@@ -69,6 +69,7 @@ export const selectRandomSquad= (props,clubs) => {
     }
     for(i=0;i<5;i++)
     {
+        console.log(randomClubs)
         console.log(clubs[randomClubs[i]].name)
         randomClubs[i] = clubs[randomClubs[i]].id
     }
