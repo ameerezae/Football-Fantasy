@@ -483,14 +483,29 @@ class PickSquadContainer extends Component {
                                                 })
                                                 this.props.history.push(`/manageteam`)
                                             } else {
-                                                console.log("ma injaEm bax",res)
-                                                Swal.fire({
-                                                    position: 'center',
-                                                    type: 'error',
-                                                    title: res.data.message.captain[0],
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                })
+                                                console.log(typeof(res.data.message)==='object');
+                                                console.log(typeof(res.data.message))
+                                                if(typeof(res.data.message)==='object')
+                                                {
+                                                    console.log("ma injaEm bax",res)
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'error',
+                                                        title: res.data.message.captain[0],
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+                                                else{
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'error',
+                                                        title: res.data.message,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+
                                             }
                                         }
 
