@@ -1,35 +1,18 @@
 import React, {Component} from 'react';
-import {Carousel} from "react-bootstrap";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {getAllCompetitions, setCurrentCompitition} from "../../../_actions/dashboardActions";
-import Competition from "./competiton/competition";
 import "./competitions.scss"
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
-import {Alert} from "react-bootstrap";
+
 
 
 class Competitions extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            nav1: null,
-            nav2: null
-        };
-    }
 
-    componentDidMount() {
-        this.setState({
-            nav1: this.slider1,
-            nav2: this.slider2
-        });
-    }
 
     componentWillMount() {
         this.props.getAllCompetitions();
     }
+
     handleSelect = (selectedIndex, e) => {
         let compete = this.props.dashboard.competitions[selectedIndex]
         console.log("hi we are in handleSelect: ",compete)
@@ -39,72 +22,38 @@ class Competitions extends Component {
 
         return (
             <div>
-                {/*<Slider*/}
-                {/*    asNavFor={this.state.nav2}*/}
-                {/*    ref={slider => (this.slider1 = slider)}*/}
-                {/*    arrows={false}*/}
-                {/*    fade*/}
-                {/*    className="row align-items-center justify-content-center"*/}
-                {/*    useCSS*/}
-                {/*    useTransform*/}
-                {/*    centerMode*/}
-                {/*>*/}
+                <h3 className="text-white">COMPETITIONS</h3>
+                {this.props.dashboard.areCompetitionsFetched ?
+                    this.props.dashboard.competitions.map((element,key) => {
+                        return (
+                            <div className="card-custom card">
+                                <div className="card-img card-custom-img"
+                                     style={{backgroundImage: `url(${element.image})`}}>
+                                    <div className="overlay">
+                                        <div key={key} className="overlay-content">
+                                            <a href="#!" onClick={(event)=>{this.handleSelect(key,event)}}>Choose</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                {/*    {this.props.dashboard.areCompetitionsFetched ?*/}
-                {/*        this.props.dashboard.competitions.map((element) => {*/}
-                {/*            return (*/}
-                {/*                <div className="">*/}
-                {/*                    <img src={element.image} alt={"ime"} height="250px"*/}
-                {/*                         width="50%" className="yours-custom-class"/>*/}
-                {/*                </div>*/}
-
-                {/*            )*/}
-                {/*        })*/}
-                {/*        : null}*/}
-                {/*</Slider>*/}
-                {/*<Slider*/}
-                {/*    asNavFor={this.state.nav1}*/}
-                {/*    ref={slider => (this.slider2 = slider)}*/}
-                {/*    slidesToShow={2}*/}
-                {/*    swipeToSlide={true}*/}
-                {/*    focusOnSelect={true}*/}
-                {/*    centerMode={true}*/}
-                {/*    afterChange={(index)=>{this.handleSelect(index)}}*/}
-                {/*    className="row mx-4 p-4 text-white justify-content-center"*/}
-                {/*    // initialSlide={localStorage.getItem("current_comp_index")}*/}
-                {/*>*/}
-                {/*    {this.props.dashboard.areCompetitionsFetched ?*/}
-                {/*        this.props.dashboard.competitions.map((element) => {*/}
-                {/*            return (*/}
-                {/*                <div className="p-4 mx-auto bg-danger">*/}
-                {/*                    {element.name}*/}
-                {/*                </div>*/}
-                {/*            )*/}
-                {/*        })*/}
-                {/*        : null}*/}
-                {/*</Slider>*/}
-
-                <Carousel interval={0} onSelect={this.handleSelect}>
-                    {this.props.dashboard.areCompetitionsFetched ?
-                        this.props.dashboard.competitions.map((element) => {
-                            return (
-
-                                <Carousel.Item>
-                                    <img className="d-block"
-                                         src={element.image}
-                                         alt="competition"
-                                         height="500px"
-                                         width="100%"
-                                    />
-                                    <Carousel.Caption>
-                                        <h3 className="text-black-50">{element.name}</h3>
-                                        <p className="text-black-50">{element.area.name}</p>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                            )
-                        })
-                        : null}
-                </Carousel>
+                                <div  style={this.props.dashboard.selectedCompetition.id === element.id ? {backgroundColor:"#5fdba7"} : {}} className="card-content card-custom-content">
+                                    <a href="#!">
+                                        <div className="row">
+                                            <div className="justify-content-center">
+                                                <h2>{element.name}</h2>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="justify-content-center">
+                                                <p>{element.area.name}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        )
+                    })
+                    : null}
             </div>
 
 
