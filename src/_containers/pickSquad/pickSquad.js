@@ -16,7 +16,8 @@ import {
     setPickedPosition,
     setPickedKey,
     toggleModal,
-    setSquadName
+    setSquadName,
+    selectRandomSquad
 } from "../../_actions/squadActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -59,27 +60,35 @@ class PickSquadContainer extends Component {
             if (key === "Defender" || key === "Goalkeeper" || key === "Forward" || key === "Midfielder") {
                 const newData = data[key];
                 for (let i = 0; i < newData.length; i++) {
-                    newData[i]["lineup"] = true;
+                    if(newData[i] != null)
+                        newData[i]["lineup"] = true;
                     picks.push(newData[i]);
                 }
             } else if (key === "bench") {
                 const newData = data[key];
                 for (let i = 0; i < newData.length; i++) {
-                    newData[i]["lineup"] = false;
+                    if(newData[i] != null)
+                        newData[i]["lineup"] = false;
                     picks.push(newData[i]);
                 }
 
             }
         });
-        for (let i = 0; i < picks.length; i++) {
-            picks[i]["player_id"] = picks[i].id;
-        }
+        console.log("fucking bitch",picks)
+        if(!picks.includes(null))
+            for (let i = 0; i < picks.length; i++) {
+                picks[i]["player_id"] = picks[i].id;
+            }
+        console.log("ay baba bazam in ke")
         changedData["squad"] = picks;
         let newChangedData = {};
-        newChangedData["squad"] = changedData["squad"];
-        newChangedData["captain"] = changedData["captain-id"];
+        if(changedData["captain-id"] != null)
+            newChangedData["captain"] = changedData["captain-id"];
+        if(changedData["squad"]!= null)
+            newChangedData["squad"] = changedData["squad"];
         newChangedData["favorite-team"] = "arsenal";
-        newChangedData["name"] = changedData["squad-name"];
+        if(changedData["squad-name"]!= null)
+            newChangedData["name"] = changedData["squad-name"];
         newChangedData["budget"] = changedData["budget"];
 
         try {
@@ -108,6 +117,20 @@ class PickSquadContainer extends Component {
         }
     }
 
+    handleRandom = (event) => {
+        if(this.props.format.format != undefined && this.props.search.fetchedClubs.length!=0)
+            this.props.selectRandomSquad(this.props.format,this.props.search.fetchedClubs)
+        else{
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: "Choose a Format for your squad",
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+    }
+
     onClick = (event) => {
         const position = event.target.name;
         const id = event.target.id;
@@ -116,13 +139,16 @@ class PickSquadContainer extends Component {
         position !== "bench" ?
             filteredPosition = this.props.search.sortedPlayers.filter(element => element.position === position)
             :
-            filteredPosition = this.props.search.sortedPlayers;
+            filteredPosition = this.props.search.partsortedPlayers;
+        console.log("this is filted Positions",filteredPosition)
+        
         this.props.setFilteredPosition(filteredPosition);
         this.props.setPickedPosition(position);
         this.props.setPickedKey(id);
     };
 
     pickedPlayerOnClick = (event) => {
+        console.log("pickedPlayerOnClick",event.target)
         const position = event.target.name;
         const id = event.target.id;
         this.props.setPickedPosition(position);
@@ -457,20 +483,41 @@ class PickSquadContainer extends Component {
                                                 })
                                                 this.props.history.push(`/manageteam`)
                                             } else {
-                                                Swal.fire({
-                                                    position: 'center',
-                                                    type: 'error',
-                                                    title: res.data.message,
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                })
+                                                console.log(typeof(res.data.message)==='object');
+                                                console.log(typeof(res.data.message))
+                                                if(typeof(res.data.message)==='object')
+                                                {
+                                                    console.log("ma injaEm bax",res)
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'error',
+                                                        title: res.data.message.captain[0],
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+                                                else{
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        type: 'error',
+                                                        title: res.data.message,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+
                                             }
                                         }
 
                                         }>Confirm</Button>
                                     </div>
+                                    <div className="row justify-content-end">
+                                        <Button style={{marginTop : 4}} variant="light" size="md" onClick={(event) => {
+                                           this.handleRandom(event)
+                                        }
+                                        }>Random</Button>
+                                    </div>
                                 </div>
-
                             </div>
                             <hr style={{background: "white"}}/>
                             <DetailsModal/>
@@ -524,7 +571,9 @@ function mapDispatchToProps(dispatch) {
         setPickedPosition,
         setPickedKey,
         toggleModal,
-        setSquadName
+        setSquadName,
+        selectRandomSquad
+
 
     }, dispatch)
 }
