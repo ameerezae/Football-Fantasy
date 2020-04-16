@@ -16,3 +16,15 @@ export const CONFIG_WITH_AUTH = {
 };
 
 
+export const CONFIG_WITH_TOKEN = (accessToken) => ({
+    mode: "cors",
+    headers:
+        {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${accessToken}`
+        }
+});
+
+
+
+
