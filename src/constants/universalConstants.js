@@ -6,6 +6,7 @@ export const REQUESTS_STATUS = {
     OK: 200,
     CREATED: 201,
     BAD_REQUEST: 400,
+    ACCEPTED : 202,
 };
 
 export const CONFIG_WITH_AUTH = {
