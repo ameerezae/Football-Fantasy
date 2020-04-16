@@ -8,10 +8,12 @@ class CardsApi {
     static async getAllCards(){
         const url = url_handler.competition_handler(api_urls.CARDS_START, api_urls.CARDS_END);
         try {
+            const accessToken = localStorage.getItem(universalConstants.ACCESS_TOKEN);
+            const config = universalConstants.CONFIG_WITH_TOKEN(accessToken);
             const respone = await axios.get(
                 url,
-                universalConstants.CONFIG_WITH_AUTH
-            )
+                config
+            );
             if(respone) return respone;
         }catch (e) {
             if(e.response) return e.response;
@@ -21,6 +23,8 @@ class CardsApi {
     static async postCard(name ,mode){
         const url = url_handler.competition_handler(api_urls.CARDS_START, api_urls.CARDS_END);
         try {
+            const accessToken = localStorage.getItem(universalConstants.ACCESS_TOKEN);
+            const config = universalConstants.CONFIG_WITH_TOKEN(accessToken);
             const response = await axios.post(
                 url,
                 JSON.stringify(
@@ -29,7 +33,7 @@ class CardsApi {
                         mode : mode
                     }
                 ),
-                universalConstants.CONFIG_WITH_AUTH
+                config
             );
             if(response) return response;
         }catch (e) {

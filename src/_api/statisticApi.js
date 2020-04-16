@@ -8,10 +8,12 @@ class StatisticApi{
     static async getPlayerStatistics(player_id){
 
         try{
+            const accessToken = localStorage.getItem(universalConstants.ACCESS_TOKEN);
+            const config = universalConstants.CONFIG_WITH_TOKEN(accessToken);
             const url = url_handler.player_handler(api_urls.PLAYER_STATISTICS, player_id);
             const response = await axios.get(
                 url,
-                universalConstants.CONFIG_WITH_AUTH
+                config
             );
             if(response) return  response;
 
