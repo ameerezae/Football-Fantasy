@@ -4,15 +4,15 @@ import {Button} from "react-bootstrap";
 import * as dashboardConstants from "../../../constants/dashboard/dashboardConstants";
 import Edit from "./Edit";
 import *as universalCons from "../../../constants/universalConstants";
-
+import "./scss/information.scss";
 
 class PersonalInfo extends Component {
     render() {
         return (
             <div className="row">
                 <div style={{width:"100%"}} className="card-custom card">
-                    <div className="card-img card-custom-img"
-                         style={{backgroundImage:"url(https://i.dailymail.co.uk/i/pix/2017/10/26/07/459C6D6600000578-0-image-a-13_1508998092047.jpg)"}}>
+                    <div className="card-img card-custom-img personal-info-style"
+                         >
                         <div className="row align-items-center">
                             <div className="col-6">
                                 <div className="no-team-background">
