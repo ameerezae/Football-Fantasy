@@ -34,3 +34,4 @@ export const USER_RANKS_START= MAIN +"/team/";
 export const USER_RANKS_END= "/leaderboard";
 export const CARDS_START = MAIN + "/team/";
 export const CARDS_END = "/my-team/cards";
+export const EMAIL_CONFIRMATION = MAIN + "/auth/registeration/activate/";
