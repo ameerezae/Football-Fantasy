@@ -11,6 +11,9 @@ import {bindActionCreators} from "redux";
 import Dashboard from "../dashboard/dashboard/dashboard";
 import WeeklyGames from "../games/game_list/WeeklyGames";
 import LeaderBoard from "../leaderBoard/leaderBoardList/leaderBoardList";
+import * as universalCons from "../../constants/universalConstants";
+import Swal from "sweetalert2";
+
 class ManageTeam extends Component {
     // async componentWillMount() {
     //     const response = await this.props.getMyTeam()
@@ -19,6 +22,25 @@ class ManageTeam extends Component {
     //     };
     //
     // }
+    componentWillMount() {
+        if(!this.isAuthorized()) {
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: 'please log in first!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            this.props.history.push("/");
+        }
+    }
+
+
+    isAuthorized = () => {
+        const token = localStorage.getItem(universalCons.ACCESS_TOKEN);
+        return !!token;
+    };
+
 
     render() {
         return (
