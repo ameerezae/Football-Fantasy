@@ -21,24 +21,24 @@ class PersonalInfo extends Component {
 
                                         <div className="container">
                                             <div className="row">
-                                                <div className="col-3 mt-3 p-4 whiteText text-center">USERNAME</div>
-                                                <div className="col-9 mt-3 p-4 whiteText text-center">
+                                                <div className="col-5 mt-3 p-4 whiteText text-center">USERNAME</div>
+                                                <div className="col-7 mt-3 p-4 whiteText text-center">
                                                     <h5>
                                                         {this.props.dashboard.information[dashboardConstants.INFORMATION_CONSTANTS.USER][dashboardConstants.INFORMATION_CONSTANTS.USER_NAME]}
                                                     </h5>
                                                 </div>
                                             </div>
                                             <div className="row ">
-                                                <div className="col-3   whiteText text-center">EMAIL</div>
-                                                <div className="col-9  whiteText text-center">
+                                                <div className="col-5   whiteText text-center">EMAIL</div>
+                                                <div className="col-7  whiteText text-center">
                                                     <h5>
                                                         {this.props.dashboard.information[dashboardConstants.INFORMATION_CONSTANTS.USER][dashboardConstants.INFORMATION_CONSTANTS.EMAIL]}
                                                     </h5>
                                                 </div>
                                             </div>
                                             <div className="row mt-2">
-                                                <div className="col-3   whiteText text-center"><Edit/></div>
-                                                <div className="col-9  whiteText text-center">
+                                                <div className="col-5   whiteText text-center"><Edit/></div>
+                                                <div className="col-7  whiteText text-center">
                                                         <Button variant="danger" href={"/"} onClick={()=>{
                                                             localStorage.removeItem(universalCons.ACCESS_TOKEN);
                                                             localStorage.removeItem(universalCons.REFRESH_TOKEN);
