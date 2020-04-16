@@ -1,5 +1,7 @@
 export const ACCESS_TOKEN = "access_token";
 export const REFRESH_TOKEN = "refresh_token";
+export const CURRENT_COMP = "current_competition";
+
 export const REQUESTS_STATUS = {
     OK: 200,
     CREATED: 201,
