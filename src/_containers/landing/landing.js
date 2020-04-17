@@ -28,27 +28,10 @@ class Landing extends Component {
                                 <nav class="h-100 navbar navbar-expand-lg align-items-center">
                                     <a class="navbar-brand" href="index.html">FOOTBALL FANTASY</a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fancyNav" aria-controls="fancyNav" aria-expanded="false" aria-label="Toggle navigation"><span class="ti-menu"></span></button>
-                                    <div class="collapse navbar-collapse" id="fancyNav">
+                                    <div class="navbar-collapse" id="fancyNav">
                                         <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="index.html">Home</a>
-                                                    <a class="dropdown-item" href="static-page.html">Static Page</a>
-                                                    <a class="dropdown-item" href="contact.html">Contact</a>
-                                                </div>
-                                            </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Work</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="static-page.html">Blog</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Shop</a>
+                                                <a class="nav-link" href="/howtouse">How To Use</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a  class="nav-link" href="/login">Login/Signup</a>
@@ -87,15 +70,13 @@ class Landing extends Component {
                                     <div className="row align-items-center mb-5">
                                         <div className="col-6 offset-3 justify-content-center">
                                             <h6 className="whiteText text-center">
-                                                With over 6 million players, Fantasy Premier League is the biggest Fantasy Football game in the world. It’s FREE to play and you can win great prizes!
+                                                With 4 competition and 3 million players, Fantasy  is the biggest Fantasy Football game in the world. It’s FREE to play and you can win great prizes!
                                             </h6>
                                         </div>
                                     </div>
 
-
-
-                                    <a href="#" class="btn fancy-btn fancy-active">About Us</a>
-                                    <a href="#" class="btn fancy-btn">Get a quote</a>
+                                    <a href="/howtouse" className="btn fancy-btn fancy-active">How To Use</a>
+                                    <a href="/login" className="btn fancy-btn">Login</a>
                                 </div>
                             </div>
                         </div>
@@ -106,23 +87,23 @@ class Landing extends Component {
                         <div class="row">
                             <div class="col-12">
                                 <div class="fancy-top-features-content">
-                                    <div class="row no-gutters">
+                                    <div id="procedure" class="row no-gutters">
                                         <div class="col-12 col-md-4">
                                             <div class="single-top-feature">
-                                                <h5><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Reliability</h5>
-                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                                <h5><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Join</h5>
+                                                <p>Create your account and have your own teams</p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="single-top-feature">
-                                                <h5><i class="fa fa-clock-o" aria-hidden="true"></i> Expertise</h5>
-                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                                <h5><i class="fa fa-clock-o" aria-hidden="true"></i> Create your squad</h5>
+                                                <p>Use your budget of £100m to pick a squad of 15 players from competitions.</p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="single-top-feature">
-                                                <h5><i class="fa fa-diamond" aria-hidden="true"></i> Quality</h5>
-                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                                <h5><i class="fa fa-diamond" aria-hidden="true"></i> Play</h5>
+                                                <p>Play against friends and family, colleagues or a web community. </p>
                                             </div>
                                         </div>
                                     </div>
