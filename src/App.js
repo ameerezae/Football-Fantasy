@@ -7,6 +7,8 @@ import PickSquadContainer from "./_containers/pickSquad/pickSquad";
 import ManageTeam from "./_containers/manageTeam/manageTeam";
 import Landing from "./_containers/landing/landing";
 import EmailAccept from "./_containers/email_acceptance/email_accept";
+import HowToUse from "./components/HowToUsePage/HowToUse";
+
 
 class App extends Component {
   render() {
@@ -22,6 +24,7 @@ class App extends Component {
                             <Route path="/manageTeam" component={ManageTeam}/>
                             <Route exact path="/" component={Landing}/>
                             <Route path="/auth/registeration/activate/:token" component={EmailAccept}/>
+                            <Route path="/howtouse" component={HowToUse}/>
                         </Switch>
                     </div>
                 </div>
