@@ -13,6 +13,7 @@ import WeeklyGames from "../games/game_list/WeeklyGames";
 import LeaderBoard from "../leaderBoard/leaderBoardList/leaderBoardList";
 import * as universalCons from "../../constants/universalConstants";
 import Swal from "sweetalert2";
+import * as dashboardConstants from "../../constants/dashboard/dashboardConstants";
 
 class ManageTeam extends Component {
     // async componentWillMount() {
@@ -41,8 +42,21 @@ class ManageTeam extends Component {
         return !!token;
     };
 
+    findSelectedSquadCompInfo = () => {
+        if (this.props.dashboard.areInformationFetched) {
+            const squads = this.props.dashboard.information[dashboardConstants.INFORMATION_CONSTANTS.SQUADS];
+            for (let i = 0; i < squads.length; i++) {
+                if (squads[i][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID] === this.props.dashboard.selectedCompetition.id) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 
     render() {
+        let indexOfSquad = this.findSelectedSquadCompInfo();
+
         return (
             <div className="container-fluid">
                 <div className="container">
@@ -62,8 +76,15 @@ class ManageTeam extends Component {
                     <Tabs>
                         <TabList>
                             <Tab>Dashboard</Tab>
-                            <Tab>PickSquad/Substitution</Tab>
-                            <Tab>Transfer</Tab>
+                            {indexOfSquad !== -1 ?
+                                <Tab>Substitution</Tab>
+                                :
+                                <Tab>Pick Squad</Tab>
+                            }
+                            {indexOfSquad !== -1 ?
+                                <Tab>Transfer</Tab>
+                                : null
+                            }
                             <Tab>Weekly Games</Tab>
                             <Tab>LeaderBoard</Tab>
                         </TabList>
@@ -73,9 +94,13 @@ class ManageTeam extends Component {
                         <TabPanel>
                             <Substitution history={this.props.history}/>
                         </TabPanel>
-                        <TabPanel>
-                            <Transfer/>
-                        </TabPanel>
+                        {indexOfSquad !== -1 ?
+                            <TabPanel>
+                                <Transfer/>
+                            </TabPanel>
+                            :
+                            null
+                        }
                         <TabPanel>
                             <WeeklyGames/>
                         </TabPanel>
@@ -95,7 +120,8 @@ class ManageTeam extends Component {
 
 function mapStateToProps(state){
     return{
-        myTeam : state.manageTeamReaducer
+        myTeam : state.manageTeamReaducer,
+        dashboard: state.dashboardReducer
     }
 }
 
