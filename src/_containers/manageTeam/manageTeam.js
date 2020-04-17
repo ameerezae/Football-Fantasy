@@ -62,7 +62,7 @@ class ManageTeam extends Component {
                     <Tabs>
                         <TabList>
                             <Tab>Dashboard</Tab>
-                            <Tab>Substitution</Tab>
+                            <Tab>PickSquad/Substitution</Tab>
                             <Tab>Transfer</Tab>
                             <Tab>Weekly Games</Tab>
                             <Tab>LeaderBoard</Tab>
