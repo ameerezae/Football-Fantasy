@@ -31,7 +31,7 @@ class Competitions extends Component {
                                      style={{backgroundImage: `url(${element.image})`}}>
                                     <div className="overlay">
                                         <div key={key} className="overlay-content">
-                                            <a href="#!" onClick={(event)=>{this.handleSelect(key,event)}}>Choose</a>
+                                            <a onClick={(event)=>{this.handleSelect(key,event)}}>Choose</a>
                                         </div>
                                     </div>
                                 </div>
