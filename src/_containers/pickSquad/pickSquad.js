@@ -451,6 +451,7 @@ class PickSquadContainer extends Component {
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-lg-4">
+                            <Button variant="danger" href="/manageteam" style={{width:"100%"}}>Cancel</Button>
                             <div className="bg-white">
                                 <SearchParams/>
                             </div>
@@ -471,7 +472,7 @@ class PickSquadContainer extends Component {
                                 </div>
                                 <div className="col-2">
                                     <div className="row justify-content-end">
-                                        <Button variant="primary" size="md" onClick={async (event) => {
+                                        <Button style={{width:"100%"}} variant="primary" size="md" onClick={async (event) => {
                                             const res = await this.handleSubmit(event, this.props.format)
                                             if (res.status === 201) {
                                                 Swal.fire({
@@ -512,7 +513,7 @@ class PickSquadContainer extends Component {
                                         }>Confirm</Button>
                                     </div>
                                     <div className="row justify-content-end">
-                                        <Button style={{marginTop : 4}} variant="light" size="md" onClick={(event) => {
+                                        <Button style={{marginTop : 4,width:"100%"}} variant="light" size="md" onClick={(event) => {
                                            this.handleRandom(event)
                                         }
                                         }>Random</Button>
