@@ -25,6 +25,7 @@ import DetailsModal from "./detailsModal";
 import CountUp from "react-countup/build";
 import Swal from "sweetalert2";
 import SearchParams from "../../components/Search/SearchParams"
+import * as universalCons from "../../constants/universalConstants";
 
 
 class PickSquadContainer extends Component {
@@ -37,12 +38,30 @@ class PickSquadContainer extends Component {
         };
     }
 
+    
     componentWillMount() {
-        this.setState({
-            pickName: true,
-            loading: true
-        });
+        if(!this.isAuthorized()) {
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: 'please log in first!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            this.props.history.push("/");
+        }else{
+            this.setState({
+                pickName: true,
+                loading: true
+            });
+        }
     }
+
+
+    isAuthorized = () => {
+        const token = localStorage.getItem(universalCons.ACCESS_TOKEN);
+        return !!token;
+    };
 
     componentDidMount() {
         console.log("fuck off", this.props.format)
