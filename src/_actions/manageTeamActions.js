@@ -89,7 +89,13 @@ export const getMyTeamForTransfer=(competition)=>{
         dispatch(myTeamForTransfer(response.data.squad))
         dispatch(Budget(response.data.budget));
     }
-}
+};
+
+export const clearMyTeamForTransfer = () => (
+    {
+        type : types.manageTeam_action_types.CLEAR_MY_TEAM_TRANSFER_SUCCESS,
+    }
+);
 
 const myTeamForTransfer = (myTeam) => {
     return{
