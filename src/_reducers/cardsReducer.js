@@ -23,6 +23,13 @@ export function cardsReducer(state = initialState, action){
             activeCard: action.payload,
         };
 
+        case types.cards_action_types.CLEAR_ALL_CARDS_SUCCESS : return {
+            ...state,
+            activeCard: "nothing",
+            cards: [],
+            fetchedCards: false,
+        };
+
         default : return state;
 
     }
