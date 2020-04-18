@@ -23,6 +23,12 @@ const myTeam = (myteam) => (
     }
 );
 
+export const clearMyTeam = () => (
+    {
+        type: types.manageTeam_action_types.CLEAR_MY_TEAM_SUCCESS,
+    }
+);
+
 export const setFirstSelected = (index) => {
     return function (dispatch) {
         dispatch(FirstSelected(index))
