@@ -28,6 +28,12 @@ function findActiveCard(cards) {
 const dispatchGetAllCards = (cards) => ({type : types.cards_action_types.GET_ALL_CARDS_SUCCESS, payload : cards});
 const dispatchGetAllCardsFailed = (message) => ({type : types.cards_action_types.GET_ALL_CARDS_FAILED, payload : message});
 
+export const clearAllCars = () => (
+    {
+        type : types.cards_action_types.CLEAR_ALL_CARDS_SUCCESS,
+    }
+)
+
 export const postCard = (name,mode) => {
     return async function(dispatch){
         const res = await CardsApi.postCard(name, mode);
