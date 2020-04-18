@@ -19,6 +19,9 @@ export function searchReducer(state = initialState, action) {
         switch (action.type) {
             case acc.search_action_types.GET_PLAYERS_SUCCESS:
                 return {...state, players: action.payload, sortedPlayers: [...action.payload],partsortedPlayers: action.payload.slice(0,15), arePlayedFetched:true}
+
+            case acc.search_action_types.CLEAR_PLAYER_SUCCESS:
+                return {...state, arePlayedFetched: false, players: [],sortedPlayers:[], partsortedPlayers: [] }
             case acc.search_action_types.GET_PLAYERS_FAILURE:
                 console.log("internal_server_error")
             case acc.search_action_types.SET_PLAYERS_STATUS_SUCCESS:
