@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import {AnimateOnChange} from "react-animation";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
 import * as types from "../../../_actions/types";
+import {Badge} from "react-bootstrap";
 import {getOnePlayerStatistics} from "../../../_actions/statisticsActions";
 
 class Bench extends Component {
@@ -73,20 +74,29 @@ class Bench extends Component {
                                                 <Player number={key} info={element}/>
                                                 <p style={{backgroundColor:"#ffb400",color:"white"}}>{element.position}</p>
                                             </div>
-                                            <div className="row justify-content-center">
-                                                <FaExchangeAlt
-                                                    onClick={this.props.myTeam.localAllow ? () => {
-                                                        this.props.setFirstSelected(key);
-                                                        this.props.localAllowSubs(false);
-                                                    } : () => {
-                                                        this.substitution(key)
-                                                        this.props.localAllowSubs(true);
-                                                    }}/>
-                                                <FaInfo onClick={async () => {
-                                                    this.props.setFirstSelected(key);
-                                                    await this.getPlayerStatistics(element.id);
-                                                    this.props.toggleModal(true);
-                                                }}/>
+                                            <div className="row justify-content-center align-items-center">
+                                                <Badge variant="primary" className="mr-1"
+                                                       onClick={this.props.myTeam.localAllow ? () => {
+                                                           this.props.setFirstSelected(key);
+                                                           this.props.localAllowSubs(false);
+                                                       } : () => {
+                                                           this.substitution(key)
+                                                           this.props.localAllowSubs(true);
+                                                       }}
+                                                >
+                                                    SUBS
+                                                    <FaExchangeAlt/>
+                                                </Badge>
+                                                <Badge variant="danger"
+                                                       onClick={async () => {
+                                                           this.props.setFirstSelected(key);
+                                                           await this.getPlayerStatistics(element.id);
+                                                           this.props.toggleModal(true);
+                                                       }}
+                                                >
+                                                    INFO
+                                                    <FaInfo />
+                                                </Badge>
                                             </div>
                                         </AnimateOnChange>
 

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import {FaExchangeAlt, FaInfo} from "react-icons/all";
 import {AnimateOnChange} from "react-animation";
 import {getOnePlayerStatistics} from "../../../_actions/statisticsActions";
+import {Badge} from "react-bootstrap";
 
 import "./squad.scss";
 import * as types from "../../../_actions/types";
@@ -81,22 +82,29 @@ class Squad extends Component {
                                                 <div className="row justify-content-center text-white ">{element.id === this.props.myTeam["captain"] ?
                                                     <h6 className="px-3" style={{backgroundColor:"#3f51b5"}}>CAPTAIN</h6> : null}
                                                 </div>
-                                                <div className="row justify-content-center">
-                                                    <FaExchangeAlt
-                                                        className="mr-1"
-                                                        onClick={this.props.myTeam.localAllow ? () => {
-                                                            this.props.setFirstSelected(key);
-                                                            this.props.localAllowSubs(false);
-                                                        } : () => {
-                                                            this.substitution(key)
-                                                            this.props.localAllowSubs(true);
-                                                        }}/>
-                                                    <FaInfo onClick={async () => {
-                                                        this.props.setFirstSelected(key);
-                                                        await this.getPlayerStatistics(element.id);
-                                                        this.props.toggleModal(true);
-                                                    }}/>
-
+                                                <div className="row justify-content-center align-items-center">
+                                                    <Badge variant="primary" className="mr-1"
+                                                           onClick={this.props.myTeam.localAllow ? () => {
+                                                               this.props.setFirstSelected(key);
+                                                               this.props.localAllowSubs(false);
+                                                           } : () => {
+                                                               this.substitution(key)
+                                                               this.props.localAllowSubs(true);
+                                                           }}
+                                                    >
+                                                        SUBS
+                                                        <FaExchangeAlt/>
+                                                    </Badge>
+                                                    <Badge variant="danger"
+                                                           onClick={async () => {
+                                                               this.props.setFirstSelected(key);
+                                                               await this.getPlayerStatistics(element.id);
+                                                               this.props.toggleModal(true);
+                                                           }}
+                                                    >
+                                                        INFO
+                                                        <FaInfo/>
+                                                    </Badge>
                                                 </div>
                                             </AnimateOnChange>
 
@@ -124,20 +132,29 @@ class Squad extends Component {
                                                 <div className="row justify-content-center text-white ">{element.id === this.props.myTeam["captain"] ?
                                                     <h6 className="px-3" style={{backgroundColor:"#3f51b5"}}>CAPTAIN</h6> : null}
                                                 </div>
-                                                <div className="row justify-content-center">
-                                                    <FaExchangeAlt
-                                                        onClick={this.props.myTeam.localAllow ? () => {
-                                                            this.props.setFirstSelected(key);
-                                                            this.props.localAllowSubs(false);
-                                                        } : () => {
-                                                            this.substitution(key)
-                                                            this.props.localAllowSubs(true);
-                                                        }}/>
-                                                    <FaInfo onClick={async () => {
-                                                        this.props.setFirstSelected(key);
-                                                        await this.getPlayerStatistics(element.id);
-                                                        this.props.toggleModal(true);
-                                                    }}/>
+                                                <div className="row justify-content-center align-items-center">
+                                                    <Badge className="mr-1" variant="primary"
+                                                           onClick={this.props.myTeam.localAllow ? () => {
+                                                               this.props.setFirstSelected(key);
+                                                               this.props.localAllowSubs(false);
+                                                           } : () => {
+                                                               this.substitution(key)
+                                                               this.props.localAllowSubs(true);
+                                                           }}
+                                                    >
+                                                        SUBS
+                                                        <FaExchangeAlt/>
+                                                    </Badge>
+                                                    <Badge variant="danger"
+                                                           onClick={async () => {
+                                                               this.props.setFirstSelected(key);
+                                                               await this.getPlayerStatistics(element.id);
+                                                               this.props.toggleModal(true);
+                                                           }}
+                                                    >
+                                                        INFO
+                                                        <FaInfo />
+                                                    </Badge>
                                                 </div>
                                             </AnimateOnChange>
 
@@ -165,20 +182,27 @@ class Squad extends Component {
                                                 <div className="row justify-content-center text-white ">{element.id === this.props.myTeam["captain"] ?
                                                     <h6 className="px-3" style={{backgroundColor:"#3f51b5"}}>CAPTAIN</h6> : null}
                                                 </div>
-                                                <div className="row justify-content-center">
-                                                    <FaExchangeAlt
-                                                        onClick={this.props.myTeam.localAllow ? () => {
-                                                            this.props.setFirstSelected(key);
-                                                            this.props.localAllowSubs(false);
-                                                        } : () => {
-                                                            this.substitution(key)
-                                                            this.props.localAllowSubs(true);
-                                                        }}/>
-                                                    <FaInfo onClick={async () => {
+                                                <div className="row justify-content-center align-items-center">
+                                                    <Badge variant="primary" className="mr-1"
+                                                           onClick={this.props.myTeam.localAllow ? () => {
                                                         this.props.setFirstSelected(key);
-                                                        await this.getPlayerStatistics(element.id);
-                                                        this.props.toggleModal(true);
-                                                    }}/>
+                                                        this.props.localAllowSubs(false);
+                                                    } : () => {
+                                                        this.substitution(key)
+                                                        this.props.localAllowSubs(true);
+                                                    }}>
+                                                        SUBS
+                                                        <FaExchangeAlt/>
+                                                    </Badge>
+                                                    <Badge variant="danger"
+                                                           onClick={async () => {
+                                                               this.props.setFirstSelected(key);
+                                                               await this.getPlayerStatistics(element.id);
+                                                               this.props.toggleModal(true);
+                                                           }}>
+                                                        INFO
+                                                        <FaInfo />
+                                                    </Badge>
                                                 </div>
                                             </AnimateOnChange>
 
@@ -206,20 +230,27 @@ class Squad extends Component {
                                                 <div className="row justify-content-center text-white ">{element.id === this.props.myTeam["captain"] ?
                                                     <h6 className="px-3" style={{backgroundColor:"#3f51b5"}}>CAPTAIN</h6> : null}
                                                 </div>
-                                                <div className="row justify-content-center">
-                                                    <FaExchangeAlt
-                                                        onClick={this.props.myTeam.localAllow ? () => {
-                                                            this.props.setFirstSelected(key);
-                                                            this.props.localAllowSubs(false);
-                                                        } : () => {
-                                                            this.substitution(key)
-                                                            this.props.localAllowSubs(true);
-                                                        }}/>
-                                                    <FaInfo onClick={async () => {
+                                                <div className="row justify-content-center align-items-center">
+                                                    <Badge variant="primary" className="mr-1"  onClick={this.props.myTeam.localAllow ? () => {
+                                                        this.props.setFirstSelected(key);
+                                                        this.props.localAllowSubs(false);
+                                                    } : () => {
+                                                        this.substitution(key)
+                                                        this.props.localAllowSubs(true);
+                                                    }}>
+                                                        SUBS
+                                                        <FaExchangeAlt/>
+                                                    </Badge>
+
+                                                    <Badge variant="danger" onClick={async () => {
                                                         this.props.setFirstSelected(key);
                                                         await this.getPlayerStatistics(element.id);
                                                         this.props.toggleModal(true);
-                                                    }}/>
+                                                    }}>
+                                                        INFO
+                                                        <FaInfo/>
+                                                    </Badge>
+
                                                 </div>
                                             </AnimateOnChange>
 
