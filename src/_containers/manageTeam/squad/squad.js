@@ -64,7 +64,7 @@ class Squad extends Component {
         const sqaud = (
             <div>
                 <div className="row justify-content-center">
-                    {this.props.myTeam.squad ?
+                    {this.props.myTeam.squadFetched ?
                         this.props.myTeam.squad.map((element, key) => {
                             if (element.position === "Goalkeeper" && element.lineup) {
                                 return (
@@ -115,7 +115,7 @@ class Squad extends Component {
                         }) : null}
                 </div>
                 <div className="row justify-content-center">
-                    {this.props.myTeam.squad ?
+                    {this.props.myTeam.squadFetched ?
                         this.props.myTeam.squad.map((element, key) => {
                             if (element.position === "Defender" && element.lineup) {
                                 return (
@@ -165,7 +165,7 @@ class Squad extends Component {
                         }) : null}
                 </div>
                 <div className="row justify-content-center">
-                    {this.props.myTeam.squad ?
+                    {this.props.myTeam.squadFetched ?
                         this.props.myTeam.squad.map((element, key) => {
                             if (element.position === "Midfielder" && element.lineup) {
                                 return (
@@ -213,7 +213,7 @@ class Squad extends Component {
                         }) : null}
                 </div>
                 <div className="row justify-content-center">
-                    {this.props.myTeam.squad ?
+                    {this.props.myTeam.squadFetched ?
                         this.props.myTeam.squad.map((element, key) => {
                             if (element.position === "Forward" && element.lineup) {
                                 return (

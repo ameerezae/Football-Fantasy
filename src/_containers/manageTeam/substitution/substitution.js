@@ -4,7 +4,7 @@ import Bench from "../bench/bench";
 import {connect} from "react-redux";
 import '@lottiefiles/lottie-player';
 import {bindActionCreators} from "redux";
-import {getMyTeam} from "../../../_actions/manageTeamActions";
+import {getMyTeam, clearMyTeam} from "../../../_actions/manageTeamActions";
 import {Button} from "react-bootstrap";
 import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
@@ -17,6 +17,10 @@ class Substitution extends Component {
             console.log("push to history here")
             this.props.history.push(`/picksquad`);
         }
+    }
+
+    componentWillUnmount() {
+        this.props.clearMyTeam();
     }
 
     async confirmSubs(){
@@ -72,7 +76,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getMyTeam
+        getMyTeam,
+        clearMyTeam
     }, dispatch)
 }
 

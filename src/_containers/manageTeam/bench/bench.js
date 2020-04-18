@@ -60,7 +60,7 @@ class Bench extends Component {
     render() {
         const bench = (
             <div className="row justify-content-center">
-                {this.props.myTeam.squad ?
+                {this.props.myTeam.squadFetched ?
                     this.props.myTeam.squad.map((element, key) => {
                         if (!element.lineup) {
                             return (
