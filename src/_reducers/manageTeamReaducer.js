@@ -2,11 +2,15 @@ import * as types from "../_actions/types";
 const initialState = {
     visibleModal: false,
     localAllow : true,
+    squadFetched : false,
 }
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.manageTeam_action_types.GET_MY_TEAM_SUCCESS :
-            return {...state, squad: action.payload};
+            return {...state, squad: action.payload, squadFetched: true};
+
+        case types.manageTeam_action_types.CLEAR_MY_TEAM_SUCCESS:
+            return {...state, squad: [], squadFetched: false}
 
         case types.manageTeam_action_types.SET_FIRST_SELECTED_SUCCESS :
             return {...state, firstSelected: action.payload};
