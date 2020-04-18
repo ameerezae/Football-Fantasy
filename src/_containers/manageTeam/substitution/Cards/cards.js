@@ -27,7 +27,7 @@ class Cards extends Component {
                             }
                         )}
                     </div>
-                    : null};
+                    : null}
             </div>
         );
     }
