@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import '@lottiefiles/lottie-player';
 import {bindActionCreators} from "redux";
 import {getMyTeam, clearMyTeam} from "../../../_actions/manageTeamActions";
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
 import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
 import Cards from "./Cards/cards";
@@ -48,20 +48,26 @@ class Substitution extends Component {
         return (
             <div>
                 <h3 className="text-white font-weight-bold mt-5">SUBSTITUTION</h3>
-                <div className="container mb-5">
-                    <div className="row">
-                        <div className="col-11">
-                            <Squad/>
-                            <Bench/>
+                {this.props.myTeam.squadFetched ?
+                    <div className="container mb-5">
+                        <div className="row">
+                            <div className="col-11">
+                                <Squad/>
+                                <Bench/>
+                            </div>
+                            <div className="col-1">
+                                <Button variant="primary" onClick={() => this.confirmSubs()}>Confirm</Button>
+                            </div>
                         </div>
-                        <div className="col-1">
-                            <Button variant="primary" onClick={() => this.confirmSubs()}>Confirm</Button>
-                       </div>
+
+                        <Cards/>
                     </div>
 
-                    <Cards/>
-                </div>
-
+                    :
+                        <div className="row justify-content-center">
+                            <Spinner animation="border" variant="danger"/>
+                        </div>
+                        }
             </div>
         );
     }
@@ -70,7 +76,8 @@ class Substitution extends Component {
 function mapStateToProps(state) {
     return {
         myTeam: state.manageTeamReaducer,
-        dashboard: state.dashboardReducer
+        dashboard: state.dashboardReducer,
+        cardsState: state.cardsReducer
     }
 }
 
