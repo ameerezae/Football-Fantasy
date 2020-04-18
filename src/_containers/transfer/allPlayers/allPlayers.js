@@ -15,11 +15,16 @@ import {
     setTransferError,
 
 } from "../../../_actions/manageTeamActions";
+import {clearPlayers} from "../../../_actions/searchActions";
 import '@lottiefiles/lottie-player';
 import SearchParams from "../../../components/Search/SearchParams";
 import Modal from "react-awesome-modal";
 
 class AllPlayers extends Component {
+
+    componentWillUnmount() {
+        this.props.clearPlayers();
+    }
 
 
     checkTeamMax = (team) => {
@@ -147,7 +152,8 @@ function mapDispatchToProps(dispatch) {
         enableTransferTable,
         selectSecondTransfer,
         isAllowedToTransfer,
-        setTransferError
+        setTransferError,
+        clearPlayers
     }, dispatch)
 }
 
