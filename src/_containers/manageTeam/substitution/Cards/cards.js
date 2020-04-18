@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import Card from "./card";
 import "./Cards.scss";
-import {getAllCards, postCard} from "../../../../_actions/cardsActions";
+import {getAllCards, postCard, clearAllCars} from "../../../../_actions/cardsActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 class Cards extends Component {
     componentWillMount() {
         this.props.getAllCards();
+    }
+
+    componentWillUnmount() {
+        this.props.clearAllCars();
     }
 
     render() {
@@ -43,7 +47,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getAllCards,
-        postCard
+        postCard,
+        clearAllCars,
     }, dispatch)
 }
 
