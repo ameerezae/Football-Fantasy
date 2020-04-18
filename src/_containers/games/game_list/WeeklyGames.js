@@ -8,6 +8,27 @@ import Game_details from '../game_details/game_details'
 import {getSelectedGame} from "../../../_actions/gameDetailActions";
 
 class WeeklyGames extends Component {
+
+
+    countingMatchesStatus = () => {
+        let finishedCount = 0;
+        let scheduledCount = 0;
+        if (this.props.games.games_fetched_success) {
+            this.props.games.games.forEach((game) => {
+                if (game.status === "Finished") {
+                    finishedCount++;
+                } else {
+                    scheduledCount++;
+                }
+            })
+        }
+        return {
+            finished: finishedCount,
+            scheduled: scheduledCount
+        }
+    };
+
+
     componentWillMount() {
         this.props.getGames();
     }
@@ -25,28 +46,33 @@ class WeeklyGames extends Component {
     }
 
     render() {
+        const counts = this.countingMatchesStatus();
+        const finishedCounts = counts.finished;
+        const scheduledCounts = counts.scheduled;
         return (
             <div>
                 <Game_details/>
                 <div>
-                    <h4 className="text-white mt-5 mb-3">FINISHED GAMES</h4>
                     {this.props.games.games_fetched_success ?
                         <div>
-                            <ListGroup>
-                                {this.props.games.games.map((element, key) => {
+                            <h4 className="text-white mt-5 mb-3">FINISHED GAMES</h4>
+                            {finishedCounts !== 0 ?
+                                <ListGroup>
+                                    {this.props.games.games.map((element, key) => {
 
 
                                         return (
                                             <div>
-                                                {element.status === "Finished"?
-                                                <ListGroup.Item variant='success' action onClick={() => {
-                                                    this.onClickHandler(element)
+                                                {element.status === "Finished" ?
+                                                    <ListGroup.Item variant='success' action onClick={() => {
+                                                        this.onClickHandler(element)
 
-                                                }}>
+                                                    }}>
                                                         <div className="row align-items-center">
                                                             <div className="col">
                                                                 <div className="row justify-content-center">
-                                                                    <img src={element.homeTeam.image} width={50} alt=""/>
+                                                                    <img src={element.homeTeam.image} width={50}
+                                                                         alt=""/>
                                                                 </div>
                                                             </div>
                                                             <div className="col">
@@ -64,8 +90,9 @@ class WeeklyGames extends Component {
                                                                     <div className="row justify-content-center">
                                                                         <h5>-</h5>
                                                                     </div>
-                                                                    <div className="row justify-content-center text-center">
-                                                                        {element.utcDate.replace("T","  ")}
+                                                                    <div
+                                                                        className="row justify-content-center text-center">
+                                                                        {element.utcDate.replace("T", "  ")}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -81,71 +108,92 @@ class WeeklyGames extends Component {
                                                             </div>
                                                             <div className="col">
                                                                 <div className="row justify-content-center">
-                                                                    <img src={element.awayTeam.image} width={50} alt=""/>
+                                                                    <img src={element.awayTeam.image} width={50}
+                                                                         alt=""/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
-                                                    : null }
+                                                    : null}
                                             </div>
 
-                                                    )
+                                        )
 
 
-                                })}
-                            </ListGroup>
-                            <h4 className="text-white mt-5 mb-3">Scheduled GAMES</h4>
-                            <ListGroup>
-                                {this.props.games.games.map((element, key) => {
+                                    })}
+                                </ListGroup>
+                                :
+                                <Alert variant="warning">
+                                    <Alert.Heading>No Finished Match!!!</Alert.Heading>
+                                    <p>
+                                        There are no Finished matches, Come back later
+                                    </p>
+                                </Alert>
+                            }
+                            <h4 className="text-white mt-5 mb-3">SCHEDULED GAMES</h4>
+                            {scheduledCounts !== 0 ?
+                                <ListGroup className="mb-5">
+                                    {this.props.games.games.map((element, key) => {
 
 
-                                    return (
-                                        <div>
-                                            {element.status === "Scheduled"?
-                                                <ListGroup.Item variant='info' action onClick={() => {
-                                                    this.onClickHandler(element)
-                                                }}>
-                                                    <div className="row align-items-center">
-                                                        <div className="col">
-                                                            <div className="row justify-content-center">
-                                                                <img src={element.homeTeam.image} width={50} alt=""/>
+                                        return (
+                                            <div>
+                                                {element.status === "Scheduled" ?
+                                                    <ListGroup.Item variant='info' action onClick={() => {
+                                                        this.onClickHandler(element)
+                                                    }}>
+                                                        <div className="row align-items-center">
+                                                            <div className="col">
+                                                                <div className="row justify-content-center">
+                                                                    <img src={element.homeTeam.image} width={50}
+                                                                         alt=""/>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col">
+                                                                <div className="row justify-content-center">
+                                                                    {element.homeTeam.name}
+                                                                </div>
+                                                            </div>
+                                                            <div className="col">
+                                                                <div
+                                                                    className="row justify-content-center align-items-center">
+                                                                    <h5>Scheduled</h5>
+                                                                </div>
+                                                                <div
+                                                                    className="row justify-content-center align-items-center">
+                                                                    <h6>{element.utcDate.replace("T", " ")}</h6>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="col">
+                                                                <div className="row justify-content-center">
+                                                                    {element.awayTeam.name}
+                                                                </div>
+                                                            </div>
+                                                            <div className="col">
+                                                                <div className="row justify-content-center">
+                                                                    <img src={element.awayTeam.image} width={50}
+                                                                         alt=""/>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className="col">
-                                                            <div className="row justify-content-center">
-                                                                {element.homeTeam.name}
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <div className="row justify-content-center align-items-center">
-                                                                <h5>Scheduled</h5>
-                                                            </div>
-                                                            <div className="row justify-content-center align-items-center">
-                                                                <h6>{element.utcDate.replace("T"," ")}</h6>
-                                                            </div>
-                                                        </div>
+                                                    </ListGroup.Item>
+                                                    : null}
+                                            </div>
 
-                                                        <div className="col">
-                                                            <div className="row justify-content-center">
-                                                                {element.awayTeam.name}
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <div className="row justify-content-center">
-                                                                <img src={element.awayTeam.image} width={50} alt=""/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </ListGroup.Item>
-                                                : null }
-                                        </div>
-
-                                    )
+                                        )
 
 
-                                })}
-                            </ListGroup>
-
+                                    })}
+                                </ListGroup>
+                                :
+                                <Alert variant="warning" className="mb-5">
+                                    <Alert.Heading>No Scheduled Match!!!</Alert.Heading>
+                                    <p>
+                                        There are no Scheduled matches, Come back later
+                                    </p>
+                                </Alert>
+                            }
                         </div>
                         :
                         this.props.games.games_fetched_failed ?
