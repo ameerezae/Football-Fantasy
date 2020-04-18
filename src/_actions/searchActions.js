@@ -17,6 +17,12 @@ export const playerSearchRequest = () => {
       dispatch(playerSearchSuccess(response))
   }
 }
+
+export const clearPlayers = () => (
+    {
+      type: acc.search_action_types.CLEAR_PLAYER_SUCCESS,
+    }
+);
 export const clubGetRequest = () => {
   return async function(dispatch){
       let response = await search_api.getClubs()
