@@ -4,12 +4,16 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {IoIosInformationCircle} from "react-icons/io";
 import List, {ListItem, ListItemText, ListItemGraphic, ListItemMeta,} from '@material/react-list';
-import {getMyTeamForTransfer} from "../../../_actions/manageTeamActions";
+import {getMyTeamForTransfer, clearMyTeamForTransfer} from "../../../_actions/manageTeamActions";
 import {selectFirstTransfer, enableTransferTable} from "../../../_actions/manageTeamActions";
 
 class SquadPlayers extends Component {
     componentWillMount() {
         this.props.getMyTeamForTransfer(this.props.dashboard.selectedCompetition);
+    }
+
+    componentWillUnmount() {
+        this.props.clearMyTeamForTransfer();
     }
 
     render() {
@@ -61,7 +65,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getMyTeamForTransfer,
         selectFirstTransfer,
-        enableTransferTable
+        enableTransferTable,
+        clearMyTeamForTransfer,
     }, dispatch)
 }
 
