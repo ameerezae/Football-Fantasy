@@ -9,13 +9,23 @@ import {Button, Spinner} from "react-bootstrap";
 import ManageTeamApi from "../../../_api/manageTeamApi";
 import Swal from "sweetalert2";
 import Cards from "./Cards/cards";
+import * as universalCons from "../../../constants/universalConstants";
 
 class Substitution extends Component {
     async componentWillMount() {
-        const bool = await this.props.getMyTeam(this.props.dashboard.selectedCompetition);
-        if(!bool){
-            console.log("push to history here")
-            this.props.history.push(`/picksquad`);
+        const res = await this.props.getMyTeam(this.props.dashboard.selectedCompetition);
+        if(!res.hasTeam){
+            if(res.response.status === universalCons.REQUESTS_STATUS.FORBIDDEN){
+                Swal.fire({
+                    position: 'center',
+                    type: 'error',
+                    title: 'Confirm your Email first!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else{
+                this.props.history.push(`/picksquad`);
+            }
         }
     }
 
