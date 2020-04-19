@@ -2,15 +2,16 @@ import * as types from "./types";
 import * as dashboardConstants from "../constants/dashboard/dashboardConstants";
 import * as universal_constants from "../constants/universalConstants";
 import DashboardApis from "../_api/dashboardApi";
+import * as universalCons from "../constants/universalConstants";
 
 export const getAllCompetitions = () => {
     return async function (dispatch) {
         const response = await DashboardApis.getAllCompetitions();
         if (response.data[dashboardConstants.COMPETITIONS])
         {
-            if(!localStorage.getItem("current_comp")){
-                localStorage.setItem("current_comp", JSON.stringify(response.data[dashboardConstants.COMPETITIONS][0]))
-                localStorage.setItem("current_competition", response.data[dashboardConstants.COMPETITIONS][0][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+            if(!localStorage.getItem(universalCons.CURRENT_COMPET)){
+                localStorage.setItem(universalCons.CURRENT_COMPET, JSON.stringify(response.data[dashboardConstants.COMPETITIONS][0]))
+                localStorage.setItem(universalCons.CURRENT_COMP, response.data[dashboardConstants.COMPETITIONS][0][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
 
             }
             dispatch(dispatchGetAllCompetitions(response.data[dashboardConstants.COMPETITIONS]))
@@ -20,8 +21,8 @@ export const getAllCompetitions = () => {
 
 export const setCurrentCompitition = (compete) => {
     return function(dispatch){
-        localStorage.setItem("current_competition", compete[dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
-        localStorage.setItem("current_comp", JSON.stringify(compete))
+        localStorage.setItem(universalCons.CURRENT_COMP, compete[dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+        localStorage.setItem(universalCons.CURRENT_COMPET, JSON.stringify(compete))
         dispatch(dispatchsetCurrentCompitition(compete))
       }
     }
