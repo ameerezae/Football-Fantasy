@@ -14,8 +14,8 @@ import * as universalCons from "../../../constants/universalConstants";
 class Substitution extends Component {
     async componentWillMount() {
         const res = await this.props.getMyTeam(this.props.dashboard.selectedCompetition);
-        if(!res.hasTeam){
-            if(res.response.status === universalCons.REQUESTS_STATUS.FORBIDDEN){
+        if (!res.hasTeam) {
+            if (res.response.status === universalCons.REQUESTS_STATUS.FORBIDDEN) {
                 Swal.fire({
                     position: 'center',
                     type: 'error',
@@ -23,10 +23,10 @@ class Substitution extends Component {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                     window.location.replace("/manageteam/dashboard");
-                },1600)
-            }else{
+                }, 1600)
+            } else {
                 this.props.history.push(`/picksquad`);
             }
         }
@@ -36,9 +36,9 @@ class Substitution extends Component {
         this.props.clearMyTeam();
     }
 
-    async confirmSubs(){
+    async confirmSubs() {
         const res = await ManageTeamApi.sendSubsTeam(this.props.myTeam.squad, this.props.myTeam["captain"]);
-        if(res.status === 200){
+        if (res.status === 200) {
             Swal.fire({
                 position: 'center',
                 type: 'success',
@@ -46,11 +46,11 @@ class Substitution extends Component {
                 showConfirmButton: false,
                 timer: 3000
             })
-        }else{
+        } else {
             Swal.fire({
                 position: 'center',
                 type: 'error',
-                title : res.data.message,
+                title: res.data.message,
                 showConfirmButton: false,
                 timer: 3000
             })
@@ -60,27 +60,29 @@ class Substitution extends Component {
     render() {
         return (
             <div>
-                <h3 className="text-white font-weight-bold mt-5">SUBSTITUTION</h3>
                 {this.props.myTeam.squadFetched ?
-                    <div className="container mb-5">
-                        <div className="row">
-                            <div className="col-11">
-                                <Squad/>
-                                <Bench/>
+                    <div>
+                        <h3 className="text-white font-weight-bold mt-5">SUBSTITUTION</h3>
+                        <div className="container mb-5">
+                            <div className="row">
+                                <div className="col-11">
+                                    <Squad/>
+                                    <Bench/>
+                                </div>
+                                <div className="col-1">
+                                    <Button variant="primary" onClick={() => this.confirmSubs()}>Confirm</Button>
+                                </div>
                             </div>
-                            <div className="col-1">
-                                <Button variant="primary" onClick={() => this.confirmSubs()}>Confirm</Button>
-                            </div>
-                        </div>
 
-                        <Cards/>
+                            <Cards/>
+                        </div>
                     </div>
 
                     :
-                        <div className="row justify-content-center">
-                            <Spinner animation="border" variant="danger"/>
-                        </div>
-                        }
+                    <div className="row justify-content-center">
+                        <Spinner animation="border" variant="danger"/>
+                    </div>
+                }
             </div>
         );
     }
