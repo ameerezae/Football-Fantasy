@@ -516,6 +516,17 @@ class PickSquadContainer extends Component {
                                                 if(typeof(res.data.message)==='object')
                                                 {
                                                     console.log("ma injaEm bax",res)
+                                                    if(this.props.format["captain-id"] == null)
+                                                    {
+                                                        Swal.fire({
+                                                            position: 'center',
+                                                            type: 'error',
+                                                            title: "Missing Captian",
+                                                            showConfirmButton: false,
+                                                            timer: 3000
+                                                        })
+                                                    }
+                                                    else{
                                                     Swal.fire({
                                                         position: 'center',
                                                         type: 'error',
@@ -523,6 +534,7 @@ class PickSquadContainer extends Component {
                                                         showConfirmButton: false,
                                                         timer: 3000
                                                     })
+                                                }
                                                 }
                                                 else{
                                                     Swal.fire({

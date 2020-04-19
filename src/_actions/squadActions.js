@@ -1,5 +1,7 @@
 import PlayerImg from "../_assets/p98745.png"
 import picksquad_page_api from "../_api/squadApi"
+import {calculateMoney} from "../_containers/pickSquad/calculateMoney";
+
 import * as acc from "./types"
 
 export function setFormat(format) {
@@ -52,10 +54,7 @@ export const getWholeItems = (competition) => {
     
 
 }
-export const selectRandomSquad= (props,clubs) => {
-    // console.log(props)
-    let left_budget = budget
-    
+export const selectRandomSquad= (props,clubs) => {    
     let squad = props.format
     let players = props.wholeItems
     let i = 0
@@ -182,7 +181,7 @@ export const selectRandomSquad= (props,clubs) => {
     console.log("Midfilders",Midfilders)
     console.log("forwards",forwards)
     console.log("bench",bench)
-
+    const remainedMoney = calculateMoney(Defenders, Midfilders, forwards, bench, Goalkeeper)
 
 
     return function(dispatch){
@@ -191,7 +190,7 @@ export const selectRandomSquad= (props,clubs) => {
         dispatch(setDefenders(Defenders))
         dispatch(setMiddles(Midfilders))
         dispatch(setBench(bench))
-
+        dispatch(setRemainedMoney(remainedMoney))
       }
 }
 const getPlayers = players => (
