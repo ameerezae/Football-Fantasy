@@ -11,6 +11,10 @@ import {Button} from "react-bootstrap";
 import * as api_urls from "../../_api/api_urls";
 import axios from "axios";
 import {
+    setFormat,
+    setDefenders,
+    setMiddles,
+    setForwards,
     getWholeItems,
     setFilteredPosition,
     setPickedPosition,
@@ -65,6 +69,10 @@ class PickSquadContainer extends Component {
 
     componentDidMount() {
         console.log("fuck off", this.props.format)
+        this.props.setFormat("4-3-3");
+        this.props.setDefenders([null,null,null,null]);
+        this.props.setMiddles([null,null,null]);
+        this.props.setForwards([null,null,null]);
         this.props.getWholeItems(this.props.dashboard.selectedCompetition);
         this.setState({
             pickName: true,
@@ -592,7 +600,12 @@ function mapDispatchToProps(dispatch) {
         setPickedKey,
         toggleModal,
         setSquadName,
-        selectRandomSquad
+        selectRandomSquad,
+        setFormat,
+        setDefenders,
+        setMiddles,
+        setForwards,
+
 
 
     }, dispatch)
