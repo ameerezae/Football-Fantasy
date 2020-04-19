@@ -93,12 +93,10 @@ class PickSquadContainer extends Component {
 
             }
         });
-        console.log("fucking bitch",picks)
         if(!picks.includes(null))
             for (let i = 0; i < picks.length; i++) {
                 picks[i]["player_id"] = picks[i].id;
             }
-        console.log("ay baba bazam in ke")
         changedData["squad"] = picks;
         let newChangedData = {};
         if(changedData["captain-id"] != null)
@@ -470,7 +468,7 @@ class PickSquadContainer extends Component {
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-lg-4">
-                            <Button variant="danger" href="/manageteam" style={{width:"100%"}}>Cancel</Button>
+                            <Button variant="danger" href="/manageteam/dashboard" style={{width:"100%"}}>Cancel</Button>
                             <div className="bg-white">
                                 <SearchParams/>
                             </div>
@@ -501,7 +499,7 @@ class PickSquadContainer extends Component {
                                                     showConfirmButton: false,
                                                     timer: 3000
                                                 })
-                                                this.props.history.push(`/manageteam`)
+                                                this.props.history.push(`/manageteam/substitution`)
                                             } else {
                                                 console.log(typeof(res.data.message)==='object');
                                                 console.log(typeof(res.data.message))

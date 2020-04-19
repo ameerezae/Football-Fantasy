@@ -41,7 +41,7 @@ class SignIn extends Component {
 
     render() {
         if (this.props.userObj.success_message) {
-            this.props.history.push(`/manageteam`)
+            this.props.history.push(`/manageteam/dashboard`)
         }
         const loginForm = (
             <div className="login-center container py-3">
