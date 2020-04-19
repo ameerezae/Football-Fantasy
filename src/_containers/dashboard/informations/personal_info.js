@@ -43,6 +43,7 @@ class PersonalInfo extends Component {
                                                             localStorage.removeItem(universalCons.ACCESS_TOKEN);
                                                             localStorage.removeItem(universalCons.REFRESH_TOKEN);
                                                             localStorage.removeItem(universalCons.CURRENT_COMP);
+                                                            localStorage.removeItem(universalCons.CURRENT_COMPET)
                                                         }}>
                                                             LOGOUT
                                                         </Button>
