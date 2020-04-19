@@ -14,6 +14,7 @@ import LeaderBoard from "../leaderBoard/leaderBoardList/leaderBoardList";
 import * as universalCons from "../../constants/universalConstants";
 import Swal from "sweetalert2";
 import * as dashboardConstants from "../../constants/dashboard/dashboardConstants";
+import TabsOption from "./tabs";
 
 class ManageTeam extends Component {
     // async componentWillMount() {
@@ -40,6 +41,10 @@ class ManageTeam extends Component {
     isAuthorized = () => {
         const token = localStorage.getItem(universalCons.ACCESS_TOKEN);
         return !!token;
+    };
+
+    redirect = (url) => {
+        this.props.history.push(url);
     };
 
     findSelectedSquadCompInfo = () => {
@@ -75,39 +80,21 @@ class ManageTeam extends Component {
                     <div className="main-background"></div>
                     <Tabs>
                         <TabList>
-                            <Tab>Dashboard</Tab>
+                            <Tab onClick={()=>{this.redirect("/manageteam/dashboard")}}>Dashboard</Tab>
                             {indexOfSquad !== -1 ?
-                                <Tab>Substitution</Tab>
+                                <Tab onClick={()=>{this.redirect("/manageteam/substitution")}}>Substitution</Tab>
                                 :
-                                <Tab>Pick Squad</Tab>
+                                <Tab onClick={()=>{this.redirect("/manageteam/substitution")}}>Pick Squad</Tab>
                             }
                             {indexOfSquad !== -1 ?
-                                <Tab>Transfer</Tab>
+                                <Tab onClick={()=>{this.redirect("/manageteam/transfer")}}>Transfer</Tab>
                                 : null
                             }
-                            <Tab>Weekly Games</Tab>
-                            <Tab>LeaderBoard</Tab>
+                            <Tab onClick={()=>{this.redirect("/manageteam/weeklygames")}}>Weekly Games</Tab>
+                            <Tab onClick={()=>{this.redirect("/manageteam/leaderboard")}}>LeaderBoard</Tab>
                         </TabList>
-                        <TabPanel>
-                            <Dashboard/>
-                        </TabPanel>
-                        <TabPanel>
-                            <Substitution history={this.props.history}/>
-                        </TabPanel>
-                        {indexOfSquad !== -1 ?
-                            <TabPanel>
-                                <Transfer/>
-                            </TabPanel>
-                            :
-                            null
-                        }
-                        <TabPanel>
-                            <WeeklyGames/>
-                        </TabPanel>
-                        <TabPanel>
-                            <LeaderBoard/>
-                        </TabPanel>
                     </Tabs>
+                    <TabsOption/>
                 </div>
             </div>
 
