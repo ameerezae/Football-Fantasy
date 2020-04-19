@@ -11,11 +11,14 @@ class Competitions extends Component {
 
     componentWillMount() {
         this.props.getAllCompetitions();
+        if(localStorage.getItem("current_comp")){
+            const savedCompetition = JSON.parse(localStorage.getItem("current_comp"));
+            this.props.setCurrentCompitition(savedCompetition);
+        }
     }
 
     handleSelect = (selectedIndex, e) => {
         let compete = this.props.dashboard.competitions[selectedIndex]
-        console.log("hi we are in handleSelect: ",compete)
         this.props.setCurrentCompitition(compete);
       };
     render() {
@@ -31,12 +34,13 @@ class Competitions extends Component {
                                      style={{backgroundImage: `url(${element.image})`}}>
                                     <div className="overlay">
                                         <div key={key} className="overlay-content">
-                                            <a onClick={(event)=>{this.handleSelect(key,event)}}>Choose</a>
+                                            <a onClick={()=>{this.handleSelect(key)}}>Choose</a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div  style={this.props.dashboard.selectedCompetition.id === element.id ? {backgroundColor:"#5fdba7"} : {}} className="card-content card-custom-content">
+                                <div  style={JSON.parse(localStorage.getItem("current_comp")).id === element.id
+                                    ? {backgroundColor:"#5fdba7"} : {}} className="card-content card-custom-content">
                                     <a href="#!">
                                         <div className="row">
                                             <div className="justify-content-center">
