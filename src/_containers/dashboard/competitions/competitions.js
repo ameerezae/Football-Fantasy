@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {getAllCompetitions, setCurrentCompitition} from "../../../_actions/dashboardActions";
 import "./competitions.scss"
+import * as universalCons from "../../../constants/universalConstants";
 
 
 
@@ -11,8 +12,8 @@ class Competitions extends Component {
 
     componentWillMount() {
         this.props.getAllCompetitions();
-        if(localStorage.getItem("current_comp")){
-            const savedCompetition = JSON.parse(localStorage.getItem("current_comp"));
+        if(localStorage.getItem(universalCons.CURRENT_COMPET)){
+            const savedCompetition = JSON.parse(localStorage.getItem(universalCons.CURRENT_COMPET));
             this.props.setCurrentCompitition(savedCompetition);
         }
     }
@@ -39,7 +40,7 @@ class Competitions extends Component {
                                     </div>
                                 </div>
 
-                                <div  style={JSON.parse(localStorage.getItem("current_comp")).id === element.id
+                                <div  style={this.props.dashboard.selectedCompetition.id === element.id
                                     ? {backgroundColor:"#5fdba7"} : {}} className="card-content card-custom-content">
                                     <a href="#!">
                                         <div className="row">
