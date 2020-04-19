@@ -8,7 +8,11 @@ export const getAllCompetitions = () => {
         const response = await DashboardApis.getAllCompetitions();
         if (response.data[dashboardConstants.COMPETITIONS])
         {
-            localStorage.setItem("current_competition", response.data[dashboardConstants.COMPETITIONS][0][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+            if(!localStorage.getItem("current_comp")){
+                localStorage.setItem("current_comp", JSON.stringify(response.data[dashboardConstants.COMPETITIONS][0]))
+                localStorage.setItem("current_competition", response.data[dashboardConstants.COMPETITIONS][0][dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+
+            }
             dispatch(dispatchGetAllCompetitions(response.data[dashboardConstants.COMPETITIONS]))
         }
     }
@@ -17,6 +21,7 @@ export const getAllCompetitions = () => {
 export const setCurrentCompitition = (compete) => {
     return function(dispatch){
         localStorage.setItem("current_competition", compete[dashboardConstants.INFORMATION_CONSTANTS.COMPETITION_ID])
+        localStorage.setItem("current_comp", JSON.stringify(compete))
         dispatch(dispatchsetCurrentCompitition(compete))
       }
     }
