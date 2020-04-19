@@ -18,6 +18,15 @@ import Transfer2 from "../../_assets/transfer2.svg";
 import Swal from "sweetalert2";
 
 class Transfer extends Component {
+
+    componentWillUnmount() {
+        this.props.selectFirstTransfer(null);
+        this.props.selectSecondTransfer(null);
+        this.props.enableTransferTable(false);
+        this.props.isAllowedToTransfer(false);
+    }
+
+
     render() {
         return (
             <div className="container">
