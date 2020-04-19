@@ -23,6 +23,9 @@ class Substitution extends Component {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setTimeout(function() {
+                    window.location.replace("/manageteam/dashboard");
+                },1600)
             }else{
                 this.props.history.push(`/picksquad`);
             }
