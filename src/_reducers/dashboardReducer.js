@@ -13,7 +13,7 @@ const initialState = {
 export function dashboardReducer (state = initialState,action){
     switch(action.type){
         case types.dashboard_action_types.GET_COMPETITIONS_SUCCESS : {
-            return {...state, competitions : action.payload, selectedCompetition : action.payload[0], areCompetitionsFetched: true};
+            return {...state, competitions : action.payload, areCompetitionsFetched: true};
         }
         case types.dashboard_action_types.SET_CURRENT_COMPETITION_SUCCESS : {
             return {...state, selectedCompetition : action.payload};
