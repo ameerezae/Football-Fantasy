@@ -208,7 +208,7 @@ class Information extends Component {
                                                         this competition if you want to have a team hover this box.</h5>
                                                 </div>
                                                 <div className="row justify-content-center">
-                                                    <Button variant="success" href="/picksquad">MAKE YOUR TEAM
+                                                    <Button variant="success" href="/manageteam/substitution">MAKE YOUR TEAM
                                                         NOW!</Button>
                                                 </div>
                                             </div>

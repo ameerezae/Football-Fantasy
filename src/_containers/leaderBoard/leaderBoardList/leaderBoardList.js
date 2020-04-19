@@ -16,7 +16,7 @@ class LeaderBoard extends Component {
 
     render() {
         return (
-                <div>
+                <div className="mb-5">
                     <h4 className="text-white mt-5 mb-3">LEADERBOARD</h4>
                     {this.props.leaderboard.users_fetched_success ?
                         <div className="container">
