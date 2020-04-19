@@ -1,5 +1,7 @@
+
 // export const MAIN = "http://51.178.215.246:5000/"
 export const MAIN = "https://api.rester.ir"
+
 
 //MAIN is private no need to export it
 export const LOGIN = MAIN + "/auth/login"
