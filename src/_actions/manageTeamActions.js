@@ -8,9 +8,15 @@ export const getMyTeam = (competition) =>{
             const response = await ManageTeamApi.getMyTeam(competition);
             dispatch(myTeam(response.data.squad))
             dispatch(captain(response.data["captain"]))
-            return true;
+            return {
+                response : response,
+                hasTeam : true,
+            };
         }catch (e) {
-            return false;
+            return{
+                response : e.response,
+                hasTeam : false
+            };
         }
 
     }
