@@ -29,6 +29,8 @@ export const CONFIG_WITH_TOKEN = (accessToken) => ({
         }
 });
 
+export const CURRENT_COMPET = "current_comp";
+
 
 
 
