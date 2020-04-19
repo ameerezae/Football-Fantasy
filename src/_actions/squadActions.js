@@ -54,13 +54,15 @@ export const getWholeItems = (competition) => {
 }
 export const selectRandomSquad= (props,clubs) => {
     // console.log(props)
+    let left_budget = budget
+    
     let squad = props.format
     let players = props.wholeItems
     let i = 0
     let randomClubs = [0,0,0,0,0]
     while(i<5)
     {
-        let number = Math.ceil(Math.random() * clubs.length)
+        let number = Math.ceil(Math.random() * clubs.length-1)
         if(!randomClubs.includes(number))
         {
             randomClubs[i] = number
@@ -69,8 +71,8 @@ export const selectRandomSquad= (props,clubs) => {
     }
     for(i=0;i<5;i++)
     {
-        console.log(randomClubs)
-        console.log(clubs[randomClubs[i]].name)
+        console.log("this is randomCLubs",randomClubs,i)
+        // console.log(clubs[randomClubs[i]].name)
         randomClubs[i] = clubs[randomClubs[i]].id
     }
     
