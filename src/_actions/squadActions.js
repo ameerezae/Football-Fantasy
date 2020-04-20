@@ -1,5 +1,7 @@
 import PlayerImg from "../_assets/p98745.png"
 import picksquad_page_api from "../_api/squadApi"
+import {calculateMoney} from "../_containers/pickSquad/calculateMoney";
+
 import * as acc from "./types"
 
 export function setFormat(format) {
@@ -52,15 +54,14 @@ export const getWholeItems = (competition) => {
     
 
 }
-export const selectRandomSquad= (props,clubs) => {
-    // console.log(props)
+export const selectRandomSquad= (props,clubs) => {    
     let squad = props.format
     let players = props.wholeItems
     let i = 0
     let randomClubs = [0,0,0,0,0]
     while(i<5)
     {
-        let number = Math.ceil(Math.random() * clubs.length)
+        let number = Math.ceil(Math.random() * clubs.length-1)
         if(!randomClubs.includes(number))
         {
             randomClubs[i] = number
@@ -69,8 +70,8 @@ export const selectRandomSquad= (props,clubs) => {
     }
     for(i=0;i<5;i++)
     {
-        console.log(randomClubs)
-        console.log(clubs[randomClubs[i]].name)
+        console.log("this is randomCLubs",randomClubs,i)
+        // console.log(clubs[randomClubs[i]].name)
         randomClubs[i] = clubs[randomClubs[i]].id
     }
     
@@ -180,7 +181,7 @@ export const selectRandomSquad= (props,clubs) => {
     console.log("Midfilders",Midfilders)
     console.log("forwards",forwards)
     console.log("bench",bench)
-
+    const remainedMoney = calculateMoney(Defenders, Midfilders, forwards, bench, Goalkeeper)
 
 
     return function(dispatch){
@@ -189,7 +190,7 @@ export const selectRandomSquad= (props,clubs) => {
         dispatch(setDefenders(Defenders))
         dispatch(setMiddles(Midfilders))
         dispatch(setBench(bench))
-
+        dispatch(setRemainedMoney(remainedMoney))
       }
 }
 const getPlayers = players => (

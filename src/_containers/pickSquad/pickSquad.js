@@ -11,6 +11,10 @@ import {Button} from "react-bootstrap";
 import * as api_urls from "../../_api/api_urls";
 import axios from "axios";
 import {
+    setFormat,
+    setDefenders,
+    setMiddles,
+    setForwards,
     getWholeItems,
     setFilteredPosition,
     setPickedPosition,
@@ -65,6 +69,10 @@ class PickSquadContainer extends Component {
 
     componentDidMount() {
         console.log("fuck off", this.props.format)
+        this.props.setFormat("4-3-3");
+        this.props.setDefenders([null,null,null,null]);
+        this.props.setMiddles([null,null,null]);
+        this.props.setForwards([null,null,null]);
         this.props.getWholeItems(this.props.dashboard.selectedCompetition);
         this.setState({
             pickName: true,
@@ -501,20 +509,10 @@ class PickSquadContainer extends Component {
                                                 })
                                                 this.props.history.push(`/manageteam/substitution`)
                                             } else {
-                                                console.log(typeof(res.data.message)==='object');
-                                                console.log(typeof(res.data.message))
-                                                if(typeof(res.data.message)==='object')
-                                                {
-                                                    console.log("ma injaEm bax",res)
-                                                    Swal.fire({
-                                                        position: 'center',
-                                                        type: 'error',
-                                                        title: res.data.message.captain[0],
-                                                        showConfirmButton: false,
-                                                        timer: 3000
-                                                    })
-                                                }
-                                                else{
+                                            //     if(typeof(res.data.message)==='object')
+                                            //     {
+                                            //         console.log("ma injaEm bax",res)
+
                                                     Swal.fire({
                                                         position: 'center',
                                                         type: 'error',
@@ -522,8 +520,8 @@ class PickSquadContainer extends Component {
                                                         showConfirmButton: false,
                                                         timer: 3000
                                                     })
-                                                }
-
+                                                
+                                            //     }
                                             }
                                         }
 
@@ -590,7 +588,12 @@ function mapDispatchToProps(dispatch) {
         setPickedKey,
         toggleModal,
         setSquadName,
-        selectRandomSquad
+        selectRandomSquad,
+        setFormat,
+        setDefenders,
+        setMiddles,
+        setForwards,
+
 
 
     }, dispatch)
