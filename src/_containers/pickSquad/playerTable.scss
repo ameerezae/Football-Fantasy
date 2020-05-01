@@ -1,0 +1,26 @@
+.list-image{
+  width: 3rem !important;
+  height: 3rem !important;
+}
+.whiteText {
+  color: white !important;
+}
+.mdc-list{
+  background-color: #0377D8 !important;
+}
+
+.mdc-list-item__primary-text{
+  color: white !important;
+  text-align: center;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+.mdc-list-item__secondary-text{
+  color: white !important;
+  text-align: center;
+  margin-left: 1rem;
+}
+
+.disabled-all .mdc-list {
+  background-color: gray !important;
+}
