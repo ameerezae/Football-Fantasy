@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Football Fantasy
+<img src="https://img.shields.io/static/v1?message=React&logo=React&labelColor=61DBFB&color=61DBFB&logoColor=black&label=%20&style=flat-square" alt="react"> <img src="https://img.shields.io/static/v1?message=Bootstrap&logo=bootstrap&labelColor=563d7c&color=563d7c&logoColor=white&label=%20&style=flat-square" alt="bootstrap">
+<img src="https://img.shields.io/static/v1?message=javascript&logo=javascript&labelColor=black&color=black&logoColor=f0db4f&label=%20&style=flat-square" alt="react">
 
-## Available Scripts
+## Description
+An idea from **[Premier League Fantasy](https://fantasy.premierleague.com/)**. Implemented using [Reactjs](https://github.com/facebook/react/) and [React-Bootstrap](https://github.com/react-bootstrap/react-bootstrap).
 
-In the project directory, you can run:
+## Getting Started
+### Dependencies
+Install dependencies by running following command:
+\
+```yarn install```
+### Executing
 
-### `yarn start`
+```yarn start```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Demo
+1. Landing Page: \
+<img src="./shots/Football-Fantasy-1.jpg" alt="img">
+   
+1. **Register** or **Log into your Account**: \
+   <img src="./shots/Football-Fantasy-9.png" alt="img">
+   
+1. Pick Your **Squad** based on gift money: \
+<img src="./shots/Football-Fantasy-5.png" alt="img">
+   
+1. Dashboard: \
+   <img src="./shots/Football-Fantasy-2.jpg" alt="img">
+   
+1. Manage Your Team:
+   1. Choose Your **Captain**
+   1. Make **Substitution**
+   1. Apply **Wild Cards** 
+   
+   <img src="./shots/Football-Fantasy-3.jpg" alt="img">
+   <img src="./shots/Football-Fantasy-4.jpg" alt="img">
+   
+1. **Transfer** Your Players: \
+   <img src="./shots/Football-Fantasy-6.png" alt="img">
+   
+1. See **Statistics** of each player:
+   1. Goals in real world.
+   1. Goal-Assist in real world.
+   1. Line-Up in Last Games in real world.
+   
+   <img src="./shots/Football-Fantasy-7.png" alt="img">
+   
+1. See **Weekly Games** of real world.\
+   <img src="./shots/Football-Fantasy-8.png" alt="img">
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Authors
+Amir Rezaei [@ameerezae](https://github.com/ameerezae) \
+HamiadReza Sanaee [@HamidrezaSK](https://github.com/HamidrezaSK)
