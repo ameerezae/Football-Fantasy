@@ -16,37 +16,37 @@ Install dependencies by running following command:
 
 ### Demo
 1. Landing Page: \
-<img src="./shots/Football-Fantasy-1.jpg" alt="img">
+   <img src="./shots/Football-Fantasy-1.jpg" alt="img" width="770">
    
-1. **Register** or **Log into your Account**: \
-   <img src="./shots/Football-Fantasy-9.png" alt="img">
+1. **Register** or **Log into your Account**: 
+   <img src="./shots/Football-Fantasy-9.png" alt="img" width="770">
    
-1. Pick Your **Squad** based on gift money: \
-<img src="./shots/Football-Fantasy-5.png" alt="img">
+1. Pick Your **Squad** based on gift money: 
+   <img src="./shots/Football-Fantasy-5.png" alt="img" width="770">
    
 1. Dashboard: \
-   <img src="./shots/Football-Fantasy-2.jpg" alt="img">
+   <img src="./shots/Football-Fantasy-2.jpg" alt="img" width="770">
    
 1. Manage Your Team:
-   1. Choose Your **Captain**
-   1. Make **Substitution**
-   1. Apply **Wild Cards** 
+   1. Choose Your **Captain**.
+   1. Make **Substitution**.
+   1. Apply **Wild Cards** .
    
-   <img src="./shots/Football-Fantasy-3.jpg" alt="img">
-   <img src="./shots/Football-Fantasy-4.jpg" alt="img">
+   <img src="./shots/Football-Fantasy-3.jpg" alt="img" width="770">
+   <img src="./shots/Football-Fantasy-4.jpg" alt="img" width="770">
    
-1. **Transfer** Your Players: \
-   <img src="./shots/Football-Fantasy-6.png" alt="img">
+1. **Transfer** Your Players: 
+   <img src="./shots/Football-Fantasy-6.png" alt="img" width="770">
    
 1. See **Statistics** of each player:
    1. Goals in real world.
    1. Goal-Assist in real world.
    1. Line-Up in Last Games in real world.
    
-   <img src="./shots/Football-Fantasy-7.png" alt="img">
+   <img src="./shots/Football-Fantasy-7.png" alt="img" width="770">
    
-1. See **Weekly Games** of real world.\
-   <img src="./shots/Football-Fantasy-8.png" alt="img">
+1. See **Weekly Games** of real world.
+   <img src="./shots/Football-Fantasy-8.png" alt="img" width="770">
 
 
 
